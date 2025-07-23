@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.GameTitle
+{
+    text-decoration: none;
+}
+
+.ScreenShot img
+{
+    width: 100%;
+}
