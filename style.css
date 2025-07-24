@@ -1,11 +1,30 @@
 @charset "UTF-8";
 
-a
+.Title
+{
+    text-align: center;
+    background-color: #3f3f3f;
+    color: #ffffff;
+    height: 100px;
+    line-height: 90px;
+}
+
+.TitleText
+{
+    vertical-align: middle;
+}
+
+.GameTitle a
 {
     text-decoration: none;
 }
 
+.ScreenShot
+{
+    text-align: center;
+}
+
 .ScreenShot img
 {
-    width: 100%;
+    width: 80%;
 }
