@@ -4,8 +4,7 @@
 {
     body
     {
-        color: #ffffff;
-        background-color: #8f8f8f;
+        background-color: #cfcfcf;
     }
 
     .IfLinkExist
@@ -16,6 +15,7 @@
     .Title
     {
         text-align: center;
+        color: #ffffff;
         background-color: #3f3f3f;
         height: 100px;
         line-height: 90px;
