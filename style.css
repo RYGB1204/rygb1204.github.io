@@ -2,6 +2,12 @@
 
 @media (min-width: 0px)
 {
+    body
+    {
+        color: #ffffff;
+        background-color: #8f8f8f;
+    }
+
     .IfLinkExist
     {
         display: none;
@@ -11,18 +17,19 @@
     {
         text-align: center;
         background-color: #3f3f3f;
-        color: #ffffff;
         height: 100px;
         line-height: 90px;
     }
 
     .TitleText
     {
+        display: inline-block;
         vertical-align: middle;
     }
 
     .GameTitle a
     {
+        color: #6f006f;
         text-decoration: none;
         pointer-events: none;
     }
