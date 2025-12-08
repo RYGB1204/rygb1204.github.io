@@ -1,5 +1,158 @@
 @charset "UTF-8";
 
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #cccccc;
+    margin: 0;
+    height: 100%;
+    position: relative;
+    text-align: center;
+}
+
+header {
+    width: 100%; height: 100px;
+    position: absolute;
+    top: 0;
+    background-color: #666666;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+}
+
+#ButtonOption {
+    
+    padding: 0;
+    position: absolute;
+    right: 10px; top: 50%;
+    background-color: transparent;
+    border-style: none;
+    transform: translateY(-50%);
+    background-image: url(Image/ButtonOption.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+nav {
+    overflow: hidden;
+    position: absolute;
+    left: 50%; top: 105px;
+    transform: translateX(-50%);
+}
+
+nav button {
+    float: left;
+    padding: 0; margin: 2px;
+    background-color: transparent;
+    border-style: none;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+button:hover {
+    opacity: 80%;
+}
+
+#ButtonGame {
+    background-image: url(Image/ButtonGame.png);
+}
+
+#ButtonImage {
+    background-image: url(Image/ButtonImage.png);
+}
+
+#ButtonSound {
+    background-image: url(Image/ButtonSound.png);
+}
+
+#ButtonVideo {
+    background-image: url(Image/ButtonVideo.png);
+}
+
+footer {
+    width: 100%; height: 100px;
+    position: absolute;
+    bottom: 0;
+    background-color: #666666;
+    background-image: url(Image/FooterText.png);
+    background-size: 172px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@media screen and (min-width: 0px) and (max-width: 499px) {
+
+    header {
+        background-image: url(Image/HeaderTextSmall.png), url(Image/Icon.png), url(Image/Brick.png);
+        background-size: 125px, 60px, 151px;
+        background-position: center, left 10px center, right center;
+    }
+
+    #ButtonOption {
+        width: 60px; height: 60px;
+        background-size: 60px;
+    }
+
+    nav {
+        width: 328px; height: 88px;
+    }
+
+    nav button {
+        width: 160px; height: 40px;
+        background-size: 160px;
+    }
+
+}
+
+@media screen and (min-width: 500px) and (max-width: 999px) {
+
+    header {
+        background-image: url(Image/HeaderTextSmall.png), url(Image/Icon.png), url(Image/Brick.png);
+        background-size: 125px, 75px, 151px;
+        background-position: left 100px center, left 10px center, right center;
+    }
+
+    #ButtonOption {
+        width: 75px; height: 75px;
+        background-size: 75px;
+    }
+
+    nav {
+        width: 408px; height: 108px;
+    }
+
+    nav button {
+        width: 200px; height: 50px;
+        background-size: 200px;
+    }
+
+}
+
+@media screen and (min-width: 1000px) and (max-width: 9999px) {
+    
+    header {
+        background-image: url(Image/HeaderTextLarge.png), url(Image/Icon.png), url(Image/Brick.png);
+        background-size: 331px, 75px, 151px;
+        background-position: left 100px center, left 10px center, right center;
+    }
+
+    #ButtonOption {
+        width: 75px; height: 75px;
+        background-size: 75px;
+    }
+
+    nav {
+        width: 816px; height: 54px;
+    }
+
+    nav button {
+        width: 200px; height: 50px;
+        background-size: 200px;
+    }
+
+}
+
+/*
 @media (min-width: 0px)
 {
     body
@@ -57,5 +210,4 @@
         pointer-events: auto;
     }
 }
-
-
+*/
