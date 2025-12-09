@@ -23,6 +23,10 @@ header {
     background-repeat: no-repeat, no-repeat, no-repeat;
 }
 
+button:hover {
+    opacity: 80%;
+}
+
 #ButtonOption {
     position: absolute;
     right: 10px; top: 50%;
@@ -32,6 +36,10 @@ header {
     background-image: url(Image/ButtonOption.png);
     background-repeat: no-repeat;
     background-position: center;
+}
+
+#ButtonOption:active {
+    background-image: url(Image/ButtonOptionPush.png);
 }
 
 nav {
@@ -63,24 +71,36 @@ nav button {
     */
 }
 
-button:hover {
-    opacity: 80%;
-}
-
 #ButtonGame {
     background-image: url(Image/ButtonGame.png);
+}
+
+#ButtonGame:active {
+    background-image: url(Image/ButtonGamePush.png);
 }
 
 #ButtonImage {
     background-image: url(Image/ButtonImage.png);
 }
 
+#ButtonImage:active {
+    background-image: url(Image/ButtonImagePush.png);
+}
+
 #ButtonSound {
     background-image: url(Image/ButtonSound.png);
 }
 
+#ButtonSound:active {
+    background-image: url(Image/ButtonSoundPush.png);
+}
+
 #ButtonVideo {
     background-image: url(Image/ButtonVideo.png);
+}
+
+#ButtonVideo:active {
+    background-image: url(Image/ButtonVideoPush.png);
 }
 
 footer {
