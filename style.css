@@ -98,7 +98,7 @@ footer {
 
     header {
         background-image: url(Image/HeaderTextSmall.png), url(Image/Icon.png), url(Image/Brick.png);
-        background-size: 125px, 60px, 151px;
+        background-size: 125px, 60px, calc(151px * 4 /5) 100px;
         background-position: center, left 10px center, right center;
     }
 
