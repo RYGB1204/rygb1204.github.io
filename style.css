@@ -33,13 +33,61 @@ button:hover {
     background-color: transparent;
     border-style: none;
     transform: translateY(-50%);
-    background-image: url(Image/ButtonOption.png);
-    background-repeat: no-repeat;
-    background-position: center;
+    background-image: url(Image/ButtonOption.png), url(Image/ButtonOptionPush.png);
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+    z-index: 5;
 }
 
 #ButtonOption:active {
     background-image: url(Image/ButtonOptionPush.png);
+}
+
+#MenuOption {
+    width: 0; height: 0;
+    position: absolute;
+    right: 47.5px; top: 50%;
+    background-color: #999999;
+    transition: all 0.5s;
+    z-index: 1;
+}
+
+#MenuOption.active {
+    width: 100vw; height: 100vh;
+    right: 0; top: 0;
+}
+
+.Crab {
+    position: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    transition: all 0.5s;
+}
+
+.Crab#CrabP {
+    z-index: 4;
+    background-image: url(Image/CrabP.png);
+}
+
+.Crab#CrabR {
+    z-index: 3;
+    background-image: url(Image/CrabR.png);
+}
+
+.Crab#CrabB {
+    z-index: 3;
+    background-image: url(Image/CrabB.png);
+}
+
+.Crab#CrabY {
+    z-index: 2;
+    background-image: url(Image/CrabY.png);
+}
+
+.Crab#CrabG {
+    z-index: 2;
+    background-image: url(Image/CrabG.png);
 }
 
 nav {
@@ -48,31 +96,18 @@ nav {
     position: absolute;
     left: 50%; top: 105px;
     transform: translateX(-50%);
-    /*
-    overflow: hidden;
-    position: absolute;
-    left: 50%; top: 105px;
-    transform: translateX(-50%);
-    */
 }
 
 nav button {
     background-color: transparent;
     border-style: none;
-    background-repeat: no-repeat;
-    background-position: center;
-    /*
-    float: left;
-    padding: 0; margin: 2px;
-    background-color: transparent;
-    border-style: none;
-    background-repeat: no-repeat;
-    background-position: center;
-    */
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+    background-size: 100%, 100%;
 }
 
 #ButtonGame {
-    background-image: url(Image/ButtonGame.png);
+    background-image: url(Image/ButtonGame.png), url(Image/ButtonGamePush.png);
 }
 
 #ButtonGame:active {
@@ -80,7 +115,7 @@ nav button {
 }
 
 #ButtonImage {
-    background-image: url(Image/ButtonImage.png);
+    background-image: url(Image/ButtonImage.png), url(Image/ButtonImagePush.png);
 }
 
 #ButtonImage:active {
@@ -88,7 +123,7 @@ nav button {
 }
 
 #ButtonSound {
-    background-image: url(Image/ButtonSound.png);
+    background-image: url(Image/ButtonSound.png), url(Image/ButtonSoundPush.png);
 }
 
 #ButtonSound:active {
@@ -96,7 +131,7 @@ nav button {
 }
 
 #ButtonVideo {
-    background-image: url(Image/ButtonVideo.png);
+    background-image: url(Image/ButtonVideo.png), url(Image/ButtonVideoPush.png);
 }
 
 #ButtonVideo:active {
@@ -114,7 +149,7 @@ footer {
     background-position: center;
 }
 
-@media screen and (min-width: 0px) and (max-width: 499px) {
+@media screen and (min-width: 0px) and (max-width: 499.999px) {
 
     header {
         background-image: url(Image/HeaderTextSmall.png), url(Image/Icon.png), url(Image/Brick.png);
@@ -124,7 +159,32 @@ footer {
 
     #ButtonOption {
         width: 60px; height: 60px;
-        background-size: 60px;
+        background-size: 60px, 60px;
+    }
+
+    .Crab {
+        width: 80vw; aspect-ratio: 1 / 1;
+    }
+
+    .Crab#CrabP {
+        left: 50%; bottom: -100%;
+        transform: translate(-50%, +50%)
+    }
+    .Crab#CrabR {
+        display: none;
+    }
+    .Crab#CrabB {
+        display: none;
+    }
+    .Crab#CrabY {
+        display: none;
+    }
+    .Crab#CrabG {
+        display: none;
+    }
+
+    .Crab#CrabP.active {
+        bottom: 20%;
     }
 
     nav {
@@ -132,13 +192,9 @@ footer {
         grid-template-columns: repeat(2, auto);
     }
 
-    nav button {
-        background-size: 100%;
-    }
-
 }
 
-@media screen and (min-width: 500px) and (max-width: 999px) {
+@media screen and (min-width: 500px) and (max-width: 999.999px) {
 
     header {
         background-image: url(Image/HeaderTextSmall.png), url(Image/Icon.png), url(Image/Brick.png);
@@ -151,13 +207,42 @@ footer {
         background-size: 75px;
     }
 
+    .Crab {
+        width: 50vw; aspect-ratio: 1 / 1;
+    }
+
+    .Crab#CrabP {
+        left: 50%; bottom: -100%;
+        transform: translate(-50%, +50%);
+    }
+    .Crab#CrabR {
+        left: -50%; bottom: 0;
+        transform: translate(-50%, +50%);
+    }
+    .Crab#CrabB {
+        right: -50%; bottom: 0;
+        transform: translate(+50%, +50%);
+    }
+    .Crab#CrabY {
+        display: none;
+    }
+    .Crab#CrabG {
+        display: none;
+    }
+
+    .Crab#CrabP.active {
+        bottom: 20%;
+    }
+    .Crab#CrabR.active {
+        left: 25%; bottom: 35%;
+    }
+    .Crab#CrabB.active {
+        right: 25%; bottom: 35%;
+    }
+
     nav {
         width: calc(80% + 6px); aspect-ratio: calc(calc(80vw + 6px) / calc(80vw / 16 + 0px));
         grid-template-columns: repeat(4, auto);
-    }
-
-    nav button {
-        background-size: 100%;
     }
 
 }
@@ -175,13 +260,50 @@ footer {
         background-size: 75px;
     }
 
+    .Crab {
+        width: 40vw; aspect-ratio: 1 / 1;
+    }
+
+    .Crab#CrabP {
+        left: 50%; bottom: -100%;
+        transform: translate(-50%, +50%);
+    }
+    .Crab#CrabR {
+        left: -50%; bottom: -20%;
+        transform: translate(-50%, +50%);
+    }
+    .Crab#CrabB {
+        right: -50%; bottom: -20%;
+        transform: translate(+50%, +50%);
+    }
+    .Crab#CrabY {
+        left: -50%; bottom: 50%;
+        transform: translate(-50%, +50%);
+    }
+    .Crab#CrabG {
+        right: -50%; bottom: 50%;
+        transform: translate(+50%, +50%);
+    }
+
+    .Crab#CrabP.active {
+        bottom: 20%;
+    }
+    .Crab#CrabR.active {
+        left: 20%; bottom: 30%;
+    }
+    .Crab#CrabB.active {
+        right: 20%; bottom: 30%;
+    }
+    .Crab#CrabY.active {
+        left: 30%;
+    }
+    .Crab#CrabG.active {
+        right: 30%;
+    }
+
     nav {
         width: calc(800px + 6px); aspect-ratio: calc(calc(800px + 6px) / calc(50px + 0px));
         grid-template-columns: repeat(4, auto);
-    }
-
-    nav button {
-        background-size: 100%;
     }
 
 }
