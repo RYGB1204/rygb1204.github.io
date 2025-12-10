@@ -13,6 +13,7 @@ body {
     height: 100%;
     position: relative;
     text-align: center;
+    overflow: hidden;
 }
 
 header {
@@ -48,6 +49,7 @@ button:hover {
     width: 100vw; height: 100vh;
     background-color: #999999;
     opacity: 0;
+    pointer-events: none;
     z-index: 1;
 }
 

@@ -63,9 +63,11 @@ ButtonOption.addEventListener("click", function() {
     IfOptionOnOff = !IfOptionOnOff;
 
     if (IfOptionOnOff) {
+        MenuOption.style.pointerEvents = "auto";
         OptionsMenuOption.direction = "normal";
     }
     else {
+        MenuOption.style.pointerEvents = "none";
         OptionsMenuOption.direction = "reverse";
     }
 
