@@ -29,10 +29,10 @@ button:hover {
 
 #ButtonOption {
     position: absolute;
-    right: 10px; top: 50%;
+    margin: auto 0;
+    right: 10px; top: 0; bottom: 0;
     background-color: transparent;
     border-style: none;
-    transform: translateY(-50%);
     background-image: url(Image/ButtonOption.png), url(Image/ButtonOptionPush.png);
     background-repeat: no-repeat, no-repeat;
     background-position: center, center;
@@ -44,6 +44,14 @@ button:hover {
 }
 
 #MenuOption {
+    position: absolute;
+    width: 100vw; height: 100vh;
+    background-color: #999999;
+    opacity: 0;
+    z-index: 1;
+}
+
+/* #MenuOption {
     width: 0; height: 0;
     position: absolute;
     right: 47.5px; top: 50%;
@@ -55,7 +63,7 @@ button:hover {
 #MenuOption.active {
     width: 100vw; height: 100vh;
     right: 0; top: 0;
-}
+} */
 
 .Crab {
     position: fixed;
@@ -184,7 +192,7 @@ footer {
     }
 
     .Crab#CrabP.active {
-        bottom: 20%;
+        transform: translate(-50%, +50%) translate(0, -120vh);
     }
 
     nav {
@@ -231,13 +239,13 @@ footer {
     }
 
     .Crab#CrabP.active {
-        bottom: 20%;
+        transform: translate(-50%, +50%) translate(0, -120vh);
     }
     .Crab#CrabR.active {
-        left: 25%; bottom: 35%;
+        transform: translate(-50%, +50%) translate(+75vw, -35vh);
     }
     .Crab#CrabB.active {
-        right: 25%; bottom: 35%;
+        transform: translate(+50%, +50%) translate(-75vw, -35vh);
     }
 
     nav {
@@ -286,19 +294,19 @@ footer {
     }
 
     .Crab#CrabP.active {
-        bottom: 20%;
+        transform: translate(-50%, +50%) translate(0, -120vh);
     }
     .Crab#CrabR.active {
-        left: 20%; bottom: 30%;
+        transform: translate(-50%, +50%) translate(+70vw, -50vh);
     }
     .Crab#CrabB.active {
-        right: 20%; bottom: 30%;
+        transform: translate(+50%, +50%) translate(-70vw, -50vh);
     }
     .Crab#CrabY.active {
-        left: 30%;
+        transform: translate(-50%, +50%) translate(+80vw, 0);
     }
     .Crab#CrabG.active {
-        right: 30%;
+        transform: translate(+50%, +50%) translate(-80vw, 0);
     }
 
     nav {
