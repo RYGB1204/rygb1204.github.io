@@ -3,17 +3,15 @@ const Footer = document.querySelector("footer");
 
 const KeyframesHeader = {
     opacity: [0, 1],
-    // translate: ["0 -50px", 0]
 };
 
 const KeyframesFooter = {
     opacity: [0, 1],
-    //translate: ["0 +50px", 0]
 };
 
 const Options = {
     duration: 1000,
-    easing: "ease"
+    easing: "ease",
 };
 
 Header.animate(KeyframesHeader, Options);
@@ -23,14 +21,14 @@ const Button = document.querySelectorAll("button");
 
 const KeyframesButton = {
     opacity: [0, 1],
-    transform: ["scale(0)", "scale(1)"]
+    scale: [0, 1],
 };
 
 const OptionsButton = {
     delay: 1000,
     duration: 200,
     easing: "ease-out",
-    fill: "both"
+    fill: "both",
 };
 
 for (let i = 0; i < Button.length; i++) {
@@ -49,12 +47,35 @@ const KeyframesMenuOption = {
     opacity: [0, 1],
 };
 
+const KeyframesCrabP = {
+    translate: [],
+};
+const KeyframesCrabR = {
+    translate: [],
+};
+const KeyframesCrabB = {
+    translate: [],
+};
+const KeyframesCrabY = {
+    translate: [],
+};
+const KeyframesCrabG = {
+    translate: [],
+};
+
 let OptionsMenuOption = {
-    direction: "normal",
+    direction: "",
     duration: 200,
     easing: "ease-out",
-    fill: "both"
+    fill: "both",
 };
+
+let OptionsCrab = {
+    direction: "",
+    duration: 500,
+    easing: "ease-out",
+    fill: "both",
+}
 
 let IfOptionOnOff = false;
 
@@ -65,17 +86,42 @@ ButtonOption.addEventListener("click", function() {
     if (IfOptionOnOff) {
         MenuOption.style.pointerEvents = "auto";
         OptionsMenuOption.direction = "normal";
+        OptionsCrab.direction = "normal";
     }
     else {
         MenuOption.style.pointerEvents = "none";
         OptionsMenuOption.direction = "reverse";
+        OptionsCrab.direction = "reverse";
     }
 
     MenuOption.animate(KeyframesMenuOption, OptionsMenuOption);
-    // MenuOption.classList.toggle("active");
-    CrabY.classList.toggle("active");
-    CrabR.classList.toggle("active");
-    CrabP.classList.toggle("active");
-    CrabB.classList.toggle("active");
-    CrabG.classList.toggle("active");
+
+    if (document.documentElement.clientWidth < 500) {
+        KeyframesCrabP.translate = [0, "0 -80vw"];
+    }
+    else if (document.documentElement.clientWidth < 1000) {
+        KeyframesCrabP.translate = [0, "0 -40vw"];
+        KeyframesCrabR.translate = [0, "+50vw calc(-40vw - 20vh)"];
+        KeyframesCrabB.translate = [0, "-50vw calc(-40vw - 20vh)"];
+    }
+    else {
+        KeyframesCrabP.translate = [0, "0 -30vw"];
+        KeyframesCrabR.translate = [0, "+40vw calc(-30vw - 10vh)"];
+        KeyframesCrabB.translate = [0, "-40vw calc(-30vw - 10vh)"];
+        KeyframesCrabY.translate = [0, "+50vw 0"];
+        KeyframesCrabG.translate = [0, "-50vw 0"];
+    }
+
+
+    CrabP.animate(KeyframesCrabP, OptionsCrab);console.log(KeyframesCrabP.translate);
+    CrabR.animate(KeyframesCrabR, OptionsCrab);
+    CrabB.animate(KeyframesCrabB, OptionsCrab);
+    CrabY.animate(KeyframesCrabY, OptionsCrab);
+    CrabG.animate(KeyframesCrabG, OptionsCrab);
+       // MenuOption.classList.toggle("active");
+    // CrabY.classList.toggle("active");
+    // CrabR.classList.toggle("active");
+    // CrabP.classList.toggle("active");
+    // CrabB.classList.toggle("active");
+    // CrabG.classList.toggle("active");
 });
