@@ -177,8 +177,9 @@ footer {
     }
 
     .Crab#CrabP {
-        left: 50%; bottom: -100%;
-        transform: translate(-50%, +50%)
+        left: calc(50% - 40vw); top: 100%;
+        /* left: 50%; bottom: -100%;
+        transform: translate(-50%, +50%) */
     }
     .Crab#CrabR {
         display: none;
@@ -194,7 +195,8 @@ footer {
     }
 
     .Crab#CrabP.active {
-        transform: translate(-50%, +50%) translate(0, -120vh);
+        transform: translate(0, -80vw);
+        /* transform: translate(-50%, +50%) translate(0, -120vh); */
     }
 
     nav {
@@ -222,16 +224,19 @@ footer {
     }
 
     .Crab#CrabP {
-        left: 50%; bottom: -100%;
-        transform: translate(-50%, +50%);
+        left: calc(50% - 25vw); top: 100%;
+        /* left: 50%; bottom: -100%;
+        transform: translate(-50%, +50%); */
     }
     .Crab#CrabR {
-        left: -50%; bottom: 0;
-        transform: translate(-50%, +50%);
+        right: 100%; top: 100%;
+        /* left: -50%; bottom: 0;
+        transform: translate(-50%, +50%); */
     }
     .Crab#CrabB {
-        right: -50%; bottom: 0;
-        transform: translate(+50%, +50%);
+        left: 100%; top: 100%;
+        /* right: -50%; bottom: 0;
+        transform: translate(+50%, +50%); */
     }
     .Crab#CrabY {
         display: none;
@@ -241,13 +246,16 @@ footer {
     }
 
     .Crab#CrabP.active {
-        transform: translate(-50%, +50%) translate(0, -120vh);
+        transform: translate(0, -40vw);
+        /* transform: translate(-50%, +50%) translate(0, -120vh); */
     }
     .Crab#CrabR.active {
-        transform: translate(-50%, +50%) translate(+75vw, -35vh);
+        transform: translate(+50vw, calc(-40vw - 20vh));
+        /* transform: translate(-50%, +50%) translate(+75vw, -35vh); */
     }
     .Crab#CrabB.active {
-        transform: translate(+50%, +50%) translate(-75vw, -35vh);
+        transform: translate(-50vw, calc(-40vw - 20vh));
+        /* transform: translate(+50%, +50%) translate(-75vw, -35vh); */
     }
 
     nav {
@@ -275,40 +283,46 @@ footer {
     }
 
     .Crab#CrabP {
-        left: 50%; bottom: -100%;
-        transform: translate(-50%, +50%);
+        left: calc(50% - 20vw); top: 100%;
+        /* left: 50%; bottom: -100%;
+        transform: translate(-50%, +50%); */
     }
     .Crab#CrabR {
-        left: -50%; bottom: -20%;
-        transform: translate(-50%, +50%);
+        right: 100%; top: 100%;
+        /* transform: translate(-50%, +50%); */
     }
     .Crab#CrabB {
-        right: -50%; bottom: -20%;
-        transform: translate(+50%, +50%);
+        left: 100%; top: 100%;
+        /* transform: translate(+50%, +50%); */
     }
     .Crab#CrabY {
-        left: -50%; bottom: 50%;
-        transform: translate(-50%, +50%);
+        right: 100%; top: calc(100% + calc(-30vw - 30vh));
+        /* transform: translate(-50%, +50%); */
     }
     .Crab#CrabG {
-        right: -50%; bottom: 50%;
-        transform: translate(+50%, +50%);
+        left: 100%; top: calc(100% + calc(-30vw - 30vh));
+        /* transform: translate(+50%, +50%); */
     }
 
     .Crab#CrabP.active {
-        transform: translate(-50%, +50%) translate(0, -120vh);
+        transform: translate(0, -30vw);
+        /* transform: translate(-50%, +50%) translate(0, -120vh); */
     }
     .Crab#CrabR.active {
-        transform: translate(-50%, +50%) translate(+70vw, -50vh);
+        transform: translate(+40vw, calc(-30vw - 10vh));
+        /* transform: translate(-50%, +50%) translate(+70vw, -50vh); */
     }
     .Crab#CrabB.active {
-        transform: translate(+50%, +50%) translate(-70vw, -50vh);
+        transform: translate(-40vw, calc(-30vw - 10vh));
+        /* transform: translate(+50%, +50%) translate(-70vw, -50vh); */
     }
     .Crab#CrabY.active {
-        transform: translate(-50%, +50%) translate(+80vw, 0);
+        transform: translate(+50vw, 0);
+        /* transform: translate(-50%, +50%) translate(+80vw, 0); */
     }
     .Crab#CrabG.active {
-        transform: translate(+50%, +50%) translate(-80vw, 0);
+        transform: translate(-50vw, 0);
+        /* transform: translate(+50%, +50%) translate(-80vw, 0); */
     }
 
     nav {
