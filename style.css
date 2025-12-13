@@ -5,15 +5,15 @@
 }
 
 html {
-    height: 100%;
+    /* height: 100%; */
 }
 
 body {
     background-color: #cccccc;
-    height: 100%;
+    width: 100vw; height: 100vh;
+    /* height: 100%; */
     position: relative;
     text-align: center;
-    overflow: hidden;
 }
 
 header {
@@ -146,6 +146,68 @@ nav button {
 
 #ButtonVideo:active {
     background-image: url(Image/ButtonVideoPush.png);
+}
+
+#Contents {
+    position: absolute;
+    width: 100%;
+    top: 100px; bottom: 100px;
+    overflow: hidden;
+}
+
+#CountText {
+    display: inline-block;
+    position: absolute;
+    color: #ffffff;
+    width: 24vw; height: 10vw;
+    left: 38vw; top: 130px;
+    font-size: 8vw;
+    vertical-align: middle;
+}
+
+#Chicken {
+    position: absolute;
+    width: 8vw; height: 8vw;
+    left: 46vw; bottom: 0;
+    background-image: url(Image/Chicken.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+#Crab {
+    position: absolute;
+    width: 10vw; height: 8vw;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+#Crab.CrabP {
+    width: 20vw; height: 16vw;
+    background-image: url(Image/CrabP.png);
+}
+#Crab.CrabP.Left {
+    right: 100vw; bottom: -1.5vw;
+}
+#Crab.CrabP.Right {
+    left: 100vw; bottom: -1.5vw;
+}
+#Crab.CrabR {
+    right: 100vw; bottom: -0.5vw;
+    background-image: url(Image/CrabR.png);
+}
+#Crab.CrabB {
+    left: 100vw; bottom: -0.5vw;
+    background-image: url(Image/CrabB.png);
+}
+#Crab.CrabY {
+    right: 100vw; bottom: 10vw;
+    background-image: url(Image/CrabY.png);
+}
+#Crab.CrabG {
+    left: 100vw; bottom: 10vw;
+    background-image: url(Image/CrabG.png);
 }
 
 footer {
