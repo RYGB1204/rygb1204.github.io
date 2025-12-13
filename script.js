@@ -257,8 +257,8 @@ function MoveRight(TimeNow) {
 
 function Jump(TimeNow) {
 
-    const VelocityInitial = WidthChiken * 15;
-    const Gravity = WidthChiken * 30;
+    const VelocityInitial = WidthChiken * 12;
+    const Gravity = WidthChiken * 24;
 
     if (TimeStartJump === undefined) {
         TimeStartJump = TimeNow;
@@ -464,7 +464,7 @@ function DisplayCrab(Crab) {
 
             // Crab.animate(KeyframesCrabLeft, OptionsCrab);
 
-            ObjectCrab.VelocityInitialRate = 8;
+            ObjectCrab.VelocityInitialRate = 6;
             ObjectCrab.GravityRate = 1;
 
         break;
@@ -472,7 +472,7 @@ function DisplayCrab(Crab) {
 
             // Crab.animate(KeyframesCrabRight, OptionsCrab);
 
-            ObjectCrab.VelocityInitialRate = 8;
+            ObjectCrab.VelocityInitialRate = 6;
             ObjectCrab.GravityRate = 1;
 
         break;
@@ -559,7 +559,14 @@ function ChooseCrab() {
 
     Crab.setAttributeNode(IdCrab);
 
-    const Seed = Math.random() * 4.1;
+    let Seed;
+
+    if (20 < CountInt) {
+        Seed = Math.random() * 4.0;
+    }
+    else {
+        Seed = Math.random() * 4.1;
+    }
 
     if (Seed < 1) {
         SpawnCrabR(Crab);
