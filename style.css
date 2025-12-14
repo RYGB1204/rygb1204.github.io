@@ -156,8 +156,8 @@ nav button {
     display: inline-block;
     position: absolute;
     color: #ffffff;
-    width: 24vw; height: 10vw;
-    left: 38vw; top: 120px;
+    width: 50vw; height: 10vw;
+    left: 25vw; top: 120px;
     font-size: 8vw;
     vertical-align: middle;
 }
