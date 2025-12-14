@@ -128,13 +128,25 @@ ButtonOption.addEventListener("click", function() {
 
 //ChikenStart
 
-let IfYouOperateCanCannot = false;
+const ObjectStateGame = {
+    BeforeStart: "BeforeStart",
+    AfterStart: "AfterStart",
+    Failure: "Failure",
+    Success: "Success"
+};
+
+let StateGame = ObjectStateGame.BeforeStart;
+
+// let IfGameSuccessFailure;
+// let IfYouOperateCanCannot = false;
 
 const Chicken = document.querySelector("#Chicken");
 const StyleChicken = getComputedStyle(Chicken);
 
 let XChiken, YChiken, WidthChiken;
-let ScaleChiken;
+let ScaleChicken;
+
+let XCrub, YCrub;
 
 const KeyframesChickenAppear = {
     translate: ["0 -100vh", 0],
@@ -148,16 +160,64 @@ Chicken.animate(KeyframesChickenAppear, OptionsChickenAppear);
 
 let KeyframesChikenLeft, KeyframesChickenRight;
 
-const KeyframesChickenAttacked = {
+const KeyframesChickenAttackedTranslate = {
+    translate: []
+};
+const KeyframesChickenAttackedRotate = {
     rotate: ["0deg", "360deg"]
 };
 
-const OptionsChickenAttacked = {
-    duration: 200,
-    iterations: "Infinity"
+const KeyframesChickenSuccess = {
+    translate: []
 };
 
-let IfChickenAttacked = false;
+const OptionsChickenAttackedTranslate = {
+    duration: 2000,
+    fill: "both"
+
+};
+const OptionsChickenAttackedRotate = {
+    duration: 200,
+    iterations: "Infinity"
+
+};
+
+const OptionsChickenSuccess = {
+    duration: 2000,
+    fill: "both"
+}
+
+function FlickChicken() {
+
+    if (XChiken - XCrub < 0) {
+        KeyframesChickenAttackedTranslate.translate = [0, "-200vw -100vw"];
+    }
+    else {
+        KeyframesChickenAttackedTranslate.translate = [0, "+200vw -100vw"];
+    }
+
+    const AnimateChickenAttacked = Chicken.animate(KeyframesChickenAttackedTranslate, OptionsChickenAttackedTranslate);
+    Chicken.animate(KeyframesChickenAttackedRotate, OptionsChickenAttackedRotate);
+
+    StateGame = ObjectStateGame.Failure;
+
+    AnimateChickenAttacked.finished.then(() => {
+        DisplayLose();
+    })
+}
+
+function FlyChicken() {
+
+    if (ScaleChicken.split(" ")[0] === "-1") {
+        KeyframesChickenSuccess.translate = [0, "-10vw -100vh"];
+    }
+    else {
+        KeyframesChickenSuccess.translate = [0, "+10vw -100vh"];
+    }
+
+    Chicken.animate(KeyframesChickenSuccess, OptionsChickenSuccess);
+
+}
 
 function Apdate() {
 
@@ -165,30 +225,28 @@ function Apdate() {
     YChiken = Number.parseFloat(StyleChicken.getPropertyValue("bottom")) + Number.parseFloat(StyleChicken.getPropertyValue("width")) / 2;//console.log(YNow);
     WidthChiken = Number.parseFloat(StyleChicken.getPropertyValue("width"));
 
-    ScaleChiken = StyleChicken.getPropertyValue("scale");//console.log(MatrixNow);
+    ScaleChicken = StyleChicken.getPropertyValue("scale");//console.log(MatrixNow);
     KeyframesChikenLeft = {
-        scale: [`${ScaleChiken}`, "-1 1"]
+        scale: [`${ScaleChicken}`, "-1 1"]
     };
     KeyframesChickenRight = {
-        scale: [`${ScaleChiken}`, "+1 1"]
+        scale: [`${ScaleChicken}`, "+1 1"]
     };
 
     for (const Object of ArrayCrab) {
 
         const StyleCrab = getComputedStyle(Object);
 
-        const XCrub = Number.parseFloat(StyleCrab.getPropertyValue("left")) + Number.parseFloat(StyleCrab.getPropertyValue("width")) / 2;
-        const YCrub = Number.parseFloat(StyleCrab.getPropertyValue("bottom")) + Number.parseFloat(StyleCrab.getPropertyValue("width")) / 2;//console.log(YCrub);
+        XCrub = Number.parseFloat(StyleCrab.getPropertyValue("left")) + Number.parseFloat(StyleCrab.getPropertyValue("width")) / 2;
+        YCrub = Number.parseFloat(StyleCrab.getPropertyValue("bottom")) + Number.parseFloat(StyleCrab.getPropertyValue("width")) / 2;//console.log(YCrub);
 
-        if (!IfChickenAttacked) {
+        if (StateGame === ObjectStateGame.AfterStart) {
 
             if (Math.abs(XChiken - XCrub) < WidthChiken && Math.abs(YChiken - YCrub) < WidthChiken) {
 
                 if ((XChiken - XCrub) ** 2 + (YChiken - YCrub) ** 2 < WidthChiken ** 2) {
 
-                    Chicken.animate(KeyframesChickenAttacked, OptionsChickenAttacked);
-
-                    IfChickenAttacked = true;
+                    FlickChicken();
 
                 }
                 
@@ -203,7 +261,11 @@ function Apdate() {
 setInterval(Apdate, 5);
 
 setInterval(() => {
-    console.log(ArrayCrab);
+    if (ScaleChicken == "-1 +1") console.log(`${ScaleChicken}`);
+    //console.log(`${ScaleChiken}`);
+    //console.log(ArrayCrab);
+    //console.log(XChiken - document.documentElement.clientWidth / 2);
+    //console.log(XChiken - Number.parseFloat(document.clientWidth) / 2);
 }, 1000);
 
 let TimePreLeft, TimePreRight;
@@ -227,7 +289,7 @@ function MoveLeft(TimeNow) {
 
     TimePreLeft = TimeNow;
 
-    if (IfYouOperateCanCannot && IfKeyLeftOnOff) {
+    if (StateGame === ObjectStateGame.AfterStart && IfKeyLeftOnOff) {
         requestAnimationFrame(MoveLeft);
     }
 }
@@ -250,7 +312,7 @@ function MoveRight(TimeNow) {
 
     TimePreRight = TimeNow;
 
-    if (IfYouOperateCanCannot && IfKeyRightOnOff) {
+    if (StateGame === ObjectStateGame.AfterStart && IfKeyRightOnOff) {
         requestAnimationFrame(MoveRight);
     }
 }
@@ -275,7 +337,7 @@ function Jump(TimeNow) {
 
     Chicken.style.bottom = `${DistanceJump}px`;
 
-    if (0 <= TimeElapsedJumpSecond && TimeElapsedJumpSecond < 1) {
+    if (StateGame !== ObjectStateGame.Failure && 0 <= TimeElapsedJumpSecond && TimeElapsedJumpSecond < 1) {
         requestAnimationFrame(Jump);
     }
     else {
@@ -296,7 +358,7 @@ let IfJumpOnOff = false;
 
 function Keydown(event) {
 
-    if (IfYouOperateCanCannot && !event.repeat) {
+    if (StateGame === ObjectStateGame.AfterStart && !event.repeat) {
 
         if (event.key === "ArrowLeft") {
             IfKeyLeftOnOff = true;
@@ -320,7 +382,7 @@ function Keydown(event) {
 
 function Keyup(event) {
 
-    if (IfYouOperateCanCannot) {
+    if (StateGame === ObjectStateGame.AfterStart) {
 
         if (event.key === "ArrowLeft") {
             IfKeyLeftOnOff = false;
@@ -604,32 +666,72 @@ const OptionsCountdown = {
     duration: 1000
 }
 
-let CountInt = 31;
+let CountInt = 6;
 
 function Countdown() {
 
     CountInt--;
 
     const AnimateCountText = CountText.animate(KeyframesCountdown, OptionsCountdown);
+    AnimateCountText.cancel();
 
-    if (0 < CountInt) {
+    if (StateGame === ObjectStateGame.Failure) {
+
+        clearInterval(IntervalCountdown);
+        
+    }
+    else if (0 < CountInt) {
+
         CountText.textContent = CountInt;
+        AnimateCountText.play();
+
     }
     else {
-        IfYouOperateCanCannot = false;
+
+        StateGame = ObjectStateGame.Success
+
         CountText.textContent = "Finish!"
-        AnimateCountText.cancel();
-        clearInterval(IntervalChooseCrab);
+        
         clearInterval(IntervalCountdown);
+
+        clearInterval(IntervalChooseCrab);
+
+        setTimeout(DisplayWin, 1000);
+
+        setTimeout(FlyChicken, 1000);
+
     }
     
 }
 
 setTimeout(() => {
-    IfYouOperateCanCannot = true;
+    StateGame = ObjectStateGame.AfterStart
     IntervalCountdown = setInterval(Countdown, 1000);
 }, 1500);
 
-//const IntervalCountdown = setTimeout(setInterval(Countdown, 1000), 5000);
+const KeyframesLoseText = {
+    scale: [1, 2]
+}
+const KeyframesWinText = {
+    scale: [1, 2]
+}
+
+const OptionsLoseText = {
+    duration: 200,
+    fill: "both"
+}
+const OptionsWinText = {
+    duration: 200,
+    fill: "both"
+}
+
+function DisplayLose() {
+    CountText.textContent = "YOU LOSE"
+    CountText.animate(KeyframesLoseText, OptionsLoseText);
+}
+function DisplayWin() {
+    CountText.textContent = "YOU WIN!"
+    CountText.animate(KeyframesWinText, OptionsWinText);
+}
 
 //CountdownEnd
