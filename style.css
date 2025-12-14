@@ -39,7 +39,6 @@ button:hover {
     background-position: center, center;
     z-index: 6;
 }
-
 #ButtonOption:active {
     background-image: url(Image/ButtonOptionPush.png);
 }
@@ -50,10 +49,14 @@ button:hover {
     background-color: #999999;
     opacity: 0;
     pointer-events: none;
+    transition: all 0.5s;
     z-index: 2;
 }
+#MenuOption.active {
+    opacity: 1;
+}
 
-.Crab {
+#MenuCrab {
     position: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -61,27 +64,23 @@ button:hover {
     transition: all 0.5s;
 }
 
-.Crab#CrabP {
+#MenuCrab.MenuCrabP {
     z-index: 5;
     background-image: url(Image/CrabP.png);
 }
-
-.Crab#CrabR {
+#MenuCrab.MenuCrabR {
     z-index: 4;
     background-image: url(Image/CrabR.png);
 }
-
-.Crab#CrabB {
+#MenuCrab.MenuCrabB {
     z-index: 4;
     background-image: url(Image/CrabB.png);
 }
-
-.Crab#CrabY {
+#MenuCrab.MenuCrabY {
     z-index: 3;
     background-image: url(Image/CrabY.png);
 }
-
-.Crab#CrabG {
+#MenuCrab.MenuCrabG {
     z-index: 3;
     background-image: url(Image/CrabG.png);
 }
@@ -138,7 +137,7 @@ nav button {
 #Contents {
     position: absolute;
     width: 100%;
-    top: 100px; bottom: 100px;
+    top: 100px; bottom: calc(100px - 0.3vw);
     overflow: hidden;
 }
 
@@ -154,9 +153,9 @@ nav button {
 
 #Chicken {
     position: absolute;
-    width: 8vw; height: 8vw;
-    left: 46vw; bottom: 0;
-    background-image: url(Image/Chicken.png);
+    width: 8vw; height: 10vw;
+    left: 46vw; bottom: 0vw;
+    background-image: url(Image/MoveChicken.gif);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: bottom;
@@ -175,25 +174,25 @@ nav button {
     background-image: url(Image/CrabP.png);
 }
 #Crab.CrabP.Left {
-    right: 150vw; bottom: -1.5vw;
+    right: 150vw; bottom: 0vw;
 }
 #Crab.CrabP.Right {
-    left: 150vw; bottom: -1.5vw;
+    left: 150vw; bottom: 0vw;
 }
 #Crab.CrabR {
-    right: 150vw; bottom: -0.5vw;
+    right: 150vw; bottom: 0vw;
     background-image: url(Image/CrabR.png);
 }
 #Crab.CrabB {
-    left: 150vw; bottom: -0.5vw;
+    left: 150vw; bottom: 0vw;
     background-image: url(Image/CrabB.png);
 }
 #Crab.CrabY {
-    right: 150vw; bottom: 0.5vw;
+    right: 150vw; bottom: 0vw;
     background-image: url(Image/CrabY.png);
 }
 #Crab.CrabG {
-    left: 150vw; bottom: 0.5vw;
+    left: 150vw; bottom: 0vw;
     background-image: url(Image/CrabG.png);
 }
 
@@ -221,29 +220,29 @@ footer {
         background-size: 60px, 60px;
     }
 
-    .Crab {
+    #MenuCrab {
         width: 80vw; aspect-ratio: 1 / 1;
     }
 
-    .Crab#CrabP {
+    #MenuCrab.MenuCrabP {
         left: calc(50% - 40vw); top: 100%;
         /* left: 50%; bottom: -100%;
         transform: translate(-50%, +50%) */
     }
-    .Crab#CrabR {
+    #MenuCrab.MenuCrabR {
         display: none;
     }
-    .Crab#CrabB {
+    #MenuCrab.MenuCrabB {
         display: none;
     }
-    .Crab#CrabY {
+    #MenuCrab.MenuCrabY {
         display: none;
     }
-    .Crab#CrabG {
+    #MenuCrab.MenuCrabG {
         display: none;
     }
 
-    .Crab#CrabP.active {
+    #MenuCrab.MenuCrabP.active {
         transform: translate(0, -80vw);
         /* transform: translate(-50%, +50%) translate(0, -120vh); */
     }
@@ -268,41 +267,41 @@ footer {
         background-size: 75px;
     }
 
-    .Crab {
+    #MenuCrab {
         width: 50vw; aspect-ratio: 1 / 1;
     }
 
-    .Crab#CrabP {
+    #MenuCrab.MenuCrabP {
         left: calc(50% - 25vw); top: 100%;
         /* left: 50%; bottom: -100%;
         transform: translate(-50%, +50%); */
     }
-    .Crab#CrabR {
+    #MenuCrab.MenuCrabR {
         right: 100%; top: 100%;
         /* left: -50%; bottom: 0;
         transform: translate(-50%, +50%); */
     }
-    .Crab#CrabB {
+    #MenuCrab.MenuCrabB {
         left: 100%; top: 100%;
         /* right: -50%; bottom: 0;
         transform: translate(+50%, +50%); */
     }
-    .Crab#CrabY {
+    #MenuCrab.MenuCrabY {
         display: none;
     }
-    .Crab#CrabG {
+    #MenuCrab.MenuCrabG {
         display: none;
     }
 
-    .Crab#CrabP.active {
+    #MenuCrab.MenuCrabP.active {
         transform: translate(0, -40vw);
         /* transform: translate(-50%, +50%) translate(0, -120vh); */
     }
-    .Crab#CrabR.active {
+    #MenuCrab.MenuCrabR.active {
         transform: translate(+50vw, calc(-40vw - 20vh));
         /* transform: translate(-50%, +50%) translate(+75vw, -35vh); */
     }
-    .Crab#CrabB.active {
+    #MenuCrab.MenuCrabB.active {
         transform: translate(-50vw, calc(-40vw - 20vh));
         /* transform: translate(+50%, +50%) translate(-75vw, -35vh); */
     }
@@ -327,49 +326,49 @@ footer {
         background-size: 75px;
     }
 
-    .Crab {
+    #MenuCrab {
         width: 40vw; aspect-ratio: 1 / 1;
     }
 
-    .Crab#CrabP {
+    #MenuCrab.MenuCrabP {
         left: calc(50% - 20vw); top: 100%;
         /* left: 50%; bottom: -100%;
         transform: translate(-50%, +50%); */
     }
-    .Crab#CrabR {
+    #MenuCrab.MenuCrabR {
         right: 100%; top: 100%;
         /* transform: translate(-50%, +50%); */
     }
-    .Crab#CrabB {
+    #MenuCrab.MenuCrabB {
         left: 100%; top: 100%;
         /* transform: translate(+50%, +50%); */
     }
-    .Crab#CrabY {
+    #MenuCrab.MenuCrabY {
         right: 100%; top: calc(100% + calc(-30vw - 30vh));
         /* transform: translate(-50%, +50%); */
     }
-    .Crab#CrabG {
+    #MenuCrab.MenuCrabG {
         left: 100%; top: calc(100% + calc(-30vw - 30vh));
         /* transform: translate(+50%, +50%); */
     }
 
-    .Crab#CrabP.active {
+    #MenuCrab.MenuCrabP.active {
         transform: translate(0, -30vw);
         /* transform: translate(-50%, +50%) translate(0, -120vh); */
     }
-    .Crab#CrabR.active {
+    #MenuCrab.MenuCrabR.active {
         transform: translate(+40vw, calc(-30vw - 10vh));
         /* transform: translate(-50%, +50%) translate(+70vw, -50vh); */
     }
-    .Crab#CrabB.active {
+    #MenuCrab.MenuCrabB.active {
         transform: translate(-40vw, calc(-30vw - 10vh));
         /* transform: translate(+50%, +50%) translate(-70vw, -50vh); */
     }
-    .Crab#CrabY.active {
+    #MenuCrab.MenuCrabY.active {
         transform: translate(+50vw, 0);
         /* transform: translate(-50%, +50%) translate(+80vw, 0); */
     }
-    .Crab#CrabG.active {
+    #MenuCrab.MenuCrabG.active {
         transform: translate(-50vw, 0);
         /* transform: translate(+50%, +50%) translate(-80vw, 0); */
     }
@@ -380,63 +379,3 @@ footer {
     }
 
 }
-
-/*
-@media (min-width: 0px)
-{
-    body
-    {
-        background-color: #dfdfdf;
-    }
-
-    .IfLinkExist
-    {
-        display: none;
-    }
-
-    .Title
-    {
-        text-align: center;
-        color: #ffffff;
-        background-color: #3f3f3f;
-        height: 100px;
-        line-height: 90px;
-    }
-
-    .TitleText
-    {
-        display: inline-block;
-        vertical-align: middle;
-    }
-
-    .GameTitle a
-    {
-        color: #6f006f;
-        text-decoration: none;
-        pointer-events: none;
-    }
-
-    .ScreenShot
-    {
-        text-align: center;
-    }
-
-    .ScreenShot img
-    {
-        width: 80%;
-    }
-}
-
-@media (min-width: 600px) 
-{
-    .IfLinkExist
-    {
-        display: inline;
-    }
-
-    .GameTitle a
-    {
-        pointer-events: auto;
-    }
-}
-*/
