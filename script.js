@@ -1,3 +1,8 @@
+const All = document.querySelectorAll(".Unvisible");
+for (const Each of All) {
+    Each.style.visibility = "visible";
+}
+
 const Header = document.querySelector("header");
 const Footer = document.querySelector("footer");
 
