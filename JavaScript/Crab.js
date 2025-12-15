@@ -5,7 +5,7 @@ const Object = {
 
         const StyleCrab = getComputedStyle(this.Crab);
 
-        if (this.TimeStartX === undefined) {
+        if (!this.TimeStartX) {
         this.TimeStartX = TimeNow;
         }
 
@@ -47,6 +47,11 @@ const Object = {
             this.TimeStartY = TimeNow;
         }
 
+        if (!this.AdjustmentStartY) {
+            this.AdjustmentStartY = Math.random() * 1000 * 2 / this.GravityRate;
+            this.TimeStartY -= this.AdjustmentStartY;
+        }
+
         let TimeElapsed = TimeNow - this.TimeStartY;
         let TimeElapsedSecond = Math.min(TimeElapsed / 1000, 2 / this.GravityRate);
 
@@ -65,22 +70,7 @@ const Object = {
         requestAnimationFrame(MoveCrabY.bind(this));
 
     }
-};
 
-const KeyframesCrabLeft = {
-    translate: [0, "+130vw 0"]
-};
-const KeyframesCrabRight = {
-    translate: [0, "-130vw 0"]
-};
-
-const OptionsCrab = {
-    duration: 5000,
-    fill: "both"
-};
-const OptionsCrabFast = {
-    duration: 500,
-    fill: "both"
 };
 
 function DisplayCrab(Crab) {
@@ -91,117 +81,42 @@ function DisplayCrab(Crab) {
         Crab: Crab,
         TimeStartX: undefined,
         TimeStartY: undefined,
+        AdjustmentStartY: undefined,
         VelocityInitialRate: undefined,
         GravityRate: undefined,
     };
 
-    switch (Crab.className) {
+    if (Crab.classList.contains("CrabR") || Crab.classList.contains("CrabB")) {
 
-        case "CrabR Left":
+        ObjectCrab.VelocityInitialRate = 10;
+        ObjectCrab.GravityRate = 4;
 
-            // Crab.animate(KeyframesCrabLeft, OptionsCrab);
+    }
+    if (Crab.classList.contains("CrabY") || Crab.classList.contains("CrabG")) {
 
-            ObjectCrab.VelocityInitialRate = 10;
-            ObjectCrab.GravityRate = 4;
+        ObjectCrab.VelocityInitialRate = 6;
+        ObjectCrab.GravityRate = 1;
 
-        break;
-        case "CrabB Right":
+    }
+    if (Crab.classList.contains("CrabP")) {
 
-            // Crab.animate(KeyframesCrabRight, OptionsCrab);
+        ObjectCrab.VelocityInitialRate = 16;
+        ObjectCrab.GravityRate = 8;
 
-            ObjectCrab.VelocityInitialRate = 10;
-            ObjectCrab.GravityRate = 4;
-
-        break;
-        case "CrabY Left":
-
-            // Crab.animate(KeyframesCrabLeft, OptionsCrab);
-
-            ObjectCrab.VelocityInitialRate = 6;
-            ObjectCrab.GravityRate = 1;
-
-        break;
-        case "CrabG Right":
-
-            // Crab.animate(KeyframesCrabRight, OptionsCrab);
-
-            ObjectCrab.VelocityInitialRate = 6;
-            ObjectCrab.GravityRate = 1;
-
-        break;
-        case "CrabP Left":
-
-            // Crab.animate(KeyframesCrabLeft, OptionsCrabFast);
-
-            ObjectCrab.VelocityInitialRate = 0;
-            ObjectCrab.GravityRate = 0;
-
-        break;
-        case "CrabP Right":
-
-            // Crab.animate(KeyframesCrabRight, OptionsCrabFast);
-
-            ObjectCrab.VelocityInitialRate = 0;
-            ObjectCrab.GravityRate = 0;
-
-        break;
     }
 
     const FuncX = Object.MoveCrabX.bind(ObjectCrab);
     const FuncY = Object.MoveCrabY.bind(ObjectCrab);
 
-    FuncX();
-    setTimeout(FuncY, Math.random() * 2000);
+    requestAnimationFrame(FuncX);
+    requestAnimationFrame(FuncY);
 
     ArrayCrab.push(Crab);
 
     setTimeout(() => {
         ArrayCrab.shift();
         Crab.remove();
-    }, 7000);
-
-}
-
-function SpawnCrabR(Crab) {
-
-    Crab.classList.add("CrabR", "Left");
-
-    DisplayCrab(Crab);
-
-}
-function SpawnCrabB(Crab) {
-
-    Crab.classList.add("CrabB", "Right");
-
-    DisplayCrab(Crab);
-
-}
-function SpawnCrabY(Crab) {
-
-    Crab.classList.add("CrabY", "Left");
-
-    DisplayCrab(Crab);
-
-}
-function SpawnCrabG(Crab) {
-
-    Crab.classList.add("CrabG", "Right");
-
-    DisplayCrab(Crab);
-
-}
-function SpawnCrabP(Crab) {
-
-    const Seed = Math.random();
-
-    if (Seed < 0.5) {
-        Crab.classList.add("CrabP", "Left");
-    }
-    else {
-        Crab.classList.add("CrabP", "Right");
-    }
-
-    DisplayCrab(Crab);
+    }, 5000);
 
 }
 
@@ -223,21 +138,54 @@ function ChooseCrab() {
     }
 
     if (Seed < 1) {
-        SpawnCrabR(Crab);
+        Crab.classList.add("CrabR", "Left");
     }
     else if (Seed < 2) {
-        SpawnCrabB(Crab);
+        Crab.classList.add("CrabB", "Right");
     }
     else if (Seed < 3) {
-        SpawnCrabY(Crab);
+        Crab.classList.add("CrabY", "Left");
     }
     else if (Seed < 4) {
-        SpawnCrabG(Crab);
+        Crab.classList.add("CrabG", "Right");
     }
     else {
-        SpawnCrabP(Crab);
+
+        Seed = Math.random();
+
+        if (Seed < 0.5) {
+            Crab.classList.add("CrabP", "Left");
+        }
+        else {
+            Crab.classList.add("CrabP", "Right");
+        }
+
     }
+
+    DisplayCrab(Crab);
 
 }
 
 const IntervalChooseCrab = setInterval(ChooseCrab, 1000);
+
+function ApdateCrabJS() {
+
+    if (StateGame !== StateGamePrevious.CrabJS) {
+
+        switch (StateGame) {
+
+            case ObjectStateGame.Success:
+
+                clearInterval(IntervalChooseCrab);
+
+            break;
+
+        }
+
+    }
+
+    StateGamePrevious.CrabJS = StateGame;
+
+}
+
+setInterval(ApdateCrabJS, 10);
