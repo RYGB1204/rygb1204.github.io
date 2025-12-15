@@ -6,7 +6,7 @@ let XChiken, YChiken, WidthChiken;
 const TranslateChicken = StyleChicken.getPropertyValue("translate");
 let ScaleChicken;
 
-let XCrub, YCrub;
+let XCrub, YCrub, WidthCrab;
 
 const KeyframesChickenAppear = {
     translate: ["0 -100vh", 0],
@@ -100,12 +100,13 @@ function Apdate() {
 
         XCrub = Number.parseFloat(StyleCrab.getPropertyValue("left")) + Number.parseFloat(StyleCrab.getPropertyValue("width")) * 0.50;
         YCrub = Number.parseFloat(StyleCrab.getPropertyValue("bottom")) + Number.parseFloat(StyleCrab.getPropertyValue("width")) * 0.32;//console.log(YCrub);
+        WidthCrab = Number.parseFloat(StyleCrab.getPropertyValue("width"));
 
         if (StateGame === ObjectStateGame.AfterStart) {
 
-            if (Math.abs(XChiken - XCrub) < WidthChiken && Math.abs(YChiken - YCrub) < WidthChiken) {
+            if (Math.abs(XChiken - XCrub) < WidthChiken && Math.abs(YChiken - YCrub) < (WidthChiken + WidthCrab) / 2) {
 
-                if ((XChiken - XCrub) ** 2 + (YChiken - YCrub) ** 2 < WidthChiken ** 2) {
+                if ((XChiken - XCrub) ** 2 + (YChiken - YCrub) ** 2 < ((WidthChiken + WidthCrab) / 2) ** 2) {
 
                     FlickChicken();
 
@@ -188,7 +189,7 @@ function Jump(TimeNow) {
 
     const DistanceJump = VelocityInitial * TimeElapsedJumpSecond - Gravity * TimeElapsedJumpSecond ** 2 / 2;
 
-    Chicken.style.bottom = `${DistanceJump}px`;console.log(Number.parseInt(TranslateChicken.split(" ")[1]));
+    Chicken.style.bottom = `${DistanceJump}px`;
 
     if (StateGame !== ObjectStateGame.Failure && 0 <= TimeElapsedJumpSecond && TimeElapsedJumpSecond < 1) {
         requestAnimationFrame(Jump);

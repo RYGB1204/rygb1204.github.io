@@ -66,23 +66,23 @@ button:hover {
 
 #MenuCrab.MenuCrabP {
     z-index: 5;
-    background-image: url(Image/CrabP.png);
+    background-image: url(Image/MoveCrabP.gif);
 }
 #MenuCrab.MenuCrabR {
     z-index: 4;
-    background-image: url(Image/CrabR.png);
+    background-image: url(Image/MoveCrabR.gif);
 }
 #MenuCrab.MenuCrabB {
     z-index: 4;
-    background-image: url(Image/CrabB.png);
+    background-image: url(Image/MoveCrabB.gif);
 }
 #MenuCrab.MenuCrabY {
     z-index: 3;
-    background-image: url(Image/CrabY.png);
+    background-image: url(Image/MoveCrabY.gif);
 }
 #MenuCrab.MenuCrabG {
     z-index: 3;
-    background-image: url(Image/CrabG.png);
+    background-image: url(Image/MoveCrabG.gif);
 }
 
 nav {
@@ -171,7 +171,7 @@ nav button {
 
 #Crab.CrabP {
     width: 16vw; height: 16vw;
-    background-image: url(Image/CrabP.png);
+    background-image: url(Image/MoveCrabP.gif);
 }
 #Crab.CrabP.Left {
     right: 150vw; bottom: 0vw;
@@ -181,19 +181,19 @@ nav button {
 }
 #Crab.CrabR {
     right: 150vw; bottom: 0vw;
-    background-image: url(Image/CrabR.png);
+    background-image: url(Image/MoveCrabR.gif);
 }
 #Crab.CrabB {
     left: 150vw; bottom: 0vw;
-    background-image: url(Image/CrabB.png);
+    background-image: url(Image/MoveCrabB.gif);
 }
 #Crab.CrabY {
     right: 150vw; bottom: 0vw;
-    background-image: url(Image/CrabY.png);
+    background-image: url(Image/MoveCrabY.gif);
 }
 #Crab.CrabG {
     left: 150vw; bottom: 0vw;
-    background-image: url(Image/CrabG.png);
+    background-image: url(Image/MoveCrabG.gif);
 }
 
 footer {

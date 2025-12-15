@@ -149,8 +149,9 @@ function DisplayCrab(Crab) {
 
     const FuncX = Object.MoveCrabX.bind(ObjectCrab);
     const FuncY = Object.MoveCrabY.bind(ObjectCrab);
+
     FuncX();
-    setTimeout(FuncY, Math.random() * 2000)
+    setTimeout(FuncY, Math.random() * 2000);
 
     ArrayCrab.push(Crab);
 
