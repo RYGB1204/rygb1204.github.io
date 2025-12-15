@@ -10,7 +10,7 @@
 
 body {
     background-color: #cccccc;
-    width: 100vw; height: 100vh;
+    width: 100vw; height: 100dvh;
     /* height: 100%; */
     position: relative;
     text-align: center;
@@ -174,25 +174,25 @@ nav button {
     background-image: url(Image/MoveCrabP.gif);
 }
 #Crab.CrabP.Left {
-    right: 150vw; bottom: 0vw;
+    right: 100vw; bottom: 0vw;
 }
 #Crab.CrabP.Right {
-    left: 150vw; bottom: 0vw;
+    left: 100vw; bottom: 0vw;
 }
 #Crab.CrabR {
-    right: 150vw; bottom: 0vw;
+    right: 100vw; bottom: 0vw;
     background-image: url(Image/MoveCrabR.gif);
 }
 #Crab.CrabB {
-    left: 150vw; bottom: 0vw;
+    left: 100vw; bottom: 0vw;
     background-image: url(Image/MoveCrabB.gif);
 }
 #Crab.CrabY {
-    right: 150vw; bottom: 0vw;
+    right: 100vw; bottom: 0vw;
     background-image: url(Image/MoveCrabY.gif);
 }
 #Crab.CrabG {
-    left: 150vw; bottom: 0vw;
+    left: 100vw; bottom: 0vw;
     background-image: url(Image/MoveCrabG.gif);
 }
 

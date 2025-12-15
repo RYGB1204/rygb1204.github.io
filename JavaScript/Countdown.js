@@ -5,18 +5,18 @@ const KeyframesCountdown = {
     scale: [1, 1.5]
 }
 const OptionsCountdown = {
-    duration: 1000
+    duration: 1000,
 }
 
 const AnimateCountText = CountText.animate(KeyframesCountdown, OptionsCountdown);
 AnimateCountText.cancel();
 
 let IntervalCountdown;
-let CountInt = 31;
+let CountInt = 30;
 
 function Countdown() {
 
-    CountInt--;
+    AnimateCountText.cancel();
 
     if (StateGame === ObjectStateGame.Failure) {
 
@@ -37,20 +37,18 @@ function Countdown() {
         
         clearInterval(IntervalCountdown);
 
-        clearInterval(IntervalChooseCrab);
-
         setTimeout(DisplayWin, 1000);
 
-        setTimeout(FlyChicken, 1000);
-
     }
+
+    CountInt--;
     
 }
 
 setTimeout(() => {
     StateGame = ObjectStateGame.AfterStart
     IntervalCountdown = setInterval(Countdown, 1000);
-}, 1500);
+}, 1000);
 
 const KeyframesLoseText = {
     scale: [1, 2]
@@ -76,3 +74,27 @@ function DisplayWin() {
     CountText.textContent = "YOU WIN!"
     CountText.animate(KeyframesWinText, OptionsWinText);
 }
+
+function ApdateCountdownJS() {
+
+    if (StateGame !== StateGamePrevious.CountdownJS) {
+
+        switch (StateGame) {
+
+            case ObjectStateGame.Failure:
+
+                AnimateCountText.cancel();
+
+                setTimeout(DisplayLose, 2000);
+
+            break;
+
+        }
+
+    }
+
+    StateGamePrevious.CountdownJS = StateGame;
+
+}
+
+setInterval(ApdateCountdownJS, 10);

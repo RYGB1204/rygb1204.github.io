@@ -6,6 +6,11 @@ const ObjectStateGame = {
 };
 
 let StateGame = ObjectStateGame.BeforeStart;
+const StateGamePrevious = {
+    CountdownJS: "",
+    ChickenJS: "",
+    CrabJS: ""
+};
 
 const Contents = document.querySelector("#Contents");
 const StyleContents = getComputedStyle(Contents);
@@ -14,8 +19,10 @@ let WidthContents;
 
 const ArrayCrab = [];
 
-function Apdate() {
+function ApdateCoreJS() {
 
     WidthContents = Number.parseFloat(StyleContents.getPropertyValue("width"));
     
 }
+
+setInterval(ApdateCoreJS, 10);
