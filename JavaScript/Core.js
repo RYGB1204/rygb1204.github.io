@@ -12,12 +12,18 @@ const StateGamePrevious = {
     CrabJS: ""
 };
 
+const All = document.querySelectorAll(".Unvisible");
+
 const Contents = document.querySelector("#Contents");
 const StyleContents = getComputedStyle(Contents);
 
 let WidthContents;
 
 const ArrayCrab = [];
+
+for (const Each of All) {
+    Each.style.visibility = "visible";
+}
 
 function ApdateCoreJS() {
 

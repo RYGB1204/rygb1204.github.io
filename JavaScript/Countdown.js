@@ -1,4 +1,7 @@
 const CountText = document.querySelector("#CountText");
+const ButtonRetry = document.querySelector("#ButtonRetry");
+
+const StyleButtonRetry = getComputedStyle(ButtonRetry);
 
 const KeyframesCountdown = {
     offset: [0.8, 1],
@@ -45,35 +48,76 @@ function Countdown() {
     
 }
 
+const KeyframesLoseText = {
+    scale: [1, 2]
+};
+const KeyframesWinText = {
+    scale: [1, 2]
+};
+const OptionsLoseText = {
+    duration: 200,
+    fill: "both"
+};
+const OptionsWinText = {
+    duration: 200,
+    fill: "both"
+};
+
+const KeyframesButtonRetry = {
+    scale: [0, 1]
+};
+const OptionsButtonRetry = {
+    duration: 200,
+    fill: "both"
+};
+
+function DisplayLose() {
+
+    CountText.textContent = "YOU LOSE";
+
+    ButtonRetry.style.visibility = "visible";
+
+    CountText.animate(KeyframesLoseText, OptionsLoseText);
+    ButtonRetry.animate(KeyframesButtonRetry, OptionsButtonRetry);
+
+}
+function DisplayWin() {
+
+    CountText.textContent = "YOU WIN!";
+
+    ButtonRetry.style.visibility = "visible";
+
+    CountText.animate(KeyframesWinText, OptionsWinText);
+    ButtonRetry.animate(KeyframesButtonRetry, OptionsButtonRetry);
+
+}
+
+function ClickButtonRetry() {
+
+    window.location.reload();
+
+}
+function KeydownButtonRetry(event) {console.log("WWW");
+
+    if (!event.repeat) {
+        
+        if (event.key === "Enter") {
+
+            ClickButtonRetry();
+
+        }
+
+    }
+
+}
+
+ButtonRetry.addEventListener("click", ClickButtonRetry);
+document.addEventListener("keydown", KeydownButtonRetry);
+
 setTimeout(() => {
     StateGame = ObjectStateGame.AfterStart
     IntervalCountdown = setInterval(Countdown, 1000);
 }, 1000);
-
-const KeyframesLoseText = {
-    scale: [1, 2]
-}
-const KeyframesWinText = {
-    scale: [1, 2]
-}
-
-const OptionsLoseText = {
-    duration: 200,
-    fill: "both"
-}
-const OptionsWinText = {
-    duration: 200,
-    fill: "both"
-}
-
-function DisplayLose() {
-    CountText.textContent = "YOU LOSE"
-    CountText.animate(KeyframesLoseText, OptionsLoseText);
-}
-function DisplayWin() {
-    CountText.textContent = "YOU WIN!"
-    CountText.animate(KeyframesWinText, OptionsWinText);
-}
 
 function ApdateCountdownJS() {
 
@@ -85,7 +129,7 @@ function ApdateCountdownJS() {
 
                 AnimateCountText.cancel();
 
-                setTimeout(DisplayLose, 2000);
+                setTimeout(DisplayLose, 1000);
 
             break;
 

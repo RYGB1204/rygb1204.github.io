@@ -1,8 +1,3 @@
-const All = document.querySelectorAll(".Unvisible");
-for (const Each of All) {
-    Each.style.visibility = "visible";
-}
-
 const Header = document.querySelector("header");
 const Footer = document.querySelector("footer");
 
@@ -25,7 +20,6 @@ Footer.animate(KeyframesFooter, OptionsHeaderFooter);
 const Button = document.querySelectorAll("button");
 
 const KeyframesButton = {
-    opacity: [0, 1],
     scale: [0, 1],
 };
 
