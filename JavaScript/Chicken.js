@@ -53,8 +53,13 @@ function FlickChicken() {
         KeyframesChickenFlickTranslate.translate = [0, "+200vw -100vw"];
     }
 
+    const SoundFlickChicken = new Audio("../Sound/FlickChicken.mp3");
+
     Chicken.animate(KeyframesChickenFlickTranslate, OptionsChickenFlickTranslate);
     Chicken.animate(KeyframesChickenFlickRotate, OptionsChickenFlickRotate);
+
+    SoundFlickChicken.currentTime = 0;
+    SoundFlickChicken.play();
 
 }
 
