@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
 * {
-    padding: 0; margin: 0;
+    background-color: transparent;
+    padding: 0; margin: 0; border-style: none;
 }
 
 .Unvisible {
@@ -24,16 +25,20 @@ header {
     background-repeat: no-repeat, no-repeat, no-repeat;
 }
 
+button {
+    transition-property: transform;
+    transition-duration: 200ms;
+}
 button:hover {
-    opacity: 80%;
+    background-blend-mode:multiply;
+    transform: scale(1.1);
+    z-index: 1;
 }
 
 #ButtonOption {
     position: absolute;
     margin: auto 0;
     right: 10px; top: 0; bottom: 0;
-    background-color: transparent;
-    border-style: none;
     background-image: url(Image/ButtonOption.png), url(Image/ButtonOptionPush.png);
     background-repeat: no-repeat, no-repeat;
     background-position: center, center;
@@ -95,8 +100,6 @@ nav {
 }
 
 nav button {
-    background-color: transparent;
-    border-style: none;
     background-repeat: no-repeat, no-repeat;
     background-position: center, center;
     background-size: 100%, 100%;
@@ -105,7 +108,6 @@ nav button {
 #ButtonGame {
     background-image: url(Image/ButtonGame.png), url(Image/ButtonGamePush.png);
 }
-
 #ButtonGame:active {
     background-image: url(Image/ButtonGamePush.png);
 }
@@ -113,7 +115,6 @@ nav button {
 #ButtonImage {
     background-image: url(Image/ButtonImage.png), url(Image/ButtonImagePush.png);
 }
-
 #ButtonImage:active {
     background-image: url(Image/ButtonImagePush.png);
 }
@@ -121,7 +122,6 @@ nav button {
 #ButtonSound {
     background-image: url(Image/ButtonSound.png), url(Image/ButtonSoundPush.png);
 }
-
 #ButtonSound:active {
     background-image: url(Image/ButtonSoundPush.png);
 }
@@ -129,7 +129,6 @@ nav button {
 #ButtonVideo {
     background-image: url(Image/ButtonVideo.png), url(Image/ButtonVideoPush.png);
 }
-
 #ButtonVideo:active {
     background-image: url(Image/ButtonVideoPush.png);
 }
@@ -142,13 +141,28 @@ nav button {
 }
 
 #CountText {
-    display: inline-block;
+    user-select: none;
     position: absolute;
     color: #ffffff;
-    width: 50vw; height: 10vw;
-    left: 25vw; top: 120px;
+    width: 50vw; aspect-ratio: 5 / 1;
+    left: 25vw; top: 15dvh;
     font-size: 8vw;
     vertical-align: middle;
+}
+
+#ButtonRetry {
+    visibility: hidden;
+    position: absolute;
+    background-color: transparent;
+    left: calc(50% - var(--WidthButton) / 2); top: 50dvh;
+    width: var(--WidthButton); aspect-ratio: 4 / 1;
+    background-image: url(Image/ButtonRetry.png), url(Image/ButtonRetryPush.png);
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+    background-size: contain;
+}
+#ButtonRetry:active {
+    background-image: url(Image/ButtonRetryPush.png);
 }
 
 #Chicken {
@@ -314,6 +328,10 @@ footer {
 }
 
 @media screen and (min-width: 1000px) and (max-width: 9999px) {
+
+    :root {
+        --WidthButton: 200px;
+    }
     
     header {
         background-image: url(Image/HeaderTextLarge.png), url(Image/Icon.png), url(Image/Brick.png);
