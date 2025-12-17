@@ -44,7 +44,34 @@ const OptionsChickenFly = {
     fill: "both"
 }
 
-function FlickChicken() {
+const ManagerAudio = new AudioContext();
+
+let SoundFlickChicken;
+
+async function SetUpSoundSourceFlickChicken() {
+
+  const Response = await fetch("../Sound/FlickChicken.mp3");
+  const ResponseBuffer = await Response.arrayBuffer();
+
+  const AudioBuffer = await ManagerAudio.decodeAudioData(ResponseBuffer);
+
+  return AudioBuffer;
+
+}
+
+function PlaySoundFlickChicken(SoundSourceFlickChicken) {
+
+  SoundFlickChicken = ManagerAudio.createBufferSource();
+  
+  SoundFlickChicken.buffer = SoundSourceFlickChicken;
+
+  SoundFlickChicken.connect(ManagerAudio.destination);
+
+  SoundFlickChicken.start();
+
+}
+
+async function FlickChicken() {
 
     if (XChiken - XCrub < 0) {
         KeyframesChickenFlickTranslate.translate = [0, "-200vw -100vw"];
@@ -53,13 +80,12 @@ function FlickChicken() {
         KeyframesChickenFlickTranslate.translate = [0, "+200vw -100vw"];
     }
 
-    const SoundFlickChicken = new Audio("../Sound/FlickChicken.mp3");
-
     Chicken.animate(KeyframesChickenFlickTranslate, OptionsChickenFlickTranslate);
     Chicken.animate(KeyframesChickenFlickRotate, OptionsChickenFlickRotate);
 
-    SoundFlickChicken.currentTime = 0;
-    SoundFlickChicken.play();
+    const SoundSourceFlickChicken = await SetUpSoundSourceFlickChicken();
+
+    PlaySoundFlickChicken(SoundSourceFlickChicken);
 
 }
 

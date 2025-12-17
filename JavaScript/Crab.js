@@ -130,7 +130,7 @@ function ChooseCrab() {
 
     let Seed;
 
-    if (20 < CountInt) {
+    if (CountText.textContent === "" || 20 < Number.parseInt(CountText.textContent)) {
         Seed = Math.random() * 4.0;
     }
     else {
