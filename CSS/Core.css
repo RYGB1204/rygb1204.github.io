@@ -53,13 +53,13 @@ button:hover {
     position: absolute;
     margin: auto 0;
     right: 10px; top: 0; bottom: 0;
-    background-image: url(Image/ButtonOption.png), url(Image/ButtonOptionPush.png);
+    background-image: url(../Image/ButtonOption.png), url(../Image/ButtonOptionPush.png);
     background-repeat: no-repeat, no-repeat;
     background-position: center, center;
     z-index: 6;
 }
 #ButtonOption:active {
-    background-image: url(Image/ButtonOptionPush.png);
+    background-image: url(../Image/ButtonOptionPush.png);
 }
 
 #MenuOption {
@@ -85,23 +85,23 @@ button:hover {
 
 #MenuCrab.MenuCrabP {
     z-index: 5;
-    background-image: url(Image/MoveCrabP.gif);
+    background-image: url(../Image/MoveCrabP.gif);
 }
 #MenuCrab.MenuCrabR {
     z-index: 4;
-    background-image: url(Image/MoveCrabR.gif);
+    background-image: url(../Image/MoveCrabR.gif);
 }
 #MenuCrab.MenuCrabB {
     z-index: 4;
-    background-image: url(Image/MoveCrabB.gif);
+    background-image: url(../Image/MoveCrabB.gif);
 }
 #MenuCrab.MenuCrabY {
     z-index: 3;
-    background-image: url(Image/MoveCrabY.gif);
+    background-image: url(../Image/MoveCrabY.gif);
 }
 #MenuCrab.MenuCrabG {
     z-index: 3;
-    background-image: url(Image/MoveCrabG.gif);
+    background-image: url(../Image/MoveCrabG.gif);
 }
 
 nav {
@@ -120,31 +120,31 @@ nav button {
 }
 
 #ButtonGame {
-    background-image: url(Image/ButtonGame.png), url(Image/ButtonGamePush.png);
+    background-image: url(../Image/ButtonGame.png), url(../Image/ButtonGamePush.png);
 }
 #ButtonGame:active {
-    background-image: url(Image/ButtonGamePush.png);
+    background-image: url(../Image/ButtonGamePush.png);
 }
 
 #ButtonImage {
-    background-image: url(Image/ButtonImage.png), url(Image/ButtonImagePush.png);
+    background-image: url(../Image/ButtonImage.png), url(../Image/ButtonImagePush.png);
 }
 #ButtonImage:active {
-    background-image: url(Image/ButtonImagePush.png);
+    background-image: url(../Image/ButtonImagePush.png);
 }
 
 #ButtonSound {
-    background-image: url(Image/ButtonSound.png), url(Image/ButtonSoundPush.png);
+    background-image: url(../Image/ButtonSound.png), url(../Image/ButtonSoundPush.png);
 }
 #ButtonSound:active {
-    background-image: url(Image/ButtonSoundPush.png);
+    background-image: url(../Image/ButtonSoundPush.png);
 }
 
 #ButtonVideo {
-    background-image: url(Image/ButtonVideo.png), url(Image/ButtonVideoPush.png);
+    background-image: url(../Image/ButtonVideo.png), url(../Image/ButtonVideoPush.png);
 }
 #ButtonVideo:active {
-    background-image: url(Image/ButtonVideoPush.png);
+    background-image: url(../Image/ButtonVideoPush.png);
 }
 
 #Contents {
@@ -154,83 +154,14 @@ nav button {
     overflow: hidden;
 }
 
-#CountText {
-    user-select: none;
-    position: absolute;
-    color: #ffffff;
-    width: 50vw; aspect-ratio: 5 / 1;
-    left: 25vw; top: 15dvh;
-    font-size: 8vw;
-    vertical-align: middle;
-}
 
-#ButtonRetry {
-    visibility: hidden;
-    position: absolute;
-    background-color: transparent;
-    left: calc(50% - var(--WidthButton) / 2); top: 50dvh;
-    width: var(--WidthButton); aspect-ratio: 4 / 1;
-    background-image: url(Image/ButtonRetry.png), url(Image/ButtonRetryPush.png);
-    background-repeat: no-repeat, no-repeat;
-    background-position: center, center;
-    background-size: contain;
-    z-index: 1;
-}
-#ButtonRetry:active {
-    background-image: url(Image/ButtonRetryPush.png);
-}
-
-#Chicken {
-    position: absolute;
-    width: 8vw; height: 10vw;
-    left: 46vw; bottom: 0vw;
-    background-image: url(Image/MoveChicken.gif);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: bottom;
-}
-
-#Crab {
-    position: absolute;
-    width: 8vw; height: 8vw;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: bottom;
-}
-
-#Crab.CrabP {
-    width: 16vw; height: 16vw;
-    background-image: url(Image/MoveCrabP.gif);
-}
-#Crab.CrabP.Left {
-    right: 100vw; bottom: 0vw;
-}
-#Crab.CrabP.Right {
-    left: 100vw; bottom: 0vw;
-}
-#Crab.CrabR {
-    right: 100vw; bottom: 0vw;
-    background-image: url(Image/MoveCrabR.gif);
-}
-#Crab.CrabB {
-    left: 100vw; bottom: 0vw;
-    background-image: url(Image/MoveCrabB.gif);
-}
-#Crab.CrabY {
-    right: 100vw; bottom: 0vw;
-    background-image: url(Image/MoveCrabY.gif);
-}
-#Crab.CrabG {
-    left: 100vw; bottom: 0vw;
-    background-image: url(Image/MoveCrabG.gif);
-}
 
 footer {
     width: 100%; height: 100px;
     position: absolute;
     bottom: 0;
     background-color: #666666;
-    background-image: url(Image/FooterText.png);
+    background-image: url(../Image/FooterText.png);
     background-size: 172px;
     background-repeat: no-repeat;
     background-position: center;
@@ -239,7 +170,7 @@ footer {
 @media screen and (min-width: 0px) and (max-width: 499.999px) {
 
     header {
-        background-image: url(Image/HeaderTextSmall.png), url(Image/Icon.png), url(Image/Brick.png);
+        background-image: url(../Image/HeaderTextSmall.png), url(../Image/Icon.png), url(../Image/Brick.png);
         background-size: 125px, 60px, calc(151px * 4 /5) 100px;
         background-position: center, left 10px center, right center;
     }
@@ -286,7 +217,7 @@ footer {
 @media screen and (min-width: 500px) and (max-width: 999.999px) {
 
     header {
-        background-image: url(Image/HeaderTextSmall.png), url(Image/Icon.png), url(Image/Brick.png);
+        background-image: url(../Image/HeaderTextSmall.png), url(../Image/Icon.png), url(../Image/Brick.png);
         background-size: 125px, 75px, calc(151px * 47.5 /50) 100px;
         background-position: left 100px center, left 10px center, right center;
     }
@@ -344,12 +275,8 @@ footer {
 
 @media screen and (min-width: 1000px) and (max-width: 9999px) {
 
-    :root {
-        --WidthButton: 200px;
-    }
-    
     header {
-        background-image: url(Image/HeaderTextLarge.png), url(Image/Icon.png), url(Image/Brick.png);
+        background-image: url(../Image/HeaderTextLarge.png), url(../Image/Icon.png), url(../Image/Brick.png);
         background-size: 331px, 75px, calc(151px * 47.5 /50) 100px;
         background-position: left 100px center, left 10px center, right center;
     }
