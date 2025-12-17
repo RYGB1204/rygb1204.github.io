@@ -1,5 +1,23 @@
-const CountText = document.querySelector("#CountText");
-const ButtonRetry = document.querySelector("#ButtonRetry");
+const CountText = document.createElement("p");
+const IdCountText = document.createAttribute("id");
+IdCountText.value = "CountText";
+
+CountText.setAttributeNode(IdCountText);
+
+Contents.append(CountText);
+
+const ButtonRetry = document.createElement("button");
+const IdButtonRetry = document.createAttribute("id");
+IdButtonRetry.value = "ButtonRetry";
+
+ButtonRetry.setAttributeNode(IdButtonRetry);
+
+Contents.append(ButtonRetry);
+
+
+
+// const CountText = document.querySelector("#CountText");
+// const ButtonRetry = document.querySelector("#ButtonRetry");
 
 const StyleButtonRetry = getComputedStyle(ButtonRetry);
 

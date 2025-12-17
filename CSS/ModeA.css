@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+:root {
+    --WidthButton: 200px;
+}
+
+#CountText {
+    user-select: none;
+    position: absolute;
+    color: #ffffff;
+    width: 50vw; aspect-ratio: 5 / 1;
+    left: 25vw; top: 15dvh;
+    font-size: 8vw;
+    vertical-align: middle;
+}
+
+#ButtonRetry {
+    visibility: hidden;
+    position: absolute;
+    background-color: transparent;
+    left: calc(50% - var(--WidthButton) / 2); top: 50dvh;
+    width: var(--WidthButton); aspect-ratio: 4 / 1;
+    background-image: url(../Image/ButtonRetry.png), url(../Image/ButtonRetryPush.png);
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+    background-size: contain;
+    z-index: 1;
+}
+#ButtonRetry:active {
+    background-image: url(../Image/ButtonRetryPush.png);
+}
+
+#Chicken {
+    position: absolute;
+    width: 8vw; height: 10vw;
+    left: 46vw; bottom: 0vw;
+    background-image: url(../Image/MoveChicken.gif);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
+}
+
+#Crab {
+    position: absolute;
+    width: 8vw; height: 8vw;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
+}
+
+#Crab.CrabP {
+    width: 16vw; height: 16vw;
+    background-image: url(../Image/MoveCrabP.gif);
+}
+#Crab.CrabP.Left {
+    right: 100vw; bottom: 0vw;
+}
+#Crab.CrabP.Right {
+    left: 100vw; bottom: 0vw;
+}
+#Crab.CrabR {
+    right: 100vw; bottom: 0vw;
+    background-image: url(../Image/MoveCrabR.gif);
+}
+#Crab.CrabB {
+    left: 100vw; bottom: 0vw;
+    background-image: url(../Image/MoveCrabB.gif);
+}
+#Crab.CrabY {
+    right: 100vw; bottom: 0vw;
+    background-image: url(../Image/MoveCrabY.gif);
+}
+#Crab.CrabG {
+    left: 100vw; bottom: 0vw;
+    background-image: url(../Image/MoveCrabG.gif);
+}

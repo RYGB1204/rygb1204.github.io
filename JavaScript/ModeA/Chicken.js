@@ -1,4 +1,12 @@
-const Chicken = document.querySelector("#Chicken");
+const Chicken = document.createElement("div");
+const IdChicken = document.createAttribute("id");
+IdChicken.value = "Chicken";
+
+Chicken.setAttributeNode(IdChicken);
+
+Contents.append(Chicken);
+
+// const Chicken = document.querySelector("#Chicken");
 const StyleChicken = getComputedStyle(Chicken);
 
 let XChiken, YChiken, WidthChiken, ScaleChicken;
