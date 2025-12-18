@@ -1,6 +1,11 @@
-let WidthView = document.documentElement.clientWidth;
-let HeightView = document.documentElement.clientHeight;
-let AspectRatio = WidthView / HeightView;
+const Body = document.querySelector("body");
+
+const Contents = document.querySelector("#Contents");
+const StyleContents = getComputedStyle(Contents);
+
+let WidthContents = Number.parseFloat(StyleContents.getPropertyValue("width"));
+let HeightContents = Number.parseFloat(StyleContents.getPropertyValue("height"));
+let AspectRatio = WidthContents / HeightContents;
 
 function LoadModeA() {
 
@@ -29,16 +34,16 @@ function LoadModeA() {
 
 function CheckMode() {
 
-    if (1 / 1 <= AspectRatio && AspectRatio <= 2 / 1) {
+    if (1.5 / 1 <= AspectRatio && AspectRatio <= 3.0 / 1) {
 
-        if (600 < HeightView) {
-
+        if (500 <= WidthContents) {
+            
             return "ModeA";
 
         }
 
     }
-    else if (AspectRatio < 1 / 1) {
+    else if (AspectRatio < 1.5 / 1) {
 
         
 
@@ -59,22 +64,11 @@ switch (Mode) {
 
 }
 
-const Body = document.querySelector("body");
-
-const Contents = document.querySelector("#Contents");
-const StyleContents = getComputedStyle(Contents);
-
-let WidthContents;
-
-
-
-function ApdateCoreJS() {
-
-    WidthView = document.documentElement.clientWidth;
-    HeightView = document.documentElement.clientHeight;
-    AspectRatio = WidthView / HeightView;
+function ApdateCoreJS() {console.log(AspectRatio);
 
     WidthContents = Number.parseFloat(StyleContents.getPropertyValue("width"));
+    HeightContents = Number.parseFloat(StyleContents.getPropertyValue("height"));
+    AspectRatio = WidthContents / HeightContents;
 
     if (Mode !== CheckMode()) {
         window.location.reload();

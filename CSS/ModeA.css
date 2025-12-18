@@ -9,7 +9,7 @@
     position: absolute;
     color: #ffffff;
     width: 50vw; aspect-ratio: 5 / 1;
-    left: 25vw; top: 15dvh;
+    left: 25vw; top: 20%;
     font-size: 8vw;
     vertical-align: middle;
 }
@@ -18,7 +18,7 @@
     visibility: hidden;
     position: absolute;
     background-color: transparent;
-    left: calc(50% - var(--WidthButton) / 2); top: 50dvh;
+    left: calc(50% - var(--WidthButton) / 2); top: 70%;
     width: var(--WidthButton); aspect-ratio: 4 / 1;
     background-image: url(../Image/ButtonRetry.png), url(../Image/ButtonRetryPush.png);
     background-repeat: no-repeat, no-repeat;
