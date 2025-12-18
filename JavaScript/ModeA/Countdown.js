@@ -115,7 +115,7 @@ function ClickButtonRetry() {
     window.location.reload();
 
 }
-function KeydownButtonRetry(event) {console.log("WWW");
+function KeydownButtonRetry(event) {
 
     if (!event.repeat) {
         
