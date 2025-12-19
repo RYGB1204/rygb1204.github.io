@@ -32,23 +32,54 @@ function LoadModeA() {
 
 }
 
+function LoadModeB() {
+
+    const CssModeB = document.createElement("link");
+    CssModeB.rel = "stylesheet";
+    CssModeB.href = "../CSS/ModeB.css";
+    document.head.append(CssModeB);
+
+    const FileModeB = document.createElement("script");
+    FileModeB.src = "JavaScript/ModeB/ModeB.js";
+    document.head.append(FileModeB);
+
+    const FileCountdown = document.createElement("script");
+    FileCountdown.src = "JavaScript/ModeB/Countdown.js";
+    document.head.append(FileCountdown);
+
+    const FileChicken = document.createElement("script");
+    FileChicken.src = "JavaScript/ModeB/Chicken.js";
+    document.head.append(FileChicken);
+
+    const FileCrab = document.createElement("script");
+    FileCrab.src = "JavaScript/ModeB/Crab.js";
+    document.head.append(FileCrab);
+
+}
+
 function CheckMode() {
 
-    if (1.5 / 1 <= AspectRatio && AspectRatio <= 3.0 / 1) {
+    if (500 <= WidthContents) {
 
-        if (500 <= WidthContents) {
-            
+        if (1.5 / 1 <= AspectRatio && AspectRatio <= 3.0 / 1) {
+
             return "ModeA";
+
+        }
+        else{
+
+            
 
         }
 
     }
-    else if (AspectRatio < 1.5 / 1) {
-
-        
-
-    }
     else {
+
+        if (AspectRatio <= 1.5 / 1) {
+
+            return "ModeB";
+
+        }
 
     }
 
@@ -62,9 +93,13 @@ switch (Mode) {
         LoadModeA();
         break;
 
+    case "ModeB":
+        LoadModeB();
+        break;
+
 }
 
-function ApdateCoreJS() {console.log(AspectRatio);
+function ApdateCoreJS() {
 
     WidthContents = Number.parseFloat(StyleContents.getPropertyValue("width"));
     HeightContents = Number.parseFloat(StyleContents.getPropertyValue("height"));

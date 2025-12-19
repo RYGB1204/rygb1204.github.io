@@ -1,7 +1,13 @@
 @charset "UTF-8";
 
 :root {
+    --WidthChicken: 8dvw;
+    --WidthCrab: 8dvw;
     --WidthButton: 200px;
+}
+
+#Contents {
+    bottom: calc(100px - 0.3vw);
 }
 
 #CountText {
@@ -32,8 +38,8 @@
 
 #Chicken {
     position: absolute;
-    width: 8vw; height: 10vw;
-    left: 46vw; bottom: 0vw;
+    width: var(--WidthChicken); aspect-ratio: 1 / 1.2;
+    left: calc(50% - var(--WidthChicken) / 2); bottom: 0;
     background-image: url(../Image/MoveChicken.gif);
     background-repeat: no-repeat;
     background-size: contain;
@@ -42,14 +48,14 @@
 
 #Crab {
     position: absolute;
-    width: 8vw; height: 8vw;
+    width: var(--WidthCrab); aspect-ratio: 1 / 1;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: bottom;
 }
 
 #Crab.CrabP {
-    width: 16vw; height: 16vw;
+    width: calc(var(--WidthCrab) * 2); aspect-ratio: 1 / 1;
     background-image: url(../Image/MoveCrabP.gif);
 }
 #Crab.CrabP.Left {

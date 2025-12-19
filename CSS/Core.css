@@ -150,7 +150,7 @@ nav button {
 #Contents {
     position: absolute;
     width: 100%;
-    top: 100px; bottom: calc(100px - 0.3vw);
+    top: 100px; bottom: 100px;
     overflow: hidden;
 }
 
