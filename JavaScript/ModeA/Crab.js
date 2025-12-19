@@ -18,10 +18,10 @@ const Object = {
         let DistanceMove;
 
         if (this.Crab.classList.contains("CrabP")) {
-            DistanceMove = TimeElapsed * WidthChiken / 30;
+            DistanceMove = TimeElapsed * WidthChicken / 30;
         }
         else {
-            DistanceMove = TimeElapsed * WidthChiken / 300;
+            DistanceMove = TimeElapsed * WidthChicken / 300;
         }
 
         if (this.Crab.classList.contains("Left")) {
@@ -40,8 +40,8 @@ const Object = {
     MoveCrabY: 
     function MoveCrabY(TimeNow) {
 
-        const VelocityInitial = WidthChiken * this.VelocityInitialRate;
-        const Gravity = WidthChiken * this.VelocityInitialRate * this.GravityRate;
+        const VelocityInitial = WidthChicken * this.VelocityInitialRate;
+        const Gravity = WidthChicken * this.VelocityInitialRate * this.GravityRate;
 
         if (!this.TimeStartY) {
             this.TimeStartY = TimeNow;
@@ -130,11 +130,11 @@ function ChooseCrab() {
 
     let Seed;
 
-    if (CountText.textContent === "" || 20 < Number.parseInt(CountText.textContent)) {
-        Seed = Math.random() * 4.0;
+    if (0 < Number.parseInt(CountText.textContent) && Number.parseInt(CountText.textContent) < 20) {
+        Seed = Math.random() * 4.1;
     }
     else {
-        Seed = Math.random() * 4.1;
+        Seed = Math.random() * 4.0;
     }
 
     if (Seed < 1) {

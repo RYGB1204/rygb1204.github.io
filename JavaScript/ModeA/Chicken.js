@@ -1,15 +1,13 @@
 const Chicken = document.createElement("div");
 const IdChicken = document.createAttribute("id");
 IdChicken.value = "Chicken";
-
 Chicken.setAttributeNode(IdChicken);
 
 Contents.append(Chicken);
 
-// const Chicken = document.querySelector("#Chicken");
 const StyleChicken = getComputedStyle(Chicken);
 
-let XChiken, YChiken, WidthChiken, ScaleChicken;
+let XChicken, YChicken, WidthChicken, ScaleChicken;
 
 let XCrub, YCrub, WidthCrab;
 
@@ -36,12 +34,10 @@ const KeyframesChickenFlickRotate = {
 const OptionsChickenFlickTranslate = {
     duration: 2000,
     fill: "both"
-    
 };
 const OptionsChickenFlickRotate = {
     duration: 200,
     iterations: "Infinity"
-    
 };
 
 const KeyframesChickenFly = {
@@ -80,17 +76,17 @@ function PlaySoundFlickChicken(SoundSourceFlickChicken) {
 }
 
 async function FlickChicken() {
-
-    if (XChiken - XCrub < 0) {
+    
+    if (XChicken - XCrub < 0) {
         KeyframesChickenFlickTranslate.translate = [0, "-200vw -100vw"];
     }
     else {
         KeyframesChickenFlickTranslate.translate = [0, "+200vw -100vw"];
     }
-
+    
     Chicken.animate(KeyframesChickenFlickTranslate, OptionsChickenFlickTranslate);
     Chicken.animate(KeyframesChickenFlickRotate, OptionsChickenFlickRotate);
-
+    
     const SoundSourceFlickChicken = await SetUpSoundSourceFlickChicken();
 
     PlaySoundFlickChicken(SoundSourceFlickChicken);
@@ -119,7 +115,7 @@ function MoveLeft(TimeNow) {
         TimeStartMove = TimeNow;
     }
     if (!PositionStartMove) {
-        PositionStartMove = XChiken - WidthChiken / 2;
+        PositionStartMove = XChicken - WidthChicken / 2;
     }
 
     let TimeElapsedLeft = TimeNow - TimeStartMove;
@@ -128,7 +124,7 @@ function MoveLeft(TimeNow) {
         TimeElapsedLeft = 0;
     }
 
-    const DistanceMoveLeft = TimeElapsedLeft * WidthChiken / 200;
+    const DistanceMoveLeft = TimeElapsedLeft * WidthChicken / 200;
 
     Chicken.style.left = `${Math.max(PositionStartMove - DistanceMoveLeft, 0)}px`;
 
@@ -143,7 +139,7 @@ function MoveRight(TimeNow) {
         TimeStartMove = TimeNow;
     }
     if (!PositionStartMove) {
-        PositionStartMove = XChiken - WidthChiken / 2;
+        PositionStartMove = XChicken - WidthChicken / 2;
     }
 
     let TimeElapsedRight = TimeNow - TimeStartMove;
@@ -152,9 +148,9 @@ function MoveRight(TimeNow) {
         TimeElapsedRight = 0;
     }
 
-    const DistanceMoveRight = TimeElapsedRight * WidthChiken / 200;
+    const DistanceMoveRight = TimeElapsedRight * WidthChicken / 200;
 
-    Chicken.style.left = `${Math.min(PositionStartMove + DistanceMoveRight, WidthContents - WidthChiken)}px`;
+    Chicken.style.left = `${Math.min(PositionStartMove + DistanceMoveRight, WidthContents - WidthChicken)}px`;
 
     if (StateGame === ObjectStateGame.AfterStart && IfKeyRightOnOff) {
         requestAnimationFrame(MoveRight);
@@ -163,8 +159,8 @@ function MoveRight(TimeNow) {
 
 function Jump(TimeNow) {
 
-    const VelocityInitial = WidthChiken * 12;
-    const Gravity = WidthChiken * 24;
+    const VelocityInitial = WidthChicken * 12;
+    const Gravity = WidthChicken * 24;
 
     if (!TimeStartJump) {
         TimeStartJump = TimeNow;
@@ -268,9 +264,9 @@ Chicken.animate(KeyframesChickenAppear, OptionsChickenAppear);
 
 function ApdateChickenJS() {
 
-    XChiken = Number.parseFloat(StyleChicken.getPropertyValue("left")) + Number.parseFloat(StyleChicken.getPropertyValue("width")) / 2;
-    YChiken = Number.parseFloat(StyleChicken.getPropertyValue("bottom")) + Number.parseFloat(StyleChicken.getPropertyValue("width")) / 2;
-    WidthChiken = Number.parseFloat(StyleChicken.getPropertyValue("width"));
+    XChicken = Number.parseFloat(StyleChicken.getPropertyValue("left")) + Number.parseFloat(StyleChicken.getPropertyValue("width")) / 2;
+    YChicken = Number.parseFloat(StyleChicken.getPropertyValue("bottom")) + Number.parseFloat(StyleChicken.getPropertyValue("width")) / 2;
+    WidthChicken = Number.parseFloat(StyleChicken.getPropertyValue("width"));
 
     ScaleChicken = StyleChicken.getPropertyValue("scale");
 
@@ -291,9 +287,9 @@ function ApdateChickenJS() {
 
         if (StateGame === ObjectStateGame.AfterStart) {
 
-            if (Math.abs(XChiken - XCrub) < WidthChiken && Math.abs(YChiken - YCrub) < (WidthChiken + WidthCrab) / 2) {
+            if (Math.abs(XChicken - XCrub) < (WidthChicken + WidthCrab) / 2 && Math.abs(YChicken - YCrub) < (WidthChicken + WidthCrab) / 2) {
 
-                if ((XChiken - XCrub) ** 2 + (YChiken - YCrub) ** 2 < ((WidthChiken + WidthCrab) / 2) ** 2) {
+                if ((XChicken - XCrub) ** 2 + (YChicken - YCrub) ** 2 < ((WidthChicken + WidthCrab) / 2) ** 2) {
 
                     FlickChicken();
 
