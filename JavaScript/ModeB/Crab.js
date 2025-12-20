@@ -6,6 +6,18 @@ const OptionsFlickCrab = {
     iterations: "Infinity"
 };
 
+function PlaySoundFlickCrab(SoundSourceFlickCrab) {
+
+  SoundFlickCrab = ManagerAudio.createBufferSource();
+  
+  SoundFlickCrab.buffer = SoundSourceFlickCrab;
+
+  SoundFlickCrab.connect(ManagerAudio.destination);
+
+  SoundFlickCrab.start();
+
+}
+
 function FlickCrab() {
 
     const PositionCrabHorizontalStart = this.StyleCrab.getPropertyValue("left");
@@ -35,6 +47,8 @@ function FlickCrab() {
 
     this.Crab.animate(this.KeyframesCrab, this.OptionsCrab);
     this.Crab.animate(KeyframesFlickCrab, OptionsFlickCrab);
+
+    PlaySoundFlickCrab(SoundSourceFlickCrab);
 
 }
 
@@ -79,8 +93,7 @@ function DisplayCrab(Crab, StyleCrab) {
     
     Crab.animate(ObjectCrab.KeyframesCrab, ObjectCrab.OptionsCrab);
     
-    Crab.addEventListener("touchstart", FlickCrab.bind(ObjectCrab));
-    Crab.addEventListener("mousedown", FlickCrab.bind(ObjectCrab));
+    Crab.addEventListener("pointerdown", FlickCrab.bind(ObjectCrab), { once: true });
 
     ArrayCrab.push(Crab);
 

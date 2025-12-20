@@ -13,3 +13,36 @@ const StateGamePrevious = {
 };
 
 const ArrayCrab = [];
+
+const ManagerAudio = new AudioContext();
+
+let SoundFlickChicken, SoundSourceFlickChicken;
+
+let SoundJumpChicken, SoundSourceJumpChicken;
+
+async function SetUpSoundSourceFlickChicken() {
+
+  const Response = await fetch("../Sound/FlickChicken.mp3");
+  const ResponseBuffer = await Response.arrayBuffer();
+
+  const AudioBuffer = await ManagerAudio.decodeAudioData(ResponseBuffer);
+
+  return AudioBuffer;
+
+}
+
+async function SetUpSoundSourceJumpChicken() {
+
+  const Response = await fetch("../Sound/JumpChicken.mp3");
+  const ResponseBuffer = await Response.arrayBuffer();
+
+  const AudioBuffer = await ManagerAudio.decodeAudioData(ResponseBuffer);
+
+  return AudioBuffer;
+
+}
+
+addEventListener("load", async () => {
+    SoundSourceFlickChicken = await SetUpSoundSourceFlickChicken();
+    SoundSourceJumpChicken = await SetUpSoundSourceJumpChicken();
+});
