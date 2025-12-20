@@ -1,75 +1,69 @@
-const Object = {
+function MoveCrabX(TimeNow) {
 
-    MoveCrabX:
-    function MoveCrabX(TimeNow) {
+    const StyleCrab = getComputedStyle(this.Crab);
 
-        const StyleCrab = getComputedStyle(this.Crab);
-
-        if (!this.TimeStartX) {
-        this.TimeStartX = TimeNow;
-        }
-
-        let TimeElapsed = TimeNow - this.TimeStartX;
-
-        if (Number.isNaN(TimeElapsed)) {
-            TimeElapsed = 0;
-        }
-
-        let DistanceMove;
-
-        if (this.Crab.classList.contains("CrabP")) {
-            DistanceMove = TimeElapsed * WidthChicken / 30;
-        }
-        else {
-            DistanceMove = TimeElapsed * WidthChicken / 300;
-        }
-
-        if (this.Crab.classList.contains("Left")) {
-            this.Crab.style.right = `${Number.parseFloat(StyleCrab.getPropertyValue("right")) - DistanceMove}px`;
-        }
-        if (this.Crab.classList.contains("Right")) {
-            this.Crab.style.left = `${Number.parseFloat(StyleCrab.getPropertyValue("left")) - DistanceMove}px`;
-        }
-
-        this.TimeStartX = TimeNow;
-
-        requestAnimationFrame(MoveCrabX.bind(this));
-
-    },
-
-    MoveCrabY: 
-    function MoveCrabY(TimeNow) {
-
-        const VelocityInitial = WidthChicken * this.VelocityInitialRate;
-        const Gravity = WidthChicken * this.VelocityInitialRate * this.GravityRate;
-
-        if (!this.TimeStartY) {
-            this.TimeStartY = TimeNow;
-        }
-
-        if (!this.AdjustmentStartY) {
-            this.AdjustmentStartY = Math.random() * 1000 * 2 / this.GravityRate;
-            this.TimeStartY -= this.AdjustmentStartY;
-        }
-
-        let TimeElapsed = TimeNow - this.TimeStartY;
-        let TimeElapsedSecond = Math.min(TimeElapsed / 1000, 2 / this.GravityRate);
-
-        if (Number.isNaN(TimeElapsedSecond)) {
-            TimeElapsedSecond = 0;
-        }
-
-        const DistanceJump = VelocityInitial * TimeElapsedSecond - Gravity * TimeElapsedSecond ** 2 / 2;
-        
-        this.Crab.style.bottom = `${DistanceJump}px`;
-
-        if (2 / this.GravityRate <= TimeElapsedSecond) {
-            this.TimeStartY = undefined;
-        }
-
-        requestAnimationFrame(MoveCrabY.bind(this));
-
+    if (!this.TimeStartX) {
+    this.TimeStartX = TimeNow;
     }
+
+    let TimeElapsed = TimeNow - this.TimeStartX;
+
+    if (Number.isNaN(TimeElapsed)) {
+        TimeElapsed = 0;
+    }
+
+    let DistanceMove;
+
+    if (this.Crab.classList.contains("CrabP")) {
+        DistanceMove = TimeElapsed * WidthChicken / 30;
+    }
+    else {
+        DistanceMove = TimeElapsed * WidthChicken / 300;
+    }
+
+    if (this.Crab.classList.contains("Left")) {
+        this.Crab.style.right = `${Number.parseFloat(StyleCrab.getPropertyValue("right")) - DistanceMove}px`;
+    }
+    if (this.Crab.classList.contains("Right")) {
+        this.Crab.style.left = `${Number.parseFloat(StyleCrab.getPropertyValue("left")) - DistanceMove}px`;
+    }
+
+    this.TimeStartX = TimeNow;
+
+    requestAnimationFrame(MoveCrabX.bind(this));
+
+};
+
+function MoveCrabY(TimeNow) {
+
+    const VelocityInitial = WidthChicken * this.VelocityInitialRate;
+    const Gravity = WidthChicken * this.VelocityInitialRate * this.GravityRate;
+
+    if (!this.TimeStartY) {
+        this.TimeStartY = TimeNow;
+    }
+
+    if (!this.AdjustmentStartY) {
+        this.AdjustmentStartY = Math.random() * 1000 * 2 / this.GravityRate;
+        this.TimeStartY -= this.AdjustmentStartY;
+    }
+
+    let TimeElapsed = TimeNow - this.TimeStartY;
+    let TimeElapsedSecond = Math.min(TimeElapsed / 1000, 2 / this.GravityRate);
+
+    if (Number.isNaN(TimeElapsedSecond)) {
+        TimeElapsedSecond = 0;
+    }
+
+    const DistanceJump = VelocityInitial * TimeElapsedSecond - Gravity * TimeElapsedSecond ** 2 / 2;
+    
+    this.Crab.style.bottom = `${DistanceJump}px`;
+
+    if (2 / this.GravityRate <= TimeElapsedSecond) {
+        this.TimeStartY = undefined;
+    }
+
+    requestAnimationFrame(MoveCrabY.bind(this));
 
 };
 
@@ -105,11 +99,8 @@ function DisplayCrab(Crab) {
 
     }
 
-    const FuncX = Object.MoveCrabX.bind(ObjectCrab);
-    const FuncY = Object.MoveCrabY.bind(ObjectCrab);
-
-    requestAnimationFrame(FuncX);
-    requestAnimationFrame(FuncY);
+    requestAnimationFrame(MoveCrabX.bind(ObjectCrab));
+    requestAnimationFrame(MoveCrabY.bind(ObjectCrab));
 
     ArrayCrab.push(Crab);
 

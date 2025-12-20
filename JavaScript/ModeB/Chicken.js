@@ -51,21 +51,6 @@ const OptionsChickenFly = {
     fill: "both"
 }
 
-const ManagerAudio = new AudioContext();
-
-let SoundFlickChicken;
-
-async function SetUpSoundSourceFlickChicken() {
-
-  const Response = await fetch("../Sound/FlickChicken.mp3");
-  const ResponseBuffer = await Response.arrayBuffer();
-
-  const AudioBuffer = await ManagerAudio.decodeAudioData(ResponseBuffer);
-
-  return AudioBuffer;
-
-}
-
 function PlaySoundFlickChicken(SoundSourceFlickChicken) {
 
   SoundFlickChicken = ManagerAudio.createBufferSource();
@@ -90,8 +75,6 @@ async function FlickChicken(XChickenCrub) {
     Chicken.animate(KeyframesChickenFlickTranslate, OptionsChickenFlickTranslate);
     Chicken.animate(KeyframesChickenFlickRotate, OptionsChickenFlickRotate);
     
-    const SoundSourceFlickChicken = await SetUpSoundSourceFlickChicken();
-
     PlaySoundFlickChicken(SoundSourceFlickChicken);
 
 }
