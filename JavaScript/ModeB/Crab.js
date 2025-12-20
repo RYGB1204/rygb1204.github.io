@@ -67,10 +67,10 @@ function DisplayCrab(Crab, StyleCrab) {
     let Duration;
     
     if (Crab.classList.contains("CrabP")) {
-        Duration = DistanceCrabChicken / (WidthContents * HeightContents) * (Math.random() * 50000 +200000);
+        Duration = DistanceCrabChicken / HeightContents * 1000 * (Math.random() * 0.2 + 0.4);
     }
     else {
-        Duration = DistanceCrabChicken / (WidthContents * HeightContents) * (Math.random() * 200000 +400000);
+        Duration = DistanceCrabChicken / HeightContents * 1000 * (Math.random() * 0.4 + 0.8);
     }
     
     ObjectCrab.KeyframesCrab.left = [PositionCrabHorizontalStart, PositionCrabHorizontalEnd];
