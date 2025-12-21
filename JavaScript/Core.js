@@ -86,6 +86,12 @@ switch (Mode) {
 
 }
 
+function ProhibitClickRight(event) {
+    event.preventDefault();
+}
+
+Contents.addEventListener("contextmenu", ProhibitClickRight);
+
 function ApdateCoreJS() {
 
     WidthContents = Number.parseFloat(StyleContents.getPropertyValue("width"));
