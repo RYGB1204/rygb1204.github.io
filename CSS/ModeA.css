@@ -7,30 +7,29 @@
 }
 
 #Contents {
-    bottom: calc(100px - 0.3vw);
+    bottom: calc(10svh - 0.3vw);
 }
 
 #CountText {
-    user-select: none;
+    color: #fff;
     position: absolute;
-    color: #ffffff;
-    width: 50vw; aspect-ratio: 5 / 1;
-    left: 25vw; top: 20%;
-    font-size: 8vw;
-    vertical-align: middle;
+    width: 50dvw;
+    left: 25dvw; top: 20%;
+    line-height: 8dvw;
+    font-size: 8dvw;
+    user-select: none;
 }
 
 #ButtonRetry {
-    visibility: hidden;
     position: absolute;
-    background-color: transparent;
-    left: calc(50% - var(--WidthButton) / 2); top: 70%;
     width: var(--WidthButton); aspect-ratio: 4 / 1;
+    left: calc(50% - var(--WidthButton) / 2); top: 70%;
     background-image: url(../Image/ButtonRetry.png), url(../Image/ButtonRetryPush.png);
-    background-repeat: no-repeat, no-repeat;
-    background-position: center, center;
+    background-repeat: no-repeat;
     background-size: contain;
+    background-position: center;
     z-index: 1;
+    visibility: hidden;
 }
 #ButtonRetry:active {
     background-image: url(../Image/ButtonRetryPush.png);
@@ -54,29 +53,29 @@
     background-position: bottom;
 }
 
-#Crab.CrabP {
-    width: calc(var(--WidthCrab) * 2); aspect-ratio: 1 / 1;
-    background-image: url(../Image/MoveCrabP.gif);
-}
-#Crab.CrabP.Left {
-    right: 100vw; bottom: 0vw;
-}
-#Crab.CrabP.Right {
-    left: 100vw; bottom: 0vw;
-}
 #Crab.CrabR {
-    right: 100vw; bottom: 0vw;
+    right: 100dvw; bottom: 0;
     background-image: url(../Image/MoveCrabR.gif);
 }
 #Crab.CrabB {
-    left: 100vw; bottom: 0vw;
+    left: 100dvw; bottom: 0;
     background-image: url(../Image/MoveCrabB.gif);
 }
 #Crab.CrabY {
-    right: 100vw; bottom: 0vw;
+    right: 100dvw; bottom: 0;
     background-image: url(../Image/MoveCrabY.gif);
 }
 #Crab.CrabG {
-    left: 100vw; bottom: 0vw;
+    left: 100dvw; bottom: 0;
     background-image: url(../Image/MoveCrabG.gif);
+}
+#Crab.CrabP {
+    width: calc(var(--WidthCrab) * 2);
+    background-image: url(../Image/MoveCrabP.gif);
+}
+#Crab.CrabP.Left {
+    right: 100dvw; bottom: 0;
+}
+#Crab.CrabP.Right {
+    left: 100dvw; bottom: 0;
 }

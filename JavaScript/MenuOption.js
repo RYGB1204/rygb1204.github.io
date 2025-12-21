@@ -6,80 +6,84 @@ const MenuCrabB = document.querySelector(".MenuCrabB");
 const MenuCrabY = document.querySelector(".MenuCrabY");
 const MenuCrabG = document.querySelector(".MenuCrabG");
 
-// const KeyframesMenuOption = {
-//     opacity: [0, 1],
-// };
+const StyleMenuCrabR = getComputedStyle(MenuCrabR);
+const StyleMenuCrabB = getComputedStyle(MenuCrabB);
+const StyleMenuCrabY = getComputedStyle(MenuCrabY);
+const StyleMenuCrabG = getComputedStyle(MenuCrabG);
+const StyleMenuCrabP = getComputedStyle(MenuCrabP);
 
-// const KeyframesMenuCrabP = {
-//     translate: [],
-// };
-// const KeyframesMenuCrabR = {
-//     translate: [],
-// };
-// const KeyframesMenuCrabB = {
-//     translate: [],
-// };
-// const KeyframesMenuCrabY = {
-//     translate: [],
-// };
-// const KeyframesMenuCrabG = {
-//     translate: [],
-// };
+let WidthMenuCrabR, WidthMenuCrabB, WidthMenuCrabY, WidthMenuCrabG, WidthMenuCrabP;
+WidthMenuCrabP = Number.parseFloat(StyleMenuCrabP.getPropertyValue("width"));
 
-// const OptionsMenuOption = {
-//     direction: "",
-//     duration: 200,
-//     easing: "ease-out",
-//     fill: "both",
-// };
+const KeyframesMenuCrabY = {
+    offset: [0.0, 0.3, 0.4, 0.5, 1.0],
+    translate: ""
+};
+const KeyframesMenuCrabR = {
+    offset: [0.0, 0.4, 0.5, 0.6, 1.0],
+    translate: ""
+};
+const KeyframesMenuCrabP = {
+    offset: [0.0, 0.5, 0.6, 0.7, 1.0],
+    translate: ""
+};
+const KeyframesMenuCrabB = {
+    offset: [0.0, 0.6, 0.7, 0.8, 1.0],
+    translate: ""
+};
+const KeyframesMenuCrabG = {
+    offset: [0.0, 0.7, 0.8, 0.9, 1.0],
+    translate: ""
+};
 
-// const OptionsMenuCrab = {
-//     direction: "",
-//     duration: 500,
-//     easing: "ease-out",
-//     fill: "both",
-// }
+const OptionsMenuCrab = {
+    duration: 2000,
+    easing: "ease-in-out",
+    iterations: "Infinity"
+};
 
-// let IfOptionOnOff = false;
+let AnimationMenuCrabR = MenuCrabR.animate(KeyframesMenuCrabR, OptionsMenuCrab);
+let AnimationMenuCrabB = MenuCrabB.animate(KeyframesMenuCrabB, OptionsMenuCrab);
+let AnimationMenuCrabY = MenuCrabY.animate(KeyframesMenuCrabY, OptionsMenuCrab);
+let AnimationMenuCrabG = MenuCrabG.animate(KeyframesMenuCrabG, OptionsMenuCrab);
+let AnimationMenuCrabP = MenuCrabP.animate(KeyframesMenuCrabP, OptionsMenuCrab);
+AnimationMenuCrabR.cancel();
+AnimationMenuCrabB.cancel();
+AnimationMenuCrabY.cancel();
+AnimationMenuCrabG.cancel();
+AnimationMenuCrabP.cancel();
+
+let IfOptionOnOff = false;
 
 ButtonOption.addEventListener("click", function() {
 
-    // IfOptionOnOff = !IfOptionOnOff;
+    IfOptionOnOff = !IfOptionOnOff;
 
-    // if (IfOptionOnOff) {
-    //     MenuOption.style.pointerEvents = "auto";
-    //     OptionsMenuOption.direction = "normal";
-    //     OptionsMenuCrab.direction = "normal";
-    // }
-    // else {
-    //     MenuOption.style.pointerEvents = "none";
-    //     OptionsMenuOption.direction = "reverse";
-    //     OptionsMenuCrab.direction = "reverse";
-    // }
+    AnimationMenuCrabR.cancel();
+    AnimationMenuCrabB.cancel();
+    AnimationMenuCrabY.cancel();
+    AnimationMenuCrabG.cancel();
+    AnimationMenuCrabP.cancel();
 
-    // if (document.documentElement.clientWidth < 500) {
-    //     KeyframesMenuCrabP.translate = [0, "0 -80vw"];
-    // }
-    // else if (document.documentElement.clientWidth < 1000) {
-    //     KeyframesMenuCrabP.translate = [0, "0 -40vw"];
-    //     KeyframesMenuCrabR.translate = [0, "+50vw calc(-40vw - 20vh)"];
-    //     KeyframesMenuCrabB.translate = [0, "-50vw calc(-40vw - 20vh)"];
-    // }
-    // else {
-    //     KeyframesMenuCrabP.translate = [0, "0 -30vw"];
-    //     KeyframesMenuCrabR.translate = [0, "+40vw calc(-30vw - 10vh)"];
-    //     KeyframesMenuCrabB.translate = [0, "-40vw calc(-30vw - 10vh)"];
-    //     KeyframesMenuCrabY.translate = [0, "+50vw 0"];
-    //     KeyframesMenuCrabG.translate = [0, "-50vw 0"];
-    // }
+    AnimationMenuCrabR = MenuCrabR.animate(KeyframesMenuCrabR, OptionsMenuCrab);
+    AnimationMenuCrabB = MenuCrabB.animate(KeyframesMenuCrabB, OptionsMenuCrab);
+    AnimationMenuCrabY = MenuCrabY.animate(KeyframesMenuCrabY, OptionsMenuCrab);
+    AnimationMenuCrabG = MenuCrabG.animate(KeyframesMenuCrabG, OptionsMenuCrab);
+    AnimationMenuCrabP = MenuCrabP.animate(KeyframesMenuCrabP, OptionsMenuCrab);
+    AnimationMenuCrabR.cancel();
+    AnimationMenuCrabB.cancel();
+    AnimationMenuCrabY.cancel();
+    AnimationMenuCrabG.cancel();
+    AnimationMenuCrabP.cancel();
 
-    //MenuOption.animate(KeyframesMenuOption, OptionsMenuOption);
+    if (IfOptionOnOff) {
+        AnimationMenuCrabR.play();
+        AnimationMenuCrabB.play();
+        AnimationMenuCrabY.play();
+        AnimationMenuCrabG.play();
+        AnimationMenuCrabP.play();
+    }
 
-    // MenuCrabP.animate(KeyframesMenuCrabP, OptionsMenuCrab);
-    // MenuCrabR.animate(KeyframesMenuCrabR, OptionsMenuCrab);
-    // MenuCrabB.animate(KeyframesMenuCrabB, OptionsMenuCrab);
-    // MenuCrabY.animate(KeyframesMenuCrabY, OptionsMenuCrab);
-    // MenuCrabG.animate(KeyframesMenuCrabG, OptionsMenuCrab);
     MenuOption.classList.toggle("active");
     MenuCrabP.classList.toggle("active");
     MenuCrabR.classList.toggle("active");
@@ -87,3 +91,16 @@ ButtonOption.addEventListener("click", function() {
     MenuCrabY.classList.toggle("active");
     MenuCrabG.classList.toggle("active");
 });
+
+function ApdateMenuOptionJS() {
+
+    WidthMenuCrabP = Number.parseFloat(StyleMenuCrabP.getPropertyValue("width"));
+    KeyframesMenuCrabR.translate = [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0];
+    KeyframesMenuCrabB.translate = [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0];
+    KeyframesMenuCrabY.translate = [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0];
+    KeyframesMenuCrabG.translate = [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0];
+    KeyframesMenuCrabP.translate = [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0];
+
+}
+
+setInterval(ApdateMenuOptionJS, 100);

@@ -6,37 +6,44 @@
 }
 
 noscript {
-    position: fixed;
-    display: block;
-    background-color: #cccccc;
-    width: 100%; height: 100%;
-    left: 0; bottom: 0;
-    z-index: 98;
-    visibility: visible;
-}
-noscript span {
+    color: #fff;
     position: fixed;
     display: inline-block;
-    color: #ffffff;
     width: 100%;
     left: 0; bottom: 50%;
     z-index: 99;
+    visibility: visible;
 }
 
 body {
+    background-color: #ccc;
     position: relative;
-    background-color: #cccccc;
     width: 100dvw; height: 100dvh;
     text-align: center;
     visibility: hidden;
 }
 
-header {
-    width: 100%; height: 100px;
+header, footer {
+    background-color: #666;
     position: absolute;
+    width: 100%; height: 10svh;
+    background-repeat: no-repeat;
+}
+header {
     top: 0;
-    background-color: #666666;
-    background-repeat: no-repeat, no-repeat, no-repeat;
+}
+footer {
+    bottom: 0;
+    background-image: url(../Image/FooterText.png);
+    background-size: auto 3svh;
+    background-position: center;
+}
+
+#Contents {
+    position: absolute;
+    width: 100%;
+    top: 10svh; bottom: 10svh;
+    overflow: hidden;
 }
 
 button {
@@ -44,18 +51,20 @@ button {
     transition-duration: 200ms;
 }
 button:hover {
-    background-blend-mode:multiply;
+    background-blend-mode: multiply;
     transform: scale(1.1);
     z-index: 1;
 }
 
 #ButtonOption {
     position: absolute;
+    width: 7svh; aspect-ratio: 1 / 1;
     margin: auto 0;
     right: 10px; top: 0; bottom: 0;
     background-image: url(../Image/ButtonOption.png), url(../Image/ButtonOptionPush.png);
-    background-repeat: no-repeat, no-repeat;
-    background-position: center, center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
     z-index: 6;
 }
 #ButtonOption:active {
@@ -63,9 +72,9 @@ button:hover {
 }
 
 #MenuOption {
+    background-color: #999;
     position: absolute;
-    width: 100vw; height: 100vh;
-    background-color: #999999;
+    width: 100dvw; height: 100dvh;
     opacity: 0;
     pointer-events: none;
     transition: all 0.5s;
@@ -73,44 +82,46 @@ button:hover {
 }
 #MenuOption.active {
     opacity: 1;
+    pointer-events: auto;
 }
 
 #MenuCrab {
     position: fixed;
-    background-position: center;
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: contain;
+    background-position: center;
     transition: all 0.5s;
 }
 
 #MenuCrab.MenuCrabP {
-    z-index: 5;
     background-image: url(../Image/MoveCrabP.gif);
+    z-index: 5;
 }
 #MenuCrab.MenuCrabR {
-    z-index: 4;
     background-image: url(../Image/MoveCrabR.gif);
+    z-index: 4;
 }
 #MenuCrab.MenuCrabB {
-    z-index: 4;
     background-image: url(../Image/MoveCrabB.gif);
+    z-index: 4;
 }
 #MenuCrab.MenuCrabY {
-    z-index: 3;
     background-image: url(../Image/MoveCrabY.gif);
+    z-index: 3;
 }
 #MenuCrab.MenuCrabG {
-    z-index: 3;
     background-image: url(../Image/MoveCrabG.gif);
+    z-index: 3;
 }
 
 nav {
     display: grid;
     gap: 2px;
     position: absolute;
-    left: 50%; top: 105px;
+    left: 50%; top: 11svh;
     transform: translateX(-50%);
     z-index: 1;
+    visibility: hidden;
 }
 
 nav button {
@@ -147,64 +158,52 @@ nav button {
     background-image: url(../Image/ButtonVideoPush.png);
 }
 
-#Contents {
-    position: absolute;
-    width: 100%;
-    top: 100px; bottom: 100px;
-    overflow: hidden;
-}
-
-
-
-footer {
-    width: 100%; height: 100px;
-    position: absolute;
-    bottom: 0;
-    background-color: #666666;
-    background-image: url(../Image/FooterText.png);
-    background-size: 172px;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-@media screen and (min-width: 0px) and (max-width: 499.999px) {
+@media screen and (min-width: 0px) and (max-width: 500px) {
 
     header {
         background-image: url(../Image/HeaderTextSmall.png), url(../Image/Icon.png), url(../Image/Brick.png);
-        background-size: 125px, 60px, calc(151px * 4 /5) 100px;
+        background-size: auto 8svh, 7svh, calc(10.5svh + 30px) 100%;
         background-position: center, left 10px center, right center;
     }
 
-    #ButtonOption {
-        width: 60px; height: 60px;
-        background-size: 60px, 60px;
+    :root {
+        --WidthMenuCrab: 20dvw;
     }
 
     #MenuCrab {
-        width: 80vw; aspect-ratio: 1 / 1;
+        width: var(--WidthMenuCrab); aspect-ratio: 1 / 1;
     }
 
-    #MenuCrab.MenuCrabP {
-        left: calc(50% - 40vw); top: 100%;
-        /* left: 50%; bottom: -100%;
-        transform: translate(-50%, +50%) */
-    }
     #MenuCrab.MenuCrabR {
-        display: none;
+        right: 70%; top: 100%;
     }
     #MenuCrab.MenuCrabB {
-        display: none;
+        left: 70%; top: 100%;
     }
     #MenuCrab.MenuCrabY {
-        display: none;
+        right: 100%; top: 100%;
     }
     #MenuCrab.MenuCrabG {
-        display: none;
+        left: 100%; top: 100%;
+    }
+    #MenuCrab.MenuCrabP {
+        left: calc(50% - var(--WidthMenuCrab) / 2); top: 100%;
     }
 
+    #MenuCrab.MenuCrabR.active {
+        right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab)); top: 50%;
+    }
+    #MenuCrab.MenuCrabB.active {
+        left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab)); top: 50%;
+    }
+    #MenuCrab.MenuCrabY.active {
+        right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2); top: 50%;
+    }
+    #MenuCrab.MenuCrabG.active {
+        left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2); top: 50%;
+    }
     #MenuCrab.MenuCrabP.active {
-        transform: translate(0, -80vw);
-        /* transform: translate(-50%, +50%) translate(0, -120vh); */
+        top: 50%;
     }
 
     nav {
@@ -214,58 +213,54 @@ footer {
 
 }
 
-@media screen and (min-width: 500px) and (max-width: 999.999px) {
+@media screen and (min-width: 500px) and (max-width: 1000px) {
 
     header {
         background-image: url(../Image/HeaderTextSmall.png), url(../Image/Icon.png), url(../Image/Brick.png);
-        background-size: 125px, 75px, calc(151px * 47.5 /50) 100px;
-        background-position: left 100px center, left 10px center, right center;
+        background-size: auto 8svh, 7svh, calc(10.5svh + 30px) 100%;
+        background-position: left calc(10px + 7svh + 20px) center, left 10px center, right center;
     }
 
-    #ButtonOption {
-        width: 75px; height: 75px;
-        background-size: 75px;
+    :root {
+        --WidthMenuCrab: 15dvw;
     }
 
     #MenuCrab {
-        width: 50vw; aspect-ratio: 1 / 1;
+        width: var(--WidthMenuCrab); aspect-ratio: 1 / 1;
     }
 
-    #MenuCrab.MenuCrabP {
-        left: calc(50% - 25vw); top: 100%;
-        /* left: 50%; bottom: -100%;
-        transform: translate(-50%, +50%); */
-    }
     #MenuCrab.MenuCrabR {
-        right: 100%; top: 100%;
-        /* left: -50%; bottom: 0;
-        transform: translate(-50%, +50%); */
+        right: 70%; top: 100%;
     }
     #MenuCrab.MenuCrabB {
-        left: 100%; top: 100%;
-        /* right: -50%; bottom: 0;
-        transform: translate(+50%, +50%); */
+        left: 70%; top: 100%;
     }
     #MenuCrab.MenuCrabY {
-        display: none;
+        right: 100%; top: 100%;
     }
     #MenuCrab.MenuCrabG {
-        display: none;
+        left: 100%; top: 100%;
+    }
+    #MenuCrab.MenuCrabP {
+        left: calc(50% - var(--WidthMenuCrab) / 2); top: 100%;
     }
 
-    #MenuCrab.MenuCrabP.active {
-        transform: translate(0, -40vw);
-        /* transform: translate(-50%, +50%) translate(0, -120vh); */
-    }
     #MenuCrab.MenuCrabR.active {
-        transform: translate(+50vw, calc(-40vw - 20vh));
-        /* transform: translate(-50%, +50%) translate(+75vw, -35vh); */
+        right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab)); top: 50%;
     }
     #MenuCrab.MenuCrabB.active {
-        transform: translate(-50vw, calc(-40vw - 20vh));
-        /* transform: translate(+50%, +50%) translate(-75vw, -35vh); */
+        left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab)); top: 50%;
     }
-
+    #MenuCrab.MenuCrabY.active {
+        right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2); top: 50%;
+    }
+    #MenuCrab.MenuCrabG.active {
+        left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2); top: 50%;
+    }
+    #MenuCrab.MenuCrabP.active {
+        top: 50%;
+    }
+    
     nav {
         width: calc(80% + 6px); aspect-ratio: calc(calc(80vw + 6px) / calc(80vw / 16 + 0px));
         grid-template-columns: repeat(4, auto);
@@ -277,60 +272,48 @@ footer {
 
     header {
         background-image: url(../Image/HeaderTextLarge.png), url(../Image/Icon.png), url(../Image/Brick.png);
-        background-size: 331px, 75px, calc(151px * 47.5 /50) 100px;
-        background-position: left 100px center, left 10px center, right center;
+        background-size: auto 6svh, 7svh, calc(10.5svh + 30px) 100%;
+        background-position: left calc(10px + 7svh + 30px) center, left 10px center, right center;
     }
 
-    #ButtonOption {
-        width: 75px; height: 75px;
-        background-size: 75px;
+    :root {
+        --WidthMenuCrab: 10dvw;
     }
 
     #MenuCrab {
-        width: 40vw; aspect-ratio: 1 / 1;
+        width: var(--WidthMenuCrab); aspect-ratio: 1 / 1;
     }
 
-    #MenuCrab.MenuCrabP {
-        left: calc(50% - 20vw); top: 100%;
-        /* left: 50%; bottom: -100%;
-        transform: translate(-50%, +50%); */
-    }
     #MenuCrab.MenuCrabR {
-        right: 100%; top: 100%;
-        /* transform: translate(-50%, +50%); */
+        right: 70%; top: 100%;
     }
     #MenuCrab.MenuCrabB {
-        left: 100%; top: 100%;
-        /* transform: translate(+50%, +50%); */
+        left: 70%; top: 100%;
     }
     #MenuCrab.MenuCrabY {
-        right: 100%; top: calc(100% + calc(-30vw - 30vh));
-        /* transform: translate(-50%, +50%); */
+        right: 100%; top: 100%;
     }
     #MenuCrab.MenuCrabG {
-        left: 100%; top: calc(100% + calc(-30vw - 30vh));
-        /* transform: translate(+50%, +50%); */
+        left: 100%; top: 100%;
+    }
+    #MenuCrab.MenuCrabP {
+        left: calc(50% - var(--WidthMenuCrab) / 2); top: 100%;
     }
 
-    #MenuCrab.MenuCrabP.active {
-        transform: translate(0, -30vw);
-        /* transform: translate(-50%, +50%) translate(0, -120vh); */
-    }
     #MenuCrab.MenuCrabR.active {
-        transform: translate(+40vw, calc(-30vw - 10vh));
-        /* transform: translate(-50%, +50%) translate(+70vw, -50vh); */
+        right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab)); top: 50%;
     }
     #MenuCrab.MenuCrabB.active {
-        transform: translate(-40vw, calc(-30vw - 10vh));
-        /* transform: translate(+50%, +50%) translate(-70vw, -50vh); */
+        left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab)); top: 50%;
     }
     #MenuCrab.MenuCrabY.active {
-        transform: translate(+50vw, 0);
-        /* transform: translate(-50%, +50%) translate(+80vw, 0); */
+        right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2); top: 50%;
     }
     #MenuCrab.MenuCrabG.active {
-        transform: translate(-50vw, 0);
-        /* transform: translate(+50%, +50%) translate(-80vw, 0); */
+        left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2); top: 50%;
+    }
+    #MenuCrab.MenuCrabP.active {
+        top: 50%;
     }
 
     nav {
