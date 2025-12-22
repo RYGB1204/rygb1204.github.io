@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+* {
+    touch-action: none;
+}
+
 :root {
     --WidthChicken: 10dvh;
     --WidthCrab: 10dvh;

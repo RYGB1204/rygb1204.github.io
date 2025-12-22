@@ -1,10 +1,14 @@
 const ButtonOption = document.querySelector("#ButtonOption");
+
 const MenuBackground = document.querySelector("#MenuBackground");
+
 const MenuCrabP = document.querySelector(".MenuCrabP");
 const MenuCrabR = document.querySelector(".MenuCrabR");
 const MenuCrabB = document.querySelector(".MenuCrabB");
 const MenuCrabY = document.querySelector(".MenuCrabY");
 const MenuCrabG = document.querySelector(".MenuCrabG");
+
+const MenuSelectors = document.querySelectorAll("#MenuSelector");
 
 const StyleMenuCrabR = getComputedStyle(MenuCrabR);
 const StyleMenuCrabB = getComputedStyle(MenuCrabB);
@@ -17,23 +21,23 @@ WidthMenuCrabP = Number.parseFloat(StyleMenuCrabP.getPropertyValue("width"));
 
 const KeyframesMenuCrabY = {
     offset: [0.0, 0.3, 0.4, 0.5, 1.0],
-    translate: ""
+    translate: [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0]
 };
 const KeyframesMenuCrabR = {
     offset: [0.0, 0.4, 0.5, 0.6, 1.0],
-    translate: ""
+    translate: [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0]
 };
 const KeyframesMenuCrabP = {
     offset: [0.0, 0.5, 0.6, 0.7, 1.0],
-    translate: ""
+    translate: [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0]
 };
 const KeyframesMenuCrabB = {
     offset: [0.0, 0.6, 0.7, 0.8, 1.0],
-    translate: ""
+    translate: [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0]
 };
 const KeyframesMenuCrabG = {
     offset: [0.0, 0.7, 0.8, 0.9, 1.0],
-    translate: ""
+    translate: [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0]
 };
 
 const OptionsMenuCrab = {
@@ -84,15 +88,37 @@ ButtonOption.addEventListener("click", function() {
         AnimationMenuCrabP.play();
     }
 
-    MenuBackground.classList.toggle("active");
-    MenuCrabP.classList.toggle("active");
-    MenuCrabR.classList.toggle("active");
-    MenuCrabB.classList.toggle("active");
-    MenuCrabY.classList.toggle("active");
-    MenuCrabG.classList.toggle("active");
+    MenuBackground.classList.toggle("Display");
+
+    MenuCrabP.classList.toggle("Display");
+    MenuCrabR.classList.toggle("Display");
+    MenuCrabB.classList.toggle("Display");
+    MenuCrabY.classList.toggle("Display");
+    MenuCrabG.classList.toggle("Display");
+
+    for (const MenuSelector of MenuSelectors) {
+        MenuSelector.classList.toggle("Display");
+    }
+
 });
 
-function ApdateMenuOptionJS() {
+function NavigateToPage(event) {
+
+    switch (event.currentTarget.classList[0]) {
+
+        case "Game1":
+            open("https://rygb1204.github.io/game1");
+            break;
+
+    }
+
+}
+
+for (const MenuSelector of MenuSelectors) {
+    MenuSelector.addEventListener("click", NavigateToPage);
+}
+
+function GetWidthHeightNewMenuOptionJS() {
 
     WidthMenuCrabP = Number.parseFloat(StyleMenuCrabP.getPropertyValue("width"));
     KeyframesMenuCrabR.translate = [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0];
@@ -103,4 +129,4 @@ function ApdateMenuOptionJS() {
 
 }
 
-setInterval(ApdateMenuOptionJS, 100);
+window.addEventListener("resize", GetWidthHeightNewMenuOptionJS);
