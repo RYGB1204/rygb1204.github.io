@@ -72,16 +72,17 @@ button:hover {
     background-image: url(../Image/ButtonOptionPush.png);
 }
 
-#MenuOption {
+#MenuBackground {
     background-color: #999;
     position: absolute;
-    width: 100dvw; height: 100dvh;
+    width: 100dvw;
+    top: 10svh; bottom: 10svh;
     opacity: 0;
     pointer-events: none;
     transition: all 0.5s;
     z-index: 2;
 }
-#MenuOption.active {
+#MenuBackground.active {
     opacity: 1;
     pointer-events: auto;
 }
