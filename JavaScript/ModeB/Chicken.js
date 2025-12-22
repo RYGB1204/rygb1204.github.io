@@ -166,4 +166,4 @@ function ApdateChickenJS() {
 
 }
 
-setInterval(ApdateChickenJS, 100);
+setInterval(ApdateChickenJS, 5);

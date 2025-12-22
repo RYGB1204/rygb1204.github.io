@@ -59,7 +59,7 @@ function LoadModeB() {
 
 function CheckMode() {//console.log(AspectRatio);
 
-    if (1.0 / 1.0 <= AspectRatio && AspectRatio < 3.0 / 1.0) {
+    if (1.0 / 1.0 <= AspectRatio && AspectRatio < 4.0 / 1.0) {
 
         return "ModeA";
 
@@ -92,7 +92,7 @@ function ProhibitClickRight(event) {
 
 Contents.addEventListener("contextmenu", ProhibitClickRight);
 
-function ApdateCoreJS() {
+function GetWidthHeightNewCoreJS() {
 
     WidthContents = Number.parseFloat(StyleContents.getPropertyValue("width"));
     HeightContents = Number.parseFloat(StyleContents.getPropertyValue("height"));
@@ -101,10 +101,10 @@ function ApdateCoreJS() {
     if (Mode !== CheckMode()) {
         window.location.reload();
     }
-    
+
 }
 
-setInterval(ApdateCoreJS, 100);
+window.addEventListener("resize", GetWidthHeightNewCoreJS);
 
 addEventListener("load", () => {
     Body.style.visibility = "visible";

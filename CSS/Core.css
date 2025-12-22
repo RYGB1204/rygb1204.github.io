@@ -1,8 +1,9 @@
-@charset "UTF-8";
+@charset "utf-8";
 
 * {
     background-color: transparent;
     padding: 0; margin: 0; border-style: none;
+    touch-action: none;
 }
 
 noscript {
@@ -44,7 +45,6 @@ footer {
     width: 100%;
     top: 10svh; bottom: 10svh;
     overflow: hidden;
-    touch-action: none;
 }
 
 button {
@@ -74,7 +74,7 @@ button:hover {
 
 #MenuBackground {
     background-color: #999;
-    position: absolute;
+    position: fixed;
     width: 100dvw;
     top: 10svh; bottom: 10svh;
     opacity: 0;
@@ -82,7 +82,7 @@ button:hover {
     transition: all 0.5s;
     z-index: 2;
 }
-#MenuBackground.active {
+#MenuBackground.Display {
     opacity: 1;
     pointer-events: auto;
 }
@@ -114,6 +114,31 @@ button:hover {
 #MenuCrab.MenuCrabG {
     background-image: url(../Image/MoveCrabG.gif);
     z-index: 3;
+}
+
+#MenuSelector {
+    position: fixed;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    pointer-events: none;
+    transition-property: left, right, top, bottom, transform;
+    transition-duration: 500ms;
+}
+#MenuSelector:hover {
+    transform: scale(1.1);
+}
+
+#MenuSelector.Display {
+    pointer-events: auto;
+}
+
+#MenuSelector.Game1 {
+    background-image: url(../Image/100sFishing.png), url(../Image/100sFishingPush.png);
+    z-index: 6;
+}
+#MenuSelector.Game1:active {
+    background-image: url(../Image/100sFishingPush.png);
 }
 
 nav {
@@ -170,6 +195,7 @@ nav button {
 
     :root {
         --WidthMenuCrab: 20dvw;
+        --WidthMenuSelector: 80dvw;
     }
 
     #MenuCrab {
@@ -191,21 +217,31 @@ nav button {
     #MenuCrab.MenuCrabP {
         left: calc(50% - var(--WidthMenuCrab) / 2); top: 100%;
     }
+    #MenuCrab.MenuCrabR.Display {
+        right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab)); top: calc(100% - var(--WidthMenuCrab) - 10svh);
+    }
+    #MenuCrab.MenuCrabB.Display {
+        left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab)); top: calc(100% - var(--WidthMenuCrab) - 10svh);
+    }
+    #MenuCrab.MenuCrabY.Display {
+        right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2); top: calc(100% - var(--WidthMenuCrab) - 10svh);
+    }
+    #MenuCrab.MenuCrabG.Display {
+        left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2); top: calc(100% - var(--WidthMenuCrab) - 10svh);
+    }
+    #MenuCrab.MenuCrabP.Display {
+        top: calc(100% - var(--WidthMenuCrab) - 10svh);
+    }
 
-    #MenuCrab.MenuCrabR.active {
-        right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab)); top: 50%;
+    #MenuSelector {
+        width: var(--WidthMenuSelector); aspect-ratio: 2 / 1;
     }
-    #MenuCrab.MenuCrabB.active {
-        left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab)); top: 50%;
+
+    #MenuSelector.Game1 {
+        left: calc(50% - var(--WidthMenuSelector) / 2); bottom: 100%;
     }
-    #MenuCrab.MenuCrabY.active {
-        right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2); top: 50%;
-    }
-    #MenuCrab.MenuCrabG.active {
-        left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2); top: 50%;
-    }
-    #MenuCrab.MenuCrabP.active {
-        top: 50%;
+    #MenuSelector.Game1.Display {
+        bottom: calc(100% - var(--WidthMenuSelector) / 2 - 15svh);
     }
 
     nav {
@@ -225,6 +261,7 @@ nav button {
 
     :root {
         --WidthMenuCrab: 15dvw;
+        --WidthMenuSelector: 60dvw;
     }
 
     #MenuCrab {
@@ -247,20 +284,31 @@ nav button {
         left: calc(50% - var(--WidthMenuCrab) / 2); top: 100%;
     }
 
-    #MenuCrab.MenuCrabR.active {
-        right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab)); top: 50%;
+    #MenuCrab.MenuCrabR.Display {
+        right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab)); top: calc(100% - var(--WidthMenuCrab) - 10svh);
     }
-    #MenuCrab.MenuCrabB.active {
-        left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab)); top: 50%;
+    #MenuCrab.MenuCrabB.Display {
+        left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab)); top: calc(100% - var(--WidthMenuCrab) - 10svh);
     }
-    #MenuCrab.MenuCrabY.active {
-        right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2); top: 50%;
+    #MenuCrab.MenuCrabY.Display {
+        right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2); top: calc(100% - var(--WidthMenuCrab) - 10svh);
     }
-    #MenuCrab.MenuCrabG.active {
-        left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2); top: 50%;
+    #MenuCrab.MenuCrabG.Display {
+        left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2); top: calc(100% - var(--WidthMenuCrab) - 10svh);
     }
-    #MenuCrab.MenuCrabP.active {
-        top: 50%;
+    #MenuCrab.MenuCrabP.Display {
+        top: calc(100% - var(--WidthMenuCrab) - 10svh);
+    }
+
+    #MenuSelector {
+        width: var(--WidthMenuSelector); aspect-ratio: 2 / 1;
+    }
+
+    #MenuSelector.Game1 {
+        left: calc(50% - var(--WidthMenuSelector) / 2); bottom: 100%;
+    }
+    #MenuSelector.Game1.Display {
+        bottom: calc(100% - var(--WidthMenuSelector) / 2 - 15svh);
     }
     
     nav {
@@ -280,6 +328,7 @@ nav button {
 
     :root {
         --WidthMenuCrab: 10dvw;
+        --WidthMenuSelector: 40dvw;
     }
 
     #MenuCrab {
@@ -302,20 +351,31 @@ nav button {
         left: calc(50% - var(--WidthMenuCrab) / 2); top: 100%;
     }
 
-    #MenuCrab.MenuCrabR.active {
-        right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab)); top: 50%;
+    #MenuCrab.MenuCrabR.Display {
+        right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab)); top: calc(100% - var(--WidthMenuCrab) - 10svh);
     }
-    #MenuCrab.MenuCrabB.active {
-        left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab)); top: 50%;
+    #MenuCrab.MenuCrabB.Display {
+        left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab)); top: calc(100% - var(--WidthMenuCrab) - 10svh);
     }
-    #MenuCrab.MenuCrabY.active {
-        right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2); top: 50%;
+    #MenuCrab.MenuCrabY.Display {
+        right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2); top: calc(100% - var(--WidthMenuCrab) - 10svh);
     }
-    #MenuCrab.MenuCrabG.active {
-        left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2); top: 50%;
+    #MenuCrab.MenuCrabG.Display {
+        left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2); top: calc(100% - var(--WidthMenuCrab) - 10svh);
     }
-    #MenuCrab.MenuCrabP.active {
-        top: 50%;
+    #MenuCrab.MenuCrabP.Display {
+        top: calc(100% - var(--WidthMenuCrab) - 10svh);
+    }
+
+    #MenuSelector {
+        width: var(--WidthMenuSelector); aspect-ratio: 2 / 1;
+    }
+
+    #MenuSelector.Game1 {
+        left: calc(50% - var(--WidthMenuSelector) / 2); bottom: 100%;
+    }
+    #MenuSelector.Game1.Display {
+        bottom: calc(100% - var(--WidthMenuSelector) / 2 - 15svh);
     }
 
     nav {
