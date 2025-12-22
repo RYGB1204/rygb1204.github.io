@@ -20,6 +20,8 @@ let SoundFlickChicken, SoundSourceFlickChicken;
 
 let SoundJumpChicken, SoundSourceJumpChicken;
 
+let SoundFlickCrab, SoundSourceFlickCrab;
+
 async function SetUpSoundSourceFlickChicken() {
 
   const Response = await fetch("../Sound/FlickChicken.mp3");
@@ -42,7 +44,19 @@ async function SetUpSoundSourceJumpChicken() {
 
 }
 
+async function SetUpSoundSourceFlickCrab() {
+
+  const Response = await fetch("../Sound/FlickCrab.mp3");
+  const ResponseBuffer = await Response.arrayBuffer();
+
+  const AudioBuffer = await ManagerAudio.decodeAudioData(ResponseBuffer);
+
+  return AudioBuffer;
+
+}
+
 addEventListener("load", async () => {
     SoundSourceFlickChicken = await SetUpSoundSourceFlickChicken();
     SoundSourceJumpChicken = await SetUpSoundSourceJumpChicken();
+    SoundSourceFlickCrab = await SetUpSoundSourceFlickCrab();
 });

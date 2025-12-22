@@ -14,12 +14,12 @@ function LoadModeA() {
     CssModeA.href = "../CSS/ModeA.css";
     document.head.append(CssModeA);
 
-    const FileModeA = document.createElement("script");
-    FileModeA.src = "JavaScript/ModeA/ModeA.js";
-    document.head.append(FileModeA);
+    const FileGameManager = document.createElement("script");
+    FileGameManager.src = "JavaScript/GameManager.js";
+    document.head.append(FileGameManager);
 
     const FileCountdown = document.createElement("script");
-    FileCountdown.src = "JavaScript/ModeA/Countdown.js";
+    FileCountdown.src = "JavaScript/Countdown.js";
     document.head.append(FileCountdown);
 
     const FileChicken = document.createElement("script");
@@ -39,12 +39,12 @@ function LoadModeB() {
     CssModeB.href = "../CSS/ModeB.css";
     document.head.append(CssModeB);
 
-    const FileModeB = document.createElement("script");
-    FileModeB.src = "JavaScript/ModeB/ModeB.js";
-    document.head.append(FileModeB);
+    const FileGameManager = document.createElement("script");
+    FileGameManager.src = "JavaScript/GameManager.js";
+    document.head.append(FileGameManager);
 
     const FileCountdown = document.createElement("script");
-    FileCountdown.src = "JavaScript/ModeB/Countdown.js";
+    FileCountdown.src = "JavaScript/Countdown.js";
     document.head.append(FileCountdown);
 
     const FileChicken = document.createElement("script");

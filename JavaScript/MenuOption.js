@@ -1,5 +1,5 @@
 const ButtonOption = document.querySelector("#ButtonOption");
-const MenuOption = document.querySelector("#MenuOption");
+const MenuBackground = document.querySelector("#MenuBackground");
 const MenuCrabP = document.querySelector(".MenuCrabP");
 const MenuCrabR = document.querySelector(".MenuCrabR");
 const MenuCrabB = document.querySelector(".MenuCrabB");
@@ -84,7 +84,7 @@ ButtonOption.addEventListener("click", function() {
         AnimationMenuCrabP.play();
     }
 
-    MenuOption.classList.toggle("active");
+    MenuBackground.classList.toggle("active");
     MenuCrabP.classList.toggle("active");
     MenuCrabR.classList.toggle("active");
     MenuCrabB.classList.toggle("active");
