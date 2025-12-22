@@ -44,6 +44,7 @@ footer {
     width: 100%;
     top: 10svh; bottom: 10svh;
     overflow: hidden;
+    touch-action: none;
 }
 
 button {
