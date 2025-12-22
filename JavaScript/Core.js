@@ -57,7 +57,7 @@ function LoadModeB() {
 
 }
 
-function CheckMode() {console.log(AspectRatio);
+function CheckMode() {//console.log(AspectRatio);
 
     if (1.0 / 1.0 <= AspectRatio && AspectRatio < 3.0 / 1.0) {
 

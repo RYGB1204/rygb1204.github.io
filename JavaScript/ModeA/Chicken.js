@@ -93,51 +93,57 @@ let TimeStartMove, PositionStartMove;
 let TimeStartJump;
 
 function MoveLeft(TimeNow) {
-
-    if (!TimeStartMove) {
-        TimeStartMove = TimeNow;
-    }
-    if (!PositionStartMove) {
-        PositionStartMove = XChicken - WidthChicken / 2;
-    }
-
-    let TimeElapsedLeft = TimeNow - TimeStartMove;
-
-    if (Number.isNaN(TimeElapsedLeft)) {
-        TimeElapsedLeft = 0;
-    }
-
-    const DistanceMoveLeft = TimeElapsedLeft * WidthChicken / 200;
-
-    Chicken.style.left = `${Math.max(PositionStartMove - DistanceMoveLeft, 0)}px`;
-
+    
     if (StateGame === ObjectStateGame.AfterStart && IfKeyLeftOnOff) {
+
+        if (!TimeStartMove) {
+            TimeStartMove = TimeNow;
+        }
+        if (!PositionStartMove) {
+            PositionStartMove = XChicken - WidthChicken / 2;
+        }
+    
+        let TimeElapsedLeft = TimeNow - TimeStartMove;
+    
+        if (Number.isNaN(TimeElapsedLeft)) {
+            TimeElapsedLeft = 0;
+        }
+    
+        const DistanceMoveLeft = TimeElapsedLeft * WidthChicken / 200;
+    
+        Chicken.style.left = `${Math.max(PositionStartMove - DistanceMoveLeft, 0)}px`;
+
         requestAnimationFrame(MoveLeft);
+
     }
+
 }
 
 function MoveRight(TimeNow) {
 
-    if (!TimeStartMove) {
-        TimeStartMove = TimeNow;
-    }
-    if (!PositionStartMove) {
-        PositionStartMove = XChicken - WidthChicken / 2;
-    }
-
-    let TimeElapsedRight = TimeNow - TimeStartMove;
-
-    if (Number.isNaN(TimeElapsedRight)) {
-        TimeElapsedRight = 0;
-    }
-
-    const DistanceMoveRight = TimeElapsedRight * WidthChicken / 200;
-
-    Chicken.style.left = `${Math.min(PositionStartMove + DistanceMoveRight, WidthContents - WidthChicken)}px`;
-
     if (StateGame === ObjectStateGame.AfterStart && IfKeyRightOnOff) {
+
+        if (!TimeStartMove) {
+        TimeStartMove = TimeNow;
+        }
+        if (!PositionStartMove) {
+            PositionStartMove = XChicken - WidthChicken / 2;
+        }
+
+        let TimeElapsedRight = TimeNow - TimeStartMove;
+
+        if (Number.isNaN(TimeElapsedRight)) {
+            TimeElapsedRight = 0;
+        }
+
+        const DistanceMoveRight = TimeElapsedRight * WidthChicken / 200;
+
+        Chicken.style.left = `${Math.min(PositionStartMove + DistanceMoveRight, WidthContents - WidthChicken)}px`;
+
         requestAnimationFrame(MoveRight);
+
     }
+
 }
 
 function PlaySoundJumpChicken(SoundSourceJumpChicken) {
@@ -253,8 +259,74 @@ function Keyup(event) {
     
 }
 
+function PointerdownContents(event) {
+
+    const RectContents = event.currentTarget.getBoundingClientRect();
+    const PointerX = event.clientX - RectContents.left;
+
+    if (StateGame === ObjectStateGame.AfterStart) {
+
+        if (PointerX < XChicken - WidthChicken / 2) {
+    
+            IfKeyLeftOnOff = true;
+    
+            TimeStartMove = undefined;
+            PositionStartMove = undefined;
+    
+            requestAnimationFrame(MoveLeft);
+            Chicken.animate(KeyframesChikenMoveLeft, OptionsChickenMove);
+    
+        }
+        else if (XChicken + WidthChicken / 2 < PointerX) {
+    
+            IfKeyRightOnOff = true;
+    
+            TimeStartMove = undefined;
+            PositionStartMove = undefined;
+    
+            requestAnimationFrame(MoveRight);
+            Chicken.animate(KeyframesChickenMoveRight, OptionsChickenMove);
+    
+        }
+        else {
+
+            if (!IfJumpOnOff)  {
+    
+                IfJumpOnOff = true;
+        
+                TimeStartJump = undefined;
+        
+                requestAnimationFrame(Jump);
+                PlaySoundJumpChicken(SoundSourceJumpChicken);
+        
+            }
+
+        }
+
+    }
+
+}
+
+async function PointerupContents() {
+
+    if (StateGame === ObjectStateGame.AfterStart) {
+
+
+
+        IfKeyLeftOnOff = false;
+        IfKeyRightOnOff = false;
+    
+        TimeStartMove = undefined;
+        PositionStartMove = undefined;
+
+    }
+
+}
+
 document.addEventListener("keydown", Keydown);
 document.addEventListener("keyup", Keyup);
+Contents.addEventListener("pointerdown", PointerdownContents);
+Contents.addEventListener("pointerup", PointerupContents);
 
 Chicken.animate(KeyframesChickenAppear, OptionsChickenAppear);
 
