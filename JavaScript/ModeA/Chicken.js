@@ -266,7 +266,7 @@ function PointerdownContents(event) {
 
     if (StateGame === ObjectStateGame.AfterStart) {
 
-        if (PointerX < XChicken - WidthChicken / 2) {
+        if (PointerX < XChicken - WidthChicken) {
     
             IfKeyLeftOnOff = true;
     
@@ -277,7 +277,7 @@ function PointerdownContents(event) {
             Chicken.animate(KeyframesChikenMoveLeft, OptionsChickenMove);
     
         }
-        else if (XChicken + WidthChicken / 2 < PointerX) {
+        else if (XChicken + WidthChicken < PointerX) {
     
             IfKeyRightOnOff = true;
     

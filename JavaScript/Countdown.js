@@ -1,4 +1,4 @@
-const CountText = document.createElement("p");
+const CountText = document.createElement("div");
 const IdCountText = document.createAttribute("id");
 IdCountText.value = "CountText";
 
