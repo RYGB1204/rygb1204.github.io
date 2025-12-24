@@ -8,7 +8,7 @@ const MenuCrabB = document.querySelector(".MenuCrabB");
 const MenuCrabY = document.querySelector(".MenuCrabY");
 const MenuCrabG = document.querySelector(".MenuCrabG");
 
-const MenuSelectors = document.querySelectorAll("#MenuSelector");
+const ArrayMenuSelector = document.querySelectorAll("#MenuSelector");
 
 const StyleMenuCrabR = getComputedStyle(MenuCrabR);
 const StyleMenuCrabB = getComputedStyle(MenuCrabB);
@@ -18,6 +18,18 @@ const StyleMenuCrabP = getComputedStyle(MenuCrabP);
 
 let WidthMenuCrabR, WidthMenuCrabB, WidthMenuCrabY, WidthMenuCrabG, WidthMenuCrabP;
 WidthMenuCrabP = Number.parseFloat(StyleMenuCrabP.getPropertyValue("width"));
+
+const KeyframesMenuSelectorGameA = {
+    borderRadius: ["50%", "40% 60% 40% 60% / 60% 30% 70% 40%", "50%", "60% 40% 70% 30% / 40% 60% 40% 60%", "50%"]
+}
+
+const OptionsMenuSelectorGameA = {
+    duration: 10000,
+    iterations: "Infinity",
+    easing: "linear"
+}
+
+ArrayMenuSelector[0].animate(KeyframesMenuSelectorGameA, OptionsMenuSelectorGameA);
 
 const KeyframesMenuCrabY = {
     offset: [0.0, 0.3, 0.4, 0.5, 1.0],
@@ -96,7 +108,7 @@ ButtonOption.addEventListener("click", function() {
     MenuCrabY.classList.toggle("Display");
     MenuCrabG.classList.toggle("Display");
 
-    for (const MenuSelector of MenuSelectors) {
+    for (const MenuSelector of ArrayMenuSelector) {
         MenuSelector.classList.toggle("Display");
     }
 
@@ -106,7 +118,7 @@ function NavigateToPage(event) {
 
     switch (event.currentTarget.classList[0]) {
 
-        case "Game1":
+        case "GameA":
             open("https://rygb1204.github.io/game1");
             break;
 
@@ -114,7 +126,7 @@ function NavigateToPage(event) {
 
 }
 
-for (const MenuSelector of MenuSelectors) {
+for (const MenuSelector of ArrayMenuSelector) {
     MenuSelector.addEventListener("click", NavigateToPage);
 }
 

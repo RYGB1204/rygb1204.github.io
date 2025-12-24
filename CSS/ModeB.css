@@ -2,6 +2,7 @@
 
 * {
     touch-action: none;
+    user-select: none;
 }
 
 :root {
@@ -21,7 +22,6 @@
     left: 25dvw; top: 30%;
     line-height: 10dvw;
     font-size: 10dvw;
-    user-select: none;
 }
 
 #ButtonRetry {
@@ -32,7 +32,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    z-index: 1;
+    z-index: 2;
     visibility: hidden;
 }
 #ButtonRetry:active {
@@ -47,6 +47,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: bottom;
+    z-index: 1;
 }
 
 #Crab {
@@ -55,6 +56,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: bottom;
+    z-index: 1;
 }
 
 #Crab.CrabR {
