@@ -19,7 +19,7 @@ const OptionsChickenAppear = {
     easing: "ease-in"
 };
 
-let KeyframesChikenMoveLeft, KeyframesChickenMoveRight;
+let KeyframesChickenMoveLeft, KeyframesChickenMoveRight;
 const OptionsChickenMove = {
     duration: 100,
     fill: "both"
@@ -94,7 +94,7 @@ let TimeStartJump;
 
 function MoveLeft(TimeNow) {
     
-    if (StateGame === ObjectStateGame.AfterStart && IfKeyLeftOnOff) {
+    if (StateGame === ObjectStateGame.AfterStart && IfKeyLeftOnOff && !IfKeyRightOnOff) {
 
         if (!TimeStartMove) {
             TimeStartMove = TimeNow;
@@ -121,7 +121,7 @@ function MoveLeft(TimeNow) {
 
 function MoveRight(TimeNow) {
 
-    if (StateGame === ObjectStateGame.AfterStart && IfKeyRightOnOff) {
+    if (StateGame === ObjectStateGame.AfterStart && IfKeyRightOnOff && !IfKeyLeftOnOff) {
 
         if (!TimeStartMove) {
         TimeStartMove = TimeNow;
@@ -204,7 +204,7 @@ function Keydown(event) {
             PositionStartMove = undefined;
 
             requestAnimationFrame(MoveLeft);
-            Chicken.animate(KeyframesChikenMoveLeft, OptionsChickenMove);
+            Chicken.animate(KeyframesChickenMoveLeft, OptionsChickenMove);
 
         }
         if (event.key === "ArrowRight") {
@@ -245,6 +245,13 @@ function Keyup(event) {
             TimeStartMove = undefined;
             PositionStartMove = undefined;
 
+            if (IfKeyRightOnOff) {
+
+                requestAnimationFrame(MoveRight);
+                Chicken.animate(KeyframesChickenMoveRight, OptionsChickenMove);
+
+            }
+
         }
         if (event.key === "ArrowRight") {
 
@@ -253,11 +260,20 @@ function Keyup(event) {
             TimeStartMove = undefined;
             PositionStartMove = undefined;
 
+            if (IfKeyLeftOnOff) {
+                
+                requestAnimationFrame(MoveLeft);
+                Chicken.animate(KeyframesChickenMoveLeft, OptionsChickenMove);
+                
+            }
+
         }
 
     }
     
 }
+
+let PointerLeft, PointerRight;
 
 function PointerdownContents(event) {
 
@@ -274,7 +290,9 @@ function PointerdownContents(event) {
             PositionStartMove = undefined;
     
             requestAnimationFrame(MoveLeft);
-            Chicken.animate(KeyframesChikenMoveLeft, OptionsChickenMove);
+            Chicken.animate(KeyframesChickenMoveLeft, OptionsChickenMove);
+
+            PointerLeft = event.pointerId;
     
         }
         else if (XChicken + WidthChicken < PointerX) {
@@ -286,6 +304,8 @@ function PointerdownContents(event) {
     
             requestAnimationFrame(MoveRight);
             Chicken.animate(KeyframesChickenMoveRight, OptionsChickenMove);
+
+            PointerRight = event.pointerId;
     
         }
         else {
@@ -307,17 +327,40 @@ function PointerdownContents(event) {
 
 }
 
-async function PointerupContents() {
+async function PointerupContents(event) {
 
     if (StateGame === ObjectStateGame.AfterStart) {
 
+        if (event.pointerId === PointerLeft) {
 
-
-        IfKeyLeftOnOff = false;
-        IfKeyRightOnOff = false;
+            IfKeyLeftOnOff = false;
     
-        TimeStartMove = undefined;
-        PositionStartMove = undefined;
+            TimeStartMove = undefined;
+            PositionStartMove = undefined;
+
+            if (IfKeyRightOnOff) {
+
+                requestAnimationFrame(MoveRight);
+                Chicken.animate(KeyframesChickenMoveRight, OptionsChickenMove);
+
+            }
+
+        }
+        else if (event.pointerId === PointerRight) {
+
+            IfKeyRightOnOff = false;
+    
+            TimeStartMove = undefined;
+            PositionStartMove = undefined;
+
+            if (IfKeyLeftOnOff) {
+                
+                requestAnimationFrame(MoveLeft);
+                Chicken.animate(KeyframesChickenMoveLeft, OptionsChickenMove);
+                
+            }
+
+        }
 
     }
 
@@ -338,7 +381,7 @@ function ApdateChickenJS() {
 
     ScaleChicken = StyleChicken.getPropertyValue("scale");
 
-    KeyframesChikenMoveLeft = {
+    KeyframesChickenMoveLeft = {
         scale: [`${ScaleChicken}`, "-1 1"]
     };
     KeyframesChickenMoveRight = {

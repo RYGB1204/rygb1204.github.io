@@ -124,7 +124,7 @@ function ApdateChickenJS() {
 
         if (StateGame === ObjectStateGame.AfterStart) {
 
-            if (Math.abs(XChicken - XCrub) < (WidthChicken + WidthCrab) / 2 && Math.abs(YChicken - YCrub) < (WidthChicken + WidthCrab) / 2) {
+            if (Math.abs(YChicken - YCrub) < (WidthChicken + WidthCrab) / 2 && Math.abs(XChicken - XCrub) < (WidthChicken + WidthCrab) / 2) {
 
                 if ((XChicken - XCrub) ** 2 + (YChicken - YCrub) ** 2 < ((WidthChicken + WidthCrab) / 2) ** 2) {
 
