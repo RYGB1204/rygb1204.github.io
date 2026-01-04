@@ -1,56 +1,50 @@
-const ButtonOption = document.querySelector("#ButtonOption");
-
 const HomeMenu = document.querySelector("#HomeMenu");
 
-const MenuCrabP = document.querySelector(".MenuCrabP");
-const MenuCrabR = document.querySelector(".MenuCrabR");
-const MenuCrabB = document.querySelector(".MenuCrabB");
-const MenuCrabY = document.querySelector(".MenuCrabY");
-const MenuCrabG = document.querySelector(".MenuCrabG");
+const Palette = document.querySelector("#Palette");
+const ArrayIcon = document.querySelectorAll("#Icon");
 
-const ArrayMenuSelector = document.querySelectorAll("#MenuSelector");
+const ArrayMenuCrab = document.querySelectorAll("#MenuCrab");
+const StyleMenuCrab = getComputedStyle(ArrayMenuCrab[0]);
 
-const StyleMenuCrabR = getComputedStyle(MenuCrabR);
-const StyleMenuCrabB = getComputedStyle(MenuCrabB);
-const StyleMenuCrabY = getComputedStyle(MenuCrabY);
-const StyleMenuCrabG = getComputedStyle(MenuCrabG);
-const StyleMenuCrabP = getComputedStyle(MenuCrabP);
+let HeightMenuCrab = Number.parseFloat(StyleMenuCrab.getPropertyValue("height"));
 
-let WidthMenuCrabR, WidthMenuCrabB, WidthMenuCrabY, WidthMenuCrabG, WidthMenuCrabP;
-WidthMenuCrabP = Number.parseFloat(StyleMenuCrabP.getPropertyValue("width"));
+const ArrayKeyframesIcon = [
+    {borderRadius: ["20%", "50%", "20%", "50%", "20%"]},
+    {borderRadius: ["20%", "50%", "20%", "50%", "20%"]},
+    // {borderRadius: ["20%", "60% 40% 70% 30% / 40% 60% 40% 60%", "20%", "40% 60% 40% 60% / 60% 30% 70% 40%", "20%"]},
+    // {borderRadius: ["20%", "40% 60% 40% 60% / 60% 30% 70% 40%", "20%", "60% 40% 70% 30% / 40% 60% 40% 60%", "20%"]},
+];
 
-const KeyframesMenuSelectorGameA = {
-    borderRadius: ["50%", "40% 60% 40% 60% / 60% 30% 70% 40%", "50%", "60% 40% 70% 30% / 40% 60% 40% 60%", "50%"]
-}
-
-const OptionsMenuSelectorGameA = {
-    duration: 10000,
+const OptionsIcon = {
+    duration: 5000,
     iterations: "Infinity",
     easing: "linear"
-}
-
-ArrayMenuSelector[0].animate(KeyframesMenuSelectorGameA, OptionsMenuSelectorGameA);
+};
 
 const KeyframesMenuCrabY = {
     offset: [0.0, 0.3, 0.4, 0.5, 1.0],
-    translate: [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0]
+    translate: [0, 0, `0 -${HeightMenuCrab}px`, 0, 0]
 };
 const KeyframesMenuCrabR = {
     offset: [0.0, 0.4, 0.5, 0.6, 1.0],
-    translate: [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0]
+    translate: [0, 0, `0 -${HeightMenuCrab}px`, 0, 0]
 };
 const KeyframesMenuCrabP = {
     offset: [0.0, 0.5, 0.6, 0.7, 1.0],
-    translate: [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0]
+    translate: [0, 0, `0 -${HeightMenuCrab}px`, 0, 0]
 };
 const KeyframesMenuCrabB = {
     offset: [0.0, 0.6, 0.7, 0.8, 1.0],
-    translate: [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0]
+    translate: [0, 0, `0 -${HeightMenuCrab}px`, 0, 0]
 };
 const KeyframesMenuCrabG = {
     offset: [0.0, 0.7, 0.8, 0.9, 1.0],
-    translate: [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0]
+    translate: [0, 0, `0 -${HeightMenuCrab}px`, 0, 0]
 };
+
+const ArrayKeyframesMenuCrab = [
+    KeyframesMenuCrabY, KeyframesMenuCrabR, KeyframesMenuCrabP, KeyframesMenuCrabB, KeyframesMenuCrabG
+];
 
 const OptionsMenuCrab = {
     duration: 2000,
@@ -58,16 +52,7 @@ const OptionsMenuCrab = {
     iterations: "Infinity"
 };
 
-let AnimationMenuCrabR = MenuCrabR.animate(KeyframesMenuCrabR, OptionsMenuCrab);
-let AnimationMenuCrabB = MenuCrabB.animate(KeyframesMenuCrabB, OptionsMenuCrab);
-let AnimationMenuCrabY = MenuCrabY.animate(KeyframesMenuCrabY, OptionsMenuCrab);
-let AnimationMenuCrabG = MenuCrabG.animate(KeyframesMenuCrabG, OptionsMenuCrab);
-let AnimationMenuCrabP = MenuCrabP.animate(KeyframesMenuCrabP, OptionsMenuCrab);
-AnimationMenuCrabR.cancel();
-AnimationMenuCrabB.cancel();
-AnimationMenuCrabY.cancel();
-AnimationMenuCrabG.cancel();
-AnimationMenuCrabP.cancel();
+const ArrayAnimationMenuCrab = [];
 
 let IfOptionOnOff = false;
 
@@ -75,41 +60,27 @@ ButtonOption.addEventListener("click", function() {
 
     IfOptionOnOff = !IfOptionOnOff;
 
-    AnimationMenuCrabR.cancel();
-    AnimationMenuCrabB.cancel();
-    AnimationMenuCrabY.cancel();
-    AnimationMenuCrabG.cancel();
-    AnimationMenuCrabP.cancel();
-
-    AnimationMenuCrabR = MenuCrabR.animate(KeyframesMenuCrabR, OptionsMenuCrab);
-    AnimationMenuCrabB = MenuCrabB.animate(KeyframesMenuCrabB, OptionsMenuCrab);
-    AnimationMenuCrabY = MenuCrabY.animate(KeyframesMenuCrabY, OptionsMenuCrab);
-    AnimationMenuCrabG = MenuCrabG.animate(KeyframesMenuCrabG, OptionsMenuCrab);
-    AnimationMenuCrabP = MenuCrabP.animate(KeyframesMenuCrabP, OptionsMenuCrab);
-    AnimationMenuCrabR.cancel();
-    AnimationMenuCrabB.cancel();
-    AnimationMenuCrabY.cancel();
-    AnimationMenuCrabG.cancel();
-    AnimationMenuCrabP.cancel();
-
     if (IfOptionOnOff) {
-        AnimationMenuCrabR.play();
-        AnimationMenuCrabB.play();
-        AnimationMenuCrabY.play();
-        AnimationMenuCrabG.play();
-        AnimationMenuCrabP.play();
+
+        for (let i = 0; i < ArrayMenuCrab.length; i++) {
+            ArrayAnimationMenuCrab[i] = ArrayMenuCrab[i].animate(ArrayKeyframesMenuCrab[i], OptionsMenuCrab);
+        }
+
+    }
+    else {
+
+        for (let i = 0; i < ArrayMenuCrab.length; i++) {
+            ArrayAnimationMenuCrab[i].cancel();
+        }
+
     }
 
     HomeMenu.classList.toggle("Display");
 
-    MenuCrabP.classList.toggle("Display");
-    MenuCrabR.classList.toggle("Display");
-    MenuCrabB.classList.toggle("Display");
-    MenuCrabY.classList.toggle("Display");
-    MenuCrabG.classList.toggle("Display");
-
-    for (const MenuSelector of ArrayMenuSelector) {
-        MenuSelector.classList.toggle("Display");
+    Palette.classList.toggle("Display");
+    
+    for (const MenuCrab of ArrayMenuCrab) {
+        MenuCrab.classList.toggle("Display");
     }
 
 });
@@ -118,27 +89,31 @@ function NavigateToPage(event) {
 
     switch (event.currentTarget.classList[0]) {
 
-        case "GameA":
+        case "Fishing":
             open("https://rygb1204.github.io/game1");
+            break;
+
+        case "Gallery":
+            open();
             break;
 
     }
 
 }
 
-for (const MenuSelector of ArrayMenuSelector) {
-    MenuSelector.addEventListener("click", NavigateToPage);
+for (let i = 0; i < ArrayIcon.length; i++) {
+    ArrayIcon[i].addEventListener("click", NavigateToPage);
+    ArrayIcon[i].animate(ArrayKeyframesIcon[i], OptionsIcon);
 }
 
-function GetWidthHeightNewMenuOptionJS() {
+function ResizeMenuOptionJS() {
 
-    WidthMenuCrabP = Number.parseFloat(StyleMenuCrabP.getPropertyValue("width"));
-    KeyframesMenuCrabR.translate = [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0];
-    KeyframesMenuCrabB.translate = [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0];
-    KeyframesMenuCrabY.translate = [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0];
-    KeyframesMenuCrabG.translate = [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0];
-    KeyframesMenuCrabP.translate = [0, 0, `0 -${WidthMenuCrabP}px`, 0, 0];
+    HeightMenuCrab = Number.parseFloat(StyleMenuCrab.getPropertyValue("height"));
+
+    for (const KeyframesMenuCrab of ArrayKeyframesMenuCrab) {
+        KeyframesMenuCrab.translate = [0, 0, `0 -${HeightMenuCrab}px`, 0, 0];
+    }
 
 }
 
-window.addEventListener("resize", GetWidthHeightNewMenuOptionJS);
+window.addEventListener("resize", ResizeMenuOptionJS);

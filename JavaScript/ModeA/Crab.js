@@ -99,6 +99,19 @@ function DisplayCrab(Crab) {
 
     }
 
+    if (Crab.classList.contains("Left")) {
+
+        Crab.style.right = "100dvw";
+        Crab.style.bottom = 0;
+
+    }
+    if (Crab.classList.contains("Right")) {
+
+        Crab.style.left = "100dvw";
+        Crab.style.bottom = 0;
+
+    }
+
     requestAnimationFrame(MoveCrabX.bind(ObjectCrab));
     requestAnimationFrame(MoveCrabY.bind(ObjectCrab));
 

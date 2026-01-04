@@ -1,11 +1,7 @@
 const Header = document.querySelector("header");
 const Footer = document.querySelector("footer");
 
-const KeyframesHeader = {
-    opacity: [0, 1],
-};
-
-const KeyframesFooter = {
+const KeyframesHeaderFooter = {
     opacity: [0, 1],
 };
 
@@ -14,22 +10,20 @@ const OptionsHeaderFooter = {
     easing: "ease",
 };
 
-Header.animate(KeyframesHeader, OptionsHeaderFooter);
-Footer.animate(KeyframesFooter, OptionsHeaderFooter);
+Header.animate(KeyframesHeaderFooter, OptionsHeaderFooter);
+Footer.animate(KeyframesHeaderFooter, OptionsHeaderFooter);
 
-const Button = document.querySelectorAll("button");
+const ButtonOption = document.querySelector("#ButtonOption");
 
-const KeyframesButton = {
+const KeyframesButtonOption = {
     scale: [0, 1],
 };
 
-const OptionsButton = {
+const OptionsButtonOption = {
     delay: 1000,
     duration: 200,
     easing: "ease-out",
-    fill: "both",
+    fill: "backwards"
 };
 
-for (let i = 0; i < Button.length; i++) {
-    Button[i].animate(KeyframesButton, OptionsButton);
-}
+ButtonOption.animate(KeyframesButtonOption, OptionsButtonOption);

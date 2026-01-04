@@ -9,9 +9,14 @@ let AspectRatio = WidthContents / HeightContents;
 
 function LoadModeA() {
 
+    const CssGame = document.createElement("link");
+    CssGame.rel = "stylesheet";
+    CssGame.href = "CSS/Game.css";
+    document.head.append(CssGame);
+
     const CssModeA = document.createElement("link");
     CssModeA.rel = "stylesheet";
-    CssModeA.href = "../CSS/ModeA.css";
+    CssModeA.href = "CSS/ModeA.css";
     document.head.append(CssModeA);
 
     const FileGameManager = document.createElement("script");
@@ -34,9 +39,14 @@ function LoadModeA() {
 
 function LoadModeB() {
 
+    const CssGame = document.createElement("link");
+    CssGame.rel = "stylesheet";
+    CssGame.href = "CSS/Game.css";
+    document.head.append(CssGame);
+    
     const CssModeB = document.createElement("link");
     CssModeB.rel = "stylesheet";
-    CssModeB.href = "../CSS/ModeB.css";
+    CssModeB.href = "CSS/ModeB.css";
     document.head.append(CssModeB);
 
     const FileGameManager = document.createElement("script");
@@ -57,7 +67,7 @@ function LoadModeB() {
 
 }
 
-function CheckMode() {//console.log(AspectRatio);
+function CheckMode() {
 
     if (1.0 / 1.0 <= AspectRatio && AspectRatio < 4.0 / 1.0) {
 
