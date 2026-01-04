@@ -55,8 +55,10 @@ async function SetUpSoundSourceFlickCrab() {
 
 }
 
-addEventListener("load", async () => {
-    SoundSourceFlickChicken = await SetUpSoundSourceFlickChicken();
-    SoundSourceJumpChicken = await SetUpSoundSourceJumpChicken();
-    SoundSourceFlickCrab = await SetUpSoundSourceFlickCrab();
-});
+async function StartGameManagerJS() {
+  SoundSourceFlickChicken = await SetUpSoundSourceFlickChicken();
+  SoundSourceJumpChicken = await SetUpSoundSourceJumpChicken();
+  SoundSourceFlickCrab = await SetUpSoundSourceFlickCrab();
+}
+
+StartGameManagerJS();

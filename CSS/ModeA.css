@@ -1,87 +1,12 @@
 @charset "utf-8";
 
-* {
-    touch-action: none;
-    user-select: none;
-}
-
 :root {
     --WidthChicken: 8dvw;
     --WidthCrab: 8dvw;
+    --SizeFontCountText: 8dvw;
     --WidthButton: 200px;
 }
 
-#Contents {
-    bottom: calc(10svh - 0.3vw);
-}
-
 #CountText {
-    color: #fff;
-    position: absolute;
-    width: 50dvw;
-    left: 25dvw; top: 20%;
-    line-height: 8dvw;
-    font-size: 8dvw;
-}
-
-#ButtonRetry {
-    position: absolute;
-    width: var(--WidthButton); aspect-ratio: 4 / 1;
-    left: calc(50% - var(--WidthButton) / 2); top: 70%;
-    background-image: url(../Image/ButtonRetry.png), url(../Image/ButtonRetryPush.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    z-index: 2;
-    visibility: hidden;
-}
-#ButtonRetry:active {
-    background-image: url(../Image/ButtonRetryPush.png);
-}
-
-#Chicken {
-    position: absolute;
-    width: var(--WidthChicken); aspect-ratio: 1 / 1.2;
-    left: calc(50% - var(--WidthChicken) / 2); bottom: 0;
-    background-image: url(../Image/MoveChicken.gif);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: bottom;
-    z-index: 1;
-}
-
-#Crab {
-    position: absolute;
-    width: var(--WidthCrab); aspect-ratio: 1 / 1;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: bottom;
-    z-index: 1;
-}
-
-#Crab.CrabR {
-    right: 100dvw; bottom: 0;
-    background-image: url(../Image/MoveCrabR.gif);
-}
-#Crab.CrabB {
-    left: 100dvw; bottom: 0;
-    background-image: url(../Image/MoveCrabB.gif);
-}
-#Crab.CrabY {
-    right: 100dvw; bottom: 0;
-    background-image: url(../Image/MoveCrabY.gif);
-}
-#Crab.CrabG {
-    left: 100dvw; bottom: 0;
-    background-image: url(../Image/MoveCrabG.gif);
-}
-#Crab.CrabP {
-    width: calc(var(--WidthCrab) * 2);
-    background-image: url(../Image/MoveCrabP.gif);
-}
-#Crab.CrabP.Left {
-    right: 100dvw; bottom: 0;
-}
-#Crab.CrabP.Right {
-    left: 100dvw; bottom: 0;
+    top: 20%;
 }

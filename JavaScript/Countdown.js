@@ -14,30 +14,25 @@ ButtonRetry.setAttributeNode(IdButtonRetry);
 
 Contents.append(ButtonRetry);
 
-
-
-// const CountText = document.querySelector("#CountText");
-// const ButtonRetry = document.querySelector("#ButtonRetry");
-
 const StyleButtonRetry = getComputedStyle(ButtonRetry);
 
 const KeyframesCountdown = {
     offset: [0.8, 1],
     scale: [1, 1.5]
-}
+};
 const OptionsCountdown = {
     duration: 1000,
-}
+};
 
-const AnimateCountText = CountText.animate(KeyframesCountdown, OptionsCountdown);
-AnimateCountText.cancel();
+const AnimationCountText = CountText.animate(KeyframesCountdown, OptionsCountdown);
+AnimationCountText.cancel();
 
 let IntervalCountdown;
 let CountInt = 30;
 
 function Countdown() {
 
-    AnimateCountText.cancel();
+    AnimationCountText.cancel();
 
     if (StateGame === ObjectStateGame.Failure) {
 
@@ -47,7 +42,7 @@ function Countdown() {
     else if (0 < CountInt) {
 
         CountText.textContent = CountInt;
-        AnimateCountText.play();
+        AnimationCountText.play();
 
     }
     else {
@@ -86,7 +81,6 @@ const KeyframesButtonRetry = {
 };
 const OptionsButtonRetry = {
     duration: 200,
-    fill: "both"
 };
 
 function DisplayLose() {
@@ -145,7 +139,7 @@ function ApdateCountdownJS() {
 
             case ObjectStateGame.Failure:
 
-                AnimateCountText.cancel();
+                AnimationCountText.cancel();
 
                 setTimeout(DisplayLose, 1000);
 
