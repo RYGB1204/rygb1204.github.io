@@ -67,14 +67,14 @@ button:hover {
     border-radius: 26%;
     box-shadow: 0 0.5svh 0.5svh;
     right: 10px; top: calc(50% - 3.5svh);
-    background-image: url(../Image/ButtonOption.png), url(../Image/ButtonOptionPush.png);
+    background-image: url(../Image/Button/ButtonOption.jpg), url(../Image/Button/ButtonOptionPush.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     z-index: 91;
 }
 #ButtonOption:active {
-    background-image: url(../Image/ButtonOptionPush.png);
+    background-image: url(../Image/Button/ButtonOptionPush.jpg);
 }
 
 nav#HomeMenu {

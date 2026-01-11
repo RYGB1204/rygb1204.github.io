@@ -1,3 +1,5 @@
+// 両ゲームに共通して必要な基本的なデータを定義するファイル
+
 const ObjectStateGame = {
     BeforeStart: "BeforeStart",
     AfterStart: "AfterStart",
@@ -14,6 +16,7 @@ const StateGamePrevious = {
 
 const ArrayCrab = [];
 
+// 効果音の準備
 const ManagerAudio = new AudioContext();
 
 let SoundFlickChicken, SoundSourceFlickChicken;

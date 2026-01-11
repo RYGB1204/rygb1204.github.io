@@ -1,3 +1,5 @@
+// 両ゲームのカウントダウンに関する処理をまとめたファイル
+
 const CountText = document.createElement("div");
 const IdCountText = document.createAttribute("id");
 IdCountText.value = "CountText";
@@ -30,6 +32,7 @@ AnimationCountText.cancel();
 let IntervalCountdown;
 let CountInt = 30;
 
+// １秒間隔でカウントダウン用の処理をする
 function Countdown() {
 
     AnimationCountText.cancel();
@@ -83,6 +86,7 @@ const OptionsButtonRetry = {
     duration: 200,
 };
 
+// 負け、勝ち、を示すテキストを表示する
 function DisplayLose() {
 
     CountText.textContent = "YOU LOSE";
@@ -131,6 +135,7 @@ setTimeout(() => {
     IntervalCountdown = setInterval(Countdown, 1000);
 }, 1000);
 
+// ゲームの状況を常に監視する
 function ApdateCountdownJS() {
 
     if (StateGame !== StateGamePrevious.CountdownJS) {

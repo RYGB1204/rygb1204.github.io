@@ -1,3 +1,5 @@
+// ホームページの核となるファイル
+
 const Body = document.querySelector("body");
 
 const Contents = document.querySelector("#Contents");
@@ -7,6 +9,7 @@ let WidthContents = Number.parseFloat(StyleContents.getPropertyValue("width"));
 let HeightContents = Number.parseFloat(StyleContents.getPropertyValue("height"));
 let AspectRatio = WidthContents / HeightContents;
 
+// 横画面ゲーム用のファイルをロード
 function LoadModeA() {
 
     const CssGame = document.createElement("link");
@@ -37,6 +40,7 @@ function LoadModeA() {
 
 }
 
+// 縦画面ゲーム用のファイルをロード
 function LoadModeB() {
 
     const CssGame = document.createElement("link");
@@ -67,6 +71,7 @@ function LoadModeB() {
 
 }
 
+// コンテンツ画面領域のアスペクト比でゲームを分岐
 function CheckMode() {
 
     if (1.0 / 1.0 <= AspectRatio && AspectRatio < 4.0 / 1.0) {
@@ -96,13 +101,15 @@ switch (Mode) {
 
 }
 
+// コンテンツ画面領域の余計なクリックアクションを無効化
 function ProhibitClickRight(event) {
     event.preventDefault();
 }
 
 Contents.addEventListener("contextmenu", ProhibitClickRight);
 
-function GetWidthHeightNewCoreJS() {
+// ウィンドウの変形によって変化する情報を更新　場合によってはリロード
+function ResizeCoreJS() {
 
     WidthContents = Number.parseFloat(StyleContents.getPropertyValue("width"));
     HeightContents = Number.parseFloat(StyleContents.getPropertyValue("height"));
@@ -114,7 +121,7 @@ function GetWidthHeightNewCoreJS() {
 
 }
 
-window.addEventListener("resize", GetWidthHeightNewCoreJS);
+window.addEventListener("resize", ResizeCoreJS);
 
 addEventListener("load", () => {
     Body.style.visibility = "visible";
