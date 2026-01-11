@@ -1,3 +1,5 @@
+// ロード後のアニメーションに関する処理をまとめたファイル
+
 const Header = document.querySelector("header");
 const Footer = document.querySelector("footer");
 

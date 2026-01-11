@@ -19,7 +19,7 @@
     border-radius: calc(var(--WidthButton) / 14);
     box-shadow: 0 calc(var(--WidthButton) / 50) calc(var(--WidthButton) / 50);
     left: calc(50% - var(--WidthButton) / 2); top: 70%;
-    background-image: url(../Image/ButtonRetry.png), url(../Image/ButtonRetryPush.png);
+    background-image: url(../Image/Button/ButtonRetry.jpg), url(../Image/Button/ButtonRetryPush.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -27,7 +27,7 @@
     visibility: hidden;
 }
 #ButtonRetry:active {
-    background-image: url(../Image/ButtonRetryPush.png);
+    background-image: url(../Image/Button/ButtonRetryPush.jpg);
 }
 
 #Chicken {

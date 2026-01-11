@@ -1,3 +1,6 @@
+// 横画面ゲームのカニに関する処理をまとめたファイル
+
+// カニの水平方向の動き
 function MoveCrabX(TimeNow) {
 
     const StyleCrab = getComputedStyle(this.Crab);
@@ -34,6 +37,7 @@ function MoveCrabX(TimeNow) {
 
 };
 
+// カニの鉛直方向の動き
 function MoveCrabY(TimeNow) {
 
     const VelocityInitial = WidthChicken * this.VelocityInitialRate;
@@ -67,6 +71,7 @@ function MoveCrabY(TimeNow) {
 
 };
 
+// カニを表示して固有データを定義したり動かしたりする
 function DisplayCrab(Crab) {
 
     Contents.append(Crab);
@@ -124,6 +129,7 @@ function DisplayCrab(Crab) {
 
 }
 
+// カニの色をランダムに決定する
 function ChooseCrab() {
 
     const Crab = document.createElement("div");
@@ -172,6 +178,7 @@ function ChooseCrab() {
 
 const IntervalChooseCrab = setInterval(ChooseCrab, 1000);
 
+// ゲームの状況を常に監視する
 function ApdateCrabJS() {
 
     if (StateGame !== StateGamePrevious.CrabJS) {

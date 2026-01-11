@@ -6,6 +6,7 @@ const OptionsFlickCrab = {
     iterations: "Infinity"
 };
 
+// カニを弾き飛ばす音を鳴らす
 function PlaySoundFlickCrab(SoundSourceFlickCrab) {
 
   SoundFlickCrab = ManagerAudio.createBufferSource();
@@ -18,19 +19,20 @@ function PlaySoundFlickCrab(SoundSourceFlickCrab) {
 
 }
 
+// カニを弾き飛ばす（カニをタッチしたときに呼び出される）
 function FlickCrab() {
 
     const PositionCrabHorizontalStart = this.StyleCrab.getPropertyValue("left");
     const PositionCrabVerticalStart = this.StyleCrab.getPropertyValue("bottom");
-    const XCrabStart = Number.parseFloat(PositionCrabHorizontalStart) + Number.parseFloat(this.StyleCrab.getPropertyValue("width")) / 2;
-    const YCrabStart = Number.parseFloat(PositionCrabVerticalStart) + Number.parseFloat(this.StyleCrab.getPropertyValue("width")) / 2;
+    const xCrabStart = Number.parseFloat(PositionCrabHorizontalStart) + Number.parseFloat(this.StyleCrab.getPropertyValue("width")) / 2;
+    const yCrabStart = Number.parseFloat(PositionCrabVerticalStart) + Number.parseFloat(this.StyleCrab.getPropertyValue("width")) / 2;
     
     const PositionCrabHorizontalEnd = this.PositionHorizontalInitial;
     const PositionCrabVerticalEnd = this.PositionVerticalInitial;
-    const XCrabEnd = Number.parseFloat(PositionCrabHorizontalEnd) + Number.parseFloat(this.StyleCrab.getPropertyValue("width")) / 2;
-    const YCrabEnd = Number.parseFloat(PositionCrabVerticalEnd) + Number.parseFloat(this.StyleCrab.getPropertyValue("width")) / 2;
+    const xCrabEnd = Number.parseFloat(PositionCrabHorizontalEnd) + Number.parseFloat(this.StyleCrab.getPropertyValue("width")) / 2;
+    const yCrabEnd = Number.parseFloat(PositionCrabVerticalEnd) + Number.parseFloat(this.StyleCrab.getPropertyValue("width")) / 2;
 
-    const DistanceFlickCrab = Math.sqrt((XCrabEnd - XCrabStart) ** 2 + (YCrabEnd - YCrabStart) ** 2);
+    const DistanceFlickCrab = Math.sqrt((xCrabEnd - xCrabStart) ** 2 + (yCrabEnd - yCrabStart) ** 2);
 
     let Duration;
 
@@ -52,6 +54,7 @@ function FlickCrab() {
 
 }
 
+// カニをニワトリに向けて動かす
 function DisplayCrab(Crab, StyleCrab) {
 
     const ObjectCrab = {
@@ -66,16 +69,16 @@ function DisplayCrab(Crab, StyleCrab) {
     ObjectCrab.PositionHorizontalInitial = StyleCrab.getPropertyValue("left");
     ObjectCrab.PositionVerticalInitial = StyleCrab.getPropertyValue("bottom");
     
-    const XCrab = Number.parseFloat(ObjectCrab.PositionHorizontalInitial) + Number.parseFloat(StyleCrab.getPropertyValue("width")) / 2;
-    const YCrab = Number.parseFloat(ObjectCrab.PositionVerticalInitial) + Number.parseFloat(StyleCrab.getPropertyValue("width")) / 2;
+    const xCrabInitial = Number.parseFloat(ObjectCrab.PositionHorizontalInitial) + Number.parseFloat(StyleCrab.getPropertyValue("width")) / 2;
+    const yCrabInitial = Number.parseFloat(ObjectCrab.PositionVerticalInitial) + Number.parseFloat(StyleCrab.getPropertyValue("width")) / 2;
     const WidthCrab = Number.parseFloat(StyleCrab.getPropertyValue("width"));
     
-    const DistanceCrabChicken = Math.sqrt((XChicken - XCrab) ** 2 + (YChicken - YCrab) ** 2);
+    const DistanceCrabChicken = Math.sqrt((xChicken - xCrabInitial) ** 2 + (yChicken - yCrabInitial) ** 2);
     
-    const PositionCrabHorizontalStart = StyleCrab.getPropertyValue("left");
-    const PositionCrabVerticalStart = StyleCrab.getPropertyValue("bottom");
+    const PositionCrabHorizontalStart = ObjectCrab.PositionHorizontalInitial;
+    const PositionCrabVerticalStart = ObjectCrab.PositionVerticalInitial;
     
-    const PositionCrabHorizontalEnd = `${XChicken - WidthCrab / 2}px`;
+    const PositionCrabHorizontalEnd = `${xChicken - WidthCrab / 2}px`;
     const PositionCrabVerticalEnd = "0px";
     
     let Duration;
@@ -104,6 +107,7 @@ function DisplayCrab(Crab, StyleCrab) {
 
 }
 
+// カニが出現する位置を決める
 function ChoosePosition(Crab) {
 
     Contents.append(Crab);
@@ -132,6 +136,7 @@ function ChoosePosition(Crab) {
 
 }
 
+// カニの色をランダムに決定する
 function ChooseCrab() {
 
     const Crab = document.createElement("div");
@@ -170,6 +175,7 @@ function ChooseCrab() {
 
 const IntervalChooseCrab = setInterval(ChooseCrab, 1000);
 
+// ゲームの状況を常に監視する
 function ApdateCrabJS() {
 
     if (StateGame !== StateGamePrevious.CrabJS) {

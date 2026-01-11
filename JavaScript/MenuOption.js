@@ -1,3 +1,5 @@
+// メニュー画面の切り替えに関する処理をまとめたファイル
+
 const HomeMenu = document.querySelector("#HomeMenu");
 
 const Palette = document.querySelector("#Palette");
@@ -8,12 +10,9 @@ const StyleMenuCrab = getComputedStyle(ArrayMenuCrab[0]);
 
 let HeightMenuCrab = Number.parseFloat(StyleMenuCrab.getPropertyValue("height"));
 
-const ArrayKeyframesIcon = [
-    {borderRadius: ["20%", "50%", "20%", "50%", "20%"]},
-    {borderRadius: ["20%", "50%", "20%", "50%", "20%"]},
-    // {borderRadius: ["20%", "60% 40% 70% 30% / 40% 60% 40% 60%", "20%", "40% 60% 40% 60% / 60% 30% 70% 40%", "20%"]},
-    // {borderRadius: ["20%", "40% 60% 40% 60% / 60% 30% 70% 40%", "20%", "60% 40% 70% 30% / 40% 60% 40% 60%", "20%"]},
-];
+const KeyframesIcon = {
+    borderRadius: ["20%", "50%", "20%", "50%", "20%"]
+};
 
 const OptionsIcon = {
     duration: 5000,
@@ -56,6 +55,7 @@ const ArrayAnimationMenuCrab = [];
 
 let IfOptionOnOff = false;
 
+// オプションボタンのクリックでメニュー画面を切り替える
 ButtonOption.addEventListener("click", function() {
 
     IfOptionOnOff = !IfOptionOnOff;
@@ -85,6 +85,7 @@ ButtonOption.addEventListener("click", function() {
 
 });
 
+// アイコンのクリックで別ページに移動
 function NavigateToPage(event) {
 
     switch (event.currentTarget.classList[0]) {
@@ -101,11 +102,12 @@ function NavigateToPage(event) {
 
 }
 
-for (let i = 0; i < ArrayIcon.length; i++) {
-    ArrayIcon[i].addEventListener("click", NavigateToPage);
-    ArrayIcon[i].animate(ArrayKeyframesIcon[i], OptionsIcon);
+for (const Icon of ArrayIcon) {
+    Icon.addEventListener("click", NavigateToPage)
+    Icon.animate(KeyframesIcon, OptionsIcon);
 }
 
+// ウィンドウの変形によって変化する情報を更新
 function ResizeMenuOptionJS() {
 
     HeightMenuCrab = Number.parseFloat(StyleMenuCrab.getPropertyValue("height"));
