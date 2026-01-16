@@ -1,5 +1,6 @@
 // 両ゲームのカウントダウンに関する処理をまとめたファイル
 
+// カウントダウンのテキスト　リトライボタン　となるHTML要素を生成、id属性を付ける、HTMLファイルに追加
 const CountText = document.createElement("div");
 const IdCountText = document.createAttribute("id");
 IdCountText.value = "CountText";
@@ -18,6 +19,7 @@ Contents.append(ButtonRetry);
 
 const StyleButtonRetry = getComputedStyle(ButtonRetry);
 
+// カウントダウンのテキストのアニメーション情報を定義
 const KeyframesCountdown = {
     offset: [0.8, 1],
     scale: [1, 1.5]
@@ -29,14 +31,15 @@ const OptionsCountdown = {
 const AnimationCountText = CountText.animate(KeyframesCountdown, OptionsCountdown);
 AnimationCountText.cancel();
 
-let IntervalCountdown;
+// カウントダウンの秒数を定義する＝３０
 let CountInt = 30;
 
-// １秒間隔でカウントダウン用の処理をする
+// カウントダウンの処理をする（１秒間隔で呼び出される）
 function Countdown() {
 
     AnimationCountText.cancel();
 
+    // ゲームに負けたらカウントダウンを止める　０秒になるまで逃げきったらカウントダウンを止め、１秒後「YOU WIN!」テキストを表示する
     if (StateGame === ObjectStateGame.Failure) {
 
         clearInterval(IntervalCountdown);
@@ -64,6 +67,7 @@ function Countdown() {
     
 }
 
+// 「YOU LOSE」「YOU WIN!」テキスト　リトライボタン　のアニメーション情報を定義
 const KeyframesLoseText = {
     scale: [1, 2]
 };
@@ -108,6 +112,7 @@ function DisplayWin() {
 
 }
 
+// リトライボタンをクリック　または　Enterキーを押す　とページをリロードしてやり直せる
 function ClickButtonRetry() {
 
     window.location.reload();
@@ -130,18 +135,22 @@ function KeydownButtonRetry(event) {
 ButtonRetry.addEventListener("click", ClickButtonRetry);
 document.addEventListener("keydown", KeydownButtonRetry);
 
+// カウントダウンを１秒間隔で実行する
+let IntervalCountdown;
+
 setTimeout(() => {
     StateGame = ObjectStateGame.AfterStart
     IntervalCountdown = setInterval(Countdown, 1000);
 }, 1000);
 
-// ゲームの状況を常に監視する
+// ゲームの状況を常に監視する　状況が変化したら１度だけcase内の処理を行う
 function ApdateCountdownJS() {
 
     if (StateGame !== StateGamePrevious.CountdownJS) {
 
         switch (StateGame) {
 
+            // 負けたらカウントダウンを止め、１秒後「負け」テキストを表示
             case ObjectStateGame.Failure:
 
                 AnimationCountText.cancel();

@@ -1,5 +1,6 @@
 // ホームページの核となるファイル
 
+// HTML要素を取得し、ゲーム画面の幅や高さからアスペクト比を計算する
 const Body = document.querySelector("body");
 
 const Contents = document.querySelector("#Contents");
@@ -10,64 +11,64 @@ let HeightContents = Number.parseFloat(StyleContents.getPropertyValue("height"))
 let AspectRatio = WidthContents / HeightContents;
 
 // 横画面ゲーム用のファイルをロード
-function LoadModeA() {
+function LoadModeHorizontal() {
 
-    const CssGame = document.createElement("link");
-    CssGame.rel = "stylesheet";
-    CssGame.href = "CSS/Game.css";
-    document.head.append(CssGame);
+    const CSS_Game = document.createElement("link");
+    CSS_Game.rel = "stylesheet";
+    CSS_Game.href = "CSS/Game/Game.css";
+    document.head.append(CSS_Game);
 
-    const CssModeA = document.createElement("link");
-    CssModeA.rel = "stylesheet";
-    CssModeA.href = "CSS/ModeA.css";
-    document.head.append(CssModeA);
+    const CSS_GameHorizontal = document.createElement("link");
+    CSS_GameHorizontal.rel = "stylesheet";
+    CSS_GameHorizontal.href = "CSS/Game/GameHorizontal.css";
+    document.head.append(CSS_GameHorizontal);
 
-    const FileGameManager = document.createElement("script");
-    FileGameManager.src = "JavaScript/GameManager.js";
-    document.head.append(FileGameManager);
+    const JS_GameManager = document.createElement("script");
+    JS_GameManager.src = "JavaScript/Game/GameManager.js";
+    document.head.append(JS_GameManager);
 
-    const FileCountdown = document.createElement("script");
-    FileCountdown.src = "JavaScript/Countdown.js";
-    document.head.append(FileCountdown);
+    const JS_Countdown = document.createElement("script");
+    JS_Countdown.src = "JavaScript/Game/Countdown.js";
+    document.head.append(JS_Countdown);
 
-    const FileChicken = document.createElement("script");
-    FileChicken.src = "JavaScript/ModeA/Chicken.js";
-    document.head.append(FileChicken);
+    const JS_Chicken = document.createElement("script");
+    JS_Chicken.src = "JavaScript/Game/GameHorizontal/Chicken.js";
+    document.head.append(JS_Chicken);
 
-    const FileCrab = document.createElement("script");
-    FileCrab.src = "JavaScript/ModeA/Crab.js";
-    document.head.append(FileCrab);
+    const JS_Crab = document.createElement("script");
+    JS_Crab.src = "JavaScript/Game/GameHorizontal/Crab.js";
+    document.head.append(JS_Crab);
 
 }
 
 // 縦画面ゲーム用のファイルをロード
-function LoadModeB() {
+function LoadModeVertical() {
 
-    const CssGame = document.createElement("link");
-    CssGame.rel = "stylesheet";
-    CssGame.href = "CSS/Game.css";
-    document.head.append(CssGame);
+    const CSS_Game = document.createElement("link");
+    CSS_Game.rel = "stylesheet";
+    CSS_Game.href = "CSS/Game/Game.css";
+    document.head.append(CSS_Game);
     
-    const CssModeB = document.createElement("link");
-    CssModeB.rel = "stylesheet";
-    CssModeB.href = "CSS/ModeB.css";
-    document.head.append(CssModeB);
+    const CSS_GameVertical = document.createElement("link");
+    CSS_GameVertical.rel = "stylesheet";
+    CSS_GameVertical.href = "CSS/Game/GameVertical.css";
+    document.head.append(CSS_GameVertical);
 
-    const FileGameManager = document.createElement("script");
-    FileGameManager.src = "JavaScript/GameManager.js";
-    document.head.append(FileGameManager);
+    const JS_GameManager = document.createElement("script");
+    JS_GameManager.src = "JavaScript/Game/GameManager.js";
+    document.head.append(JS_GameManager);
 
-    const FileCountdown = document.createElement("script");
-    FileCountdown.src = "JavaScript/Countdown.js";
-    document.head.append(FileCountdown);
+    const JS_Countdown = document.createElement("script");
+    JS_Countdown.src = "JavaScript/Game/Countdown.js";
+    document.head.append(JS_Countdown);
 
-    const FileChicken = document.createElement("script");
-    FileChicken.src = "JavaScript/ModeB/Chicken.js";
-    document.head.append(FileChicken);
+    const JS_Chicken = document.createElement("script");
+    JS_Chicken.src = "JavaScript/Game/GameVertical/Chicken.js";
+    document.head.append(JS_Chicken);
 
-    const FileCrab = document.createElement("script");
-    FileCrab.src = "JavaScript/ModeB/Crab.js";
-    document.head.append(FileCrab);
+    const JS_Crab = document.createElement("script");
+    JS_Crab.src = "JavaScript/Game/GameVertical/Crab.js";
+    document.head.append(JS_Crab);
 
 }
 
@@ -76,12 +77,12 @@ function CheckMode() {
 
     if (1.0 / 1.0 <= AspectRatio && AspectRatio < 4.0 / 1.0) {
 
-        return "ModeA";
+        return "ModeHorizontal";
 
     }
     else if (1.0 / 3.0 <= AspectRatio && AspectRatio < 1.0 / 1.0) {
 
-        return "ModeB";
+        return "ModeVertical";
 
     }
 
@@ -91,12 +92,12 @@ const Mode = CheckMode();
 
 switch (Mode) {
 
-    case "ModeA":
-        LoadModeA();
+    case "ModeHorizontal":
+        LoadModeHorizontal();
         break;
 
-    case "ModeB":
-        LoadModeB();
+    case "ModeVertical":
+        LoadModeVertical();
         break;
 
 }

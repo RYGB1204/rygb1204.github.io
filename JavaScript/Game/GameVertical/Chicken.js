@@ -1,5 +1,6 @@
 // 縦画面ゲームのニワトリに関する処理をまとめたファイル
 
+// ニワトリとなるHTML要素を生成、id属性を付ける、HTMLファイルに追加、スタイル情報を取得
 const Chicken = document.createElement("div");
 const IdChicken = document.createAttribute("id");
 IdChicken.value = "Chicken";
@@ -9,10 +10,10 @@ Contents.append(Chicken);
 
 const StyleChicken = getComputedStyle(Chicken);
 
+// ニワトリのx座標、y座標、幅、スケールを後で格納する
 let xChicken, yChicken, WidthChicken, ScaleChicken;
 
-let xCrub, yCrub, WidthCrab;
-
+// ロード後ニワトリが上から落ちてくるときのアニメーション情報を定義
 const KeyframesChickenAppear = {
     translate: ["0 -100vh", 0],
 };
@@ -21,6 +22,7 @@ const OptionsChickenAppear = {
     easing: "ease-in"
 };
 
+// ニワトリが左右に向くときのアニメーションを定義
 const KeyframesChickenTurnLeft = {
     scale: ["+1 1", "-1 1"]
 };
@@ -32,6 +34,7 @@ const OptionsChickenTurn = {
     fill: "both"
 };
 
+// ニワトリがふっ飛ばされるときのアニメーション情報を定義（ゲームに負けたとき）
 const KeyframesChickenFlickTranslate = {
     translate: []
 };
@@ -47,6 +50,7 @@ const OptionsChickenFlickRotate = {
     iterations: "Infinity"
 };
 
+// ニワトリが上に羽ばたく時のアニメーション情報を定義（ゲームに勝ったとき）
 const KeyframesChickenFly = {
     translate: []
 };
@@ -55,7 +59,7 @@ const OptionsChickenFly = {
     fill: "both"
 }
 
-// ニワトリがぶっ飛ばされる効果音を鳴らす
+// ニワトリがふっ飛ばされる効果音を鳴らす
 function PlaySoundFlickChicken(SoundSourceFlickChicken) {
 
   SoundFlickChicken = ManagerAudio.createBufferSource();
@@ -68,10 +72,11 @@ function PlaySoundFlickChicken(SoundSourceFlickChicken) {
 
 }
 
-// ニワトリをぶっ飛ばす（ゲームに負けたら呼び出される）
-function FlickChicken() {
+// ニワトリをふっ飛ばす（ゲームに負けたら呼び出される）
+function FlickChicken(Difference_xChickenCrab) {
     
-    if (xChicken - xCrub < 0) {
+    // カニとの位置関係で左か右にふっ飛ばす
+    if (Difference_xChickenCrab < 0) {
         KeyframesChickenFlickTranslate.translate = [0, "-200vw -100vw"];
     }
     else {
@@ -88,6 +93,7 @@ function FlickChicken() {
 // ニワトリが上に羽ばたく（ゲームに勝ったら呼び出される）
 function FlyChicken() {
 
+    // ニワトリの向いている方向に合うように左上か右上に羽ばたく
     if (ScaleChicken.split(" ")[0] === "-1") {
         KeyframesChickenFly.translate = [0, "-30vw -100vh"];console.log("-1");
     }
@@ -99,6 +105,7 @@ function FlyChicken() {
 
 }
 
+// ロード後ニワトリが上から落ちてくるときのアニメーションをする
 Chicken.animate(KeyframesChickenAppear, OptionsChickenAppear);
 
 // ニワトリを左右交互に向ける
@@ -115,29 +122,31 @@ function TurnChicken() {
 
 let IntervalTurnChicken;
 
-// ゲームの状況を常に監視する　ニワトリ、カニ、の位置を常に取得し、当たり判定をする
+// ゲームの状況を常に監視する　ニワトリ、カニ、の情報を常に取得し、当たり判定をする
 function ApdateChickenJS() {
 
+    // ニワトリの位置、幅、スケールを取得
     xChicken = Number.parseFloat(StyleChicken.getPropertyValue("left")) + Number.parseFloat(StyleChicken.getPropertyValue("width")) / 2;
     yChicken = Number.parseFloat(StyleChicken.getPropertyValue("bottom")) + Number.parseFloat(StyleChicken.getPropertyValue("width")) / 2;
     WidthChicken = Number.parseFloat(StyleChicken.getPropertyValue("width"));
     ScaleChicken = StyleChicken.getPropertyValue("scale");
 
-    for (const Crub of ArrayCrab) {
+    // ゲームに存在する全てのカニにそれぞれ処理
+    for (const ObjectCrab of ArrayObjectCrab) {
 
-        const StyleCrab = getComputedStyle(Crub);
-
-        xCrub = Number.parseFloat(StyleCrab.getPropertyValue("left")) + Number.parseFloat(StyleCrab.getPropertyValue("width")) * 0.50;
-        yCrub = Number.parseFloat(StyleCrab.getPropertyValue("bottom")) + Number.parseFloat(StyleCrab.getPropertyValue("width")) * 0.32;//console.log(YCrub);
-        WidthCrab = Number.parseFloat(StyleCrab.getPropertyValue("width"));
+        // カニの位置、幅を取得
+        const xCrab = Number.parseFloat(ObjectCrab.StyleCrab.getPropertyValue("left")) + Number.parseFloat(ObjectCrab.StyleCrab.getPropertyValue("width")) * 0.50;
+        const yCrab = Number.parseFloat(ObjectCrab.StyleCrab.getPropertyValue("bottom")) + Number.parseFloat(ObjectCrab.StyleCrab.getPropertyValue("width")) * 0.32;//console.log(YCrub);
+        const WidthCrab = Number.parseFloat(ObjectCrab.StyleCrab.getPropertyValue("width"));
 
         if (StateGame === ObjectStateGame.AfterStart) {
 
-            if (Math.abs(yChicken - yCrub) < (WidthChicken + WidthCrab) / 2 && Math.abs(xChicken - xCrub) < (WidthChicken + WidthCrab) / 2) {
+            // 当たり判定をする　カニがニワトリに接触したらニワトリをふっ飛ばす
+            if (Math.abs(yChicken - yCrab) < (WidthChicken + WidthCrab) / 2 && Math.abs(xChicken - xCrab) < (WidthChicken + WidthCrab) / 2) {
 
-                if ((xChicken - xCrub) ** 2 + (yChicken - yCrub) ** 2 < ((WidthChicken + WidthCrab) / 2) ** 2) {
+                if ((xChicken - xCrab) ** 2 + (yChicken - yCrab) ** 2 < ((WidthChicken + WidthCrab) / 2) ** 2) {
 
-                    FlickChicken();
+                    FlickChicken(xChicken - xCrab);
 
                     StateGame = ObjectStateGame.Failure;
 
@@ -149,6 +158,7 @@ function ApdateChickenJS() {
 
     }
 
+     // ゲームの状況が変化したら１度だけcase内の処理を行う
     if (StateGame !== StateGamePrevious.ChickenJS) {
 
         switch (StateGame) {
