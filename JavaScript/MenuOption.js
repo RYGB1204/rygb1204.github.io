@@ -1,5 +1,7 @@
-// メニュー画面の切り替えに関する処理をまとめたファイル
+// オプションメニュー画面の切り替えに関する処理をまとめたファイル
+// このファイルで説明している「カニ」はゲームのカニではなくオプションメニュー画面の「カニ」（５匹並んで跳ねているやつ）です
 
+// 制御したいHTML要素を取得　カニだけ高さも取得する（カニのジャンプの高さを定義するのに使う）
 const HomeMenu = document.querySelector("#HomeMenu");
 
 const Palette = document.querySelector("#Palette");
@@ -10,6 +12,7 @@ const StyleMenuCrab = getComputedStyle(ArrayMenuCrab[0]);
 
 let HeightMenuCrab = Number.parseFloat(StyleMenuCrab.getPropertyValue("height"));
 
+// アイコン　カニ　のアニメーション情報を定義
 const KeyframesIcon = {
     borderRadius: ["20%", "50%", "20%", "50%", "20%"]
 };
@@ -41,25 +44,28 @@ const KeyframesMenuCrabG = {
     translate: [0, 0, `0 -${HeightMenuCrab}px`, 0, 0]
 };
 
-const ArrayKeyframesMenuCrab = [
-    KeyframesMenuCrabY, KeyframesMenuCrabR, KeyframesMenuCrabP, KeyframesMenuCrabB, KeyframesMenuCrabG
-];
-
 const OptionsMenuCrab = {
     duration: 2000,
     easing: "ease-in-out",
     iterations: "Infinity"
 };
 
+// for文で簡潔にカニの処理を記述したいので配列を準備
+const ArrayKeyframesMenuCrab = [
+    KeyframesMenuCrabY, KeyframesMenuCrabR, KeyframesMenuCrabP, KeyframesMenuCrabB, KeyframesMenuCrabG
+];
+
 const ArrayAnimationMenuCrab = [];
 
+// オプションメニュー画面のオンオフを示すフラグ
 let IfOptionOnOff = false;
 
-// オプションボタンのクリックでメニュー画面を切り替える
+// オプションボタンのクリックでオプションメニュー画面を切り替える
 ButtonOption.addEventListener("click", function() {
 
     IfOptionOnOff = !IfOptionOnOff;
 
+    // オンでカニをアニメーションする　オフでカニのアニメーションを止める
     if (IfOptionOnOff) {
 
         for (let i = 0; i < ArrayMenuCrab.length; i++) {
@@ -75,6 +81,7 @@ ButtonOption.addEventListener("click", function() {
 
     }
 
+    // 各要素に「Display」クラスを　オンで追加　オフで除去
     HomeMenu.classList.toggle("Display");
 
     Palette.classList.toggle("Display");
@@ -95,7 +102,7 @@ function NavigateToPage(event) {
             break;
 
         case "Gallery":
-            open();
+            open("https://rygb1204.github.io/gallery-pictures-ai");
             break;
 
     }
@@ -103,7 +110,7 @@ function NavigateToPage(event) {
 }
 
 for (const Icon of ArrayIcon) {
-    Icon.addEventListener("click", NavigateToPage)
+    Icon.addEventListener("click", NavigateToPage);
     Icon.animate(KeyframesIcon, OptionsIcon);
 }
 
