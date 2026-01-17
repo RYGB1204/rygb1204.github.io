@@ -1,5 +1,8 @@
 // ロード後のヘッダーやフッターのアニメーションに関する処理をまとめたファイル
 
+// body要素を取得
+const Body = document.querySelector("body");
+
 // ヘッダーとフッターのHTML要素を取得
 const Header = document.querySelector("header");
 const Footer = document.querySelector("footer");
@@ -13,9 +16,6 @@ const OptionsHeaderFooter = {
     duration: 1000,
     easing: "ease",
 };
-
-Header.animate(KeyframesHeaderFooter, OptionsHeaderFooter);
-Footer.animate(KeyframesHeaderFooter, OptionsHeaderFooter);
 
 // オプションボタンのHTML要素を取得
 const ButtonOption = document.querySelector("#ButtonOption");
@@ -32,4 +32,10 @@ const OptionsButtonOption = {
     fill: "backwards"
 };
 
-ButtonOption.animate(KeyframesButtonOption, OptionsButtonOption);
+// ロードされたら画面を表示しアニメーションを開始する
+window.addEventListener("load", () => {
+    Body.style.visibility = "visible";
+    Header.animate(KeyframesHeaderFooter, OptionsHeaderFooter);
+    Footer.animate(KeyframesHeaderFooter, OptionsHeaderFooter);
+    ButtonOption.animate(KeyframesButtonOption, OptionsButtonOption);
+});

@@ -10,8 +10,8 @@ Contents.append(Chicken);
 
 const StyleChicken = getComputedStyle(Chicken);
 
-// ニワトリのx座標、y座標、幅、スケールを後で格納する
-let xChicken, yChicken, WidthChicken, ScaleChicken;
+// ニワトリのx座標、y座標、幅、を後で格納する
+let xChicken, yChicken, WidthChicken;
 
 // ロード後ニワトリが上から落ちてくるときのアニメーション情報を定義
 const KeyframesChickenAppear = {
@@ -20,13 +20,6 @@ const KeyframesChickenAppear = {
 const OptionsChickenAppear = {
     duration: 1000,
     easing: "ease-in"
-};
-
-// ニワトリが左右に向くときのアニメーションを定義（Keyframesはアニメーションする際に定義）
-let KeyframesChickenMoveLeft, KeyframesChickenMoveRight;
-const OptionsChickenMove = {
-    duration: 100,
-    fill: "both"
 };
 
 // ニワトリがふっ飛ばされるときのアニメーション情報を定義（ゲームに負けたとき）
@@ -88,6 +81,8 @@ function FlickChicken(Difference_xChickenCrab) {
 // ニワトリが上に羽ばたく（ゲームに勝ったら呼び出される）
 function FlyChicken() {
 
+    const ScaleChicken = StyleChicken.getPropertyValue("scale");
+
     // ニワトリの向いている方向に合うように左上か右上に羽ばたく
     if (ScaleChicken.split(" ")[0] === "-1") {
         KeyframesChickenFly.translate = [0, "-10vw -100vh"];
@@ -120,7 +115,7 @@ function Move(TimeNow) {
         }
     
         // １フレーム目からの経過時間
-        let TimeElapsed = TimeNow - TimeMoveStart;
+        const TimeElapsed = TimeNow - TimeMoveStart;
     
         // １フレーム目からの経過時間から移動距離を計算　ニワトリに反映（画面端から出ないように制限）
         const DistanceMove = TimeElapsed * WidthChicken / 200;
@@ -164,8 +159,8 @@ function Jump(TimeNow) {
     }
 
     // １フレーム目からの経過時間　後の計算のために単位をmsからsに変換
-    let TimeElapsedJump = TimeNow - TimeJumpStart;
-    let TimeElapsedJumpSecond = Math.min(TimeElapsedJump / 1000, 1);
+    const TimeElapsedJump = TimeNow - TimeJumpStart;
+    const TimeElapsedJumpSecond = Math.min(TimeElapsedJump / 1000, 1);
 
     // １フレーム目からの経過時間からニワトリの垂直方向の位置を計算　ニワトリに反映
     const DistanceJump = VelocityInitial * TimeElapsedJumpSecond - Gravity * TimeElapsedJumpSecond ** 2 / 2;
@@ -188,112 +183,120 @@ let IfMoveRightOnOff = false;
 let IfJumpOnOff = false;
 
 // 矢印キー（左右）、スペースキー、が押されたときニワトリが左右に動いたりジャンプする
-function Keydown(event) {
+document.addEventListener("keydown", (event) => {
 
     if (StateGame === ObjectStateGame.AfterStart && !event.repeat) {
         
         // ニワトリが　矢印キー（左）なら左に、矢印キー（右）なら右に、スペースキーならジャンプ
         if (event.key === "ArrowLeft") {
-
+    
             IfMoveLeftOnOff = true;
-
-            TimeMoveStart = undefined;
-            PositionMoveStart = undefined;
-
+    
             if (IfMoveLeftOnOff ^ IfMoveRightOnOff) {
+    
+                TimeMoveStart = undefined;
+                PositionMoveStart = undefined;
+    
                 requestAnimationFrame(Move);
-                Chicken.animate(KeyframesChickenMoveLeft, OptionsChickenMove);
+                Chicken.style.scale = "-1 1";
+    
             }
-
+    
         }
         if (event.key === "ArrowRight") {
-
+    
             IfMoveRightOnOff = true;
-
-            TimeMoveStart = undefined;
-            PositionMoveStart = undefined;
-
+    
             if (IfMoveLeftOnOff ^ IfMoveRightOnOff) {
+            
+                TimeMoveStart = undefined;
+                PositionMoveStart = undefined;
+    
                 requestAnimationFrame(Move);
-                Chicken.animate(KeyframesChickenMoveRight, OptionsChickenMove);
+                Chicken.style.scale = "+1 1";
+    
             }
-
+    
         }
-
+    
         if (event.key === " " && !IfJumpOnOff)  {
-
+    
             IfJumpOnOff = true;
-
+    
             TimeJumpStart = undefined;
-
+    
             requestAnimationFrame(Jump);
             PlaySoundJumpChicken(SoundSourceJumpChicken);
-
+    
         }
-
+    
     }
 
-}
+});
 
 // 矢印キー（左右）を押し終わったら移動をやめる
-function Keyup(event) {
+document.addEventListener("keyup", (event) => {
 
     if (StateGame === ObjectStateGame.AfterStart) {
-
+    
         if (event.key === "ArrowLeft") {
-
+    
             IfMoveLeftOnOff = false;
-
-            TimeMoveStart = undefined;
-            PositionMoveStart = undefined;
-
+    
             if (IfMoveLeftOnOff ^ IfMoveRightOnOff) {
+            
+                TimeMoveStart = undefined;
+                PositionMoveStart = undefined;
+    
                 requestAnimationFrame(Move);
-                Chicken.animate(KeyframesChickenMoveRight, OptionsChickenMove);
+                Chicken.style.scale = "+1 1";
+    
             }
-
+    
         }
         if (event.key === "ArrowRight") {
-
-            IfMoveRightOnOff = false;
-
-            TimeMoveStart = undefined;
-            PositionMoveStart = undefined;
-
-            if (IfMoveLeftOnOff ^ IfMoveRightOnOff) {
-                requestAnimationFrame(Move);
-                Chicken.animate(KeyframesChickenMoveLeft, OptionsChickenMove);
-            }
-
-        }
-
-    }
     
-}
+            IfMoveRightOnOff = false;
+    
+            if (IfMoveLeftOnOff ^ IfMoveRightOnOff) {
+            
+                TimeMoveStart = undefined;
+                PositionMoveStart = undefined;
+    
+                requestAnimationFrame(Move);
+                Chicken.style.scale = "-1 1";
+    
+            }
+    
+        }
+    
+    }
+
+});
 
 // 画面をタッチしたときのポインター情報を保存するための変数
 let PointerLeft, PointerRight;
 
 // タッチする位置によってニワトリが左右に動いたりジャンプする
-function PointerdownContents(event) {
+Contents.addEventListener("pointerdown", (event) => {
 
     // タッチしている位置のx座標を計算
     const RectContents = event.currentTarget.getBoundingClientRect();
     const PointerX = event.clientX - RectContents.left;
-
+    
     if (StateGame === ObjectStateGame.AfterStart) {
-
+    
         // タッチした位置のx座標がニワトリよりも　十分に左なら左に、十分に右なら右に、だいたいニワトリと同じならジャンプ
         if (PointerX < xChicken - WidthChicken) {
     
             IfMoveLeftOnOff = true;
-
+    
             TimeMoveStart = undefined;
             PositionMoveStart = undefined;
-
+    
             if (IfMoveLeftOnOff ^ IfMoveRightOnOff) {
                 requestAnimationFrame(Move);
-                Chicken.animate(KeyframesChickenMoveLeft, OptionsChickenMove);
+                Chicken.style.scale = "-1 1";
             }
     
             PointerLeft = event.pointerId;
@@ -302,20 +305,20 @@ function PointerdownContents(event) {
         else if (xChicken + WidthChicken < PointerX) {
     
             IfMoveRightOnOff = true;
-
+    
             TimeMoveStart = undefined;
             PositionMoveStart = undefined;
-
+    
             if (IfMoveLeftOnOff ^ IfMoveRightOnOff) {
                 requestAnimationFrame(Move);
-                Chicken.animate(KeyframesChickenMoveRight, OptionsChickenMove);
+                Chicken.style.scale = "+1 1";
             }
     
             PointerRight = event.pointerId;
     
         }
         else {
-
+    
             if (!IfJumpOnOff)  {
     
                 IfJumpOnOff = true;
@@ -326,56 +329,51 @@ function PointerdownContents(event) {
                 PlaySoundJumpChicken(SoundSourceJumpChicken);
         
             }
-
+    
         }
-
+    
     }
 
-}
+});
 
 // 画面のタッチが終わったら左右移動をやめる
-function PointerupContents(event) {
+Contents.addEventListener("pointerup", (event) => {
 
     if (StateGame === ObjectStateGame.AfterStart) {
-
+    
         if (event.pointerId === PointerLeft) {
-
+    
             IfMoveLeftOnOff = false;
-
+    
             TimeMoveStart = undefined;
             PositionMoveStart = undefined;
-
+    
             if (IfMoveLeftOnOff ^ IfMoveRightOnOff) {
                 requestAnimationFrame(Move);
-                Chicken.animate(KeyframesChickenMoveRight, OptionsChickenMove);
+                Chicken.style.scale = "+1 1";
             }
     
         }
         else if (event.pointerId === PointerRight) {
-
+    
             IfMoveRightOnOff = false;
-
+    
             TimeMoveStart = undefined;
             PositionMoveStart = undefined;
-
+    
             if (IfMoveLeftOnOff ^ IfMoveRightOnOff) {
                 requestAnimationFrame(Move);
-                Chicken.animate(KeyframesChickenMoveLeft, OptionsChickenMove);
+                Chicken.style.scale = "-1 1";
             }
     
         }
-
+    
     }
 
-}
-
-document.addEventListener("keydown", Keydown);
-document.addEventListener("keyup", Keyup);
-Contents.addEventListener("pointerdown", PointerdownContents);
-Contents.addEventListener("pointerup", PointerupContents);
+});
 
 // マウス操作時のバグ対策
-addEventListener("pointerup", (event) => {
+window.addEventListener("pointerup", (event) => {
 
     if (event.pointerId === 1) {
 
@@ -387,69 +385,61 @@ addEventListener("pointerup", (event) => {
 });
 
 // ロード後ニワトリが上から落ちてくるときのアニメーションをする
-Chicken.animate(KeyframesChickenAppear, OptionsChickenAppear);
+window.addEventListener("load", () => {
+    Chicken.animate(KeyframesChickenAppear, OptionsChickenAppear);
+});
 
 // ゲームの状況を常に監視する　ニワトリ、カニ、の情報を常に取得し、当たり判定をする
-function ApdateChickenJS() {
-
-    // ニワトリの位置、幅、スケールを取得
+setInterval(() => {
+    
+    // ニワトリの位置、幅、を取得
     xChicken = Number.parseFloat(StyleChicken.getPropertyValue("left")) + Number.parseFloat(StyleChicken.getPropertyValue("width")) / 2;
     yChicken = Number.parseFloat(StyleChicken.getPropertyValue("bottom")) + Number.parseFloat(StyleChicken.getPropertyValue("width")) / 2;
     WidthChicken = Number.parseFloat(StyleChicken.getPropertyValue("width"));
-    ScaleChicken = StyleChicken.getPropertyValue("scale");
-
-    // 左右の移動を素早く切り替えても自然なアニメーションになるようにアニメーション情報を常に更新
-    KeyframesChickenMoveLeft = {
-        scale: [`${ScaleChicken}`, "-1 1"]
-    };
-    KeyframesChickenMoveRight = {
-        scale: [`${ScaleChicken}`, "+1 1"]
-    };
-
+    
     // ゲームに存在する全てのカニにそれぞれ処理
     for (const ObjectCrab of ArrayObjectCrab) {
-
+    
         // カニの位置、幅を取得
         const xCrab = Number.parseFloat(ObjectCrab.StyleCrab.getPropertyValue("left")) + Number.parseFloat(ObjectCrab.StyleCrab.getPropertyValue("width")) * 0.50;
         const yCrab = Number.parseFloat(ObjectCrab.StyleCrab.getPropertyValue("bottom")) + Number.parseFloat(ObjectCrab.StyleCrab.getPropertyValue("width")) * 0.32;//console.log(YCrub);
         const WidthCrab = Number.parseFloat(ObjectCrab.StyleCrab.getPropertyValue("width"));
-
+    
         if (StateGame === ObjectStateGame.AfterStart) {
-
+    
             // 当たり判定をする　カニがニワトリに接触したらニワトリをふっ飛ばす
             if (Math.abs(xChicken - xCrab) < (WidthChicken + WidthCrab) / 2 && Math.abs(yChicken - yCrab) < (WidthChicken + WidthCrab) / 2) {
-
+    
                 if ((xChicken - xCrab) ** 2 + (yChicken - yCrab) ** 2 < ((WidthChicken + WidthCrab) / 2) ** 2) {
-
+    
                     FlickChicken(xChicken - xCrab);
-
+    
                     StateGame = ObjectStateGame.Failure;
-
+    
                 }
                 
             }
-
+    
         }
-
+    
     }
-
+    
     // ゲームの状況が変化したら１度だけcase内の処理を行う
     if (StateGame !== StateGamePrevious.ChickenJS) {
-
+    
+        // ゲームに勝ったらニワトリが上に羽ばたく
         switch (StateGame) {
-
+    
             case ObjectStateGame.Success:
-
+    
                 setTimeout(FlyChicken, 1000);
-
+    
             break;
-
+    
         }
-
+    
     }
-
+    
     StateGamePrevious.ChickenJS = StateGame;
 
-}
-
-setInterval(ApdateChickenJS, 5);
+}, 5);

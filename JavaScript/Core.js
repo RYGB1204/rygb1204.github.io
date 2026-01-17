@@ -1,8 +1,6 @@
 // ホームページの核となるファイル
 
 // HTML要素を取得し、ゲーム画面の幅や高さからアスペクト比を計算する
-const Body = document.querySelector("body");
-
 const Contents = document.querySelector("#Contents");
 const StyleContents = getComputedStyle(Contents);
 
@@ -103,14 +101,12 @@ switch (Mode) {
 }
 
 // コンテンツ画面領域の余計なクリックアクションを無効化
-function ProhibitClickRight(event) {
+Contents.addEventListener("contextmenu", (event) => {
     event.preventDefault();
-}
-
-Contents.addEventListener("contextmenu", ProhibitClickRight);
+});
 
 // ウィンドウの変形によって変化する情報を更新　場合によってはリロード
-function ResizeCoreJS() {
+window.addEventListener("resize", () => {
 
     WidthContents = Number.parseFloat(StyleContents.getPropertyValue("width"));
     HeightContents = Number.parseFloat(StyleContents.getPropertyValue("height"));
@@ -120,10 +116,4 @@ function ResizeCoreJS() {
         window.location.reload();
     }
 
-}
-
-window.addEventListener("resize", ResizeCoreJS);
-
-addEventListener("load", () => {
-    Body.style.visibility = "visible";
-})
+});

@@ -190,28 +190,32 @@ function ChooseCrab() {
 
 }
 
-// １秒ごとにカニを出現させる
-const IntervalChooseCrab = setInterval(ChooseCrab, 1000);
+let IntervalChooseCrab;
 
 // ゲームの状況を常に監視する　状況が変化したら１度だけcase内の処理を行う
-function ApdateCrabJS() {
-
+setInterval(() => {
+    
     if (StateGame !== StateGamePrevious.CrabJS) {
-
+    
+        // ゲーム開始後、１秒ごとにカニを出現させる　ゲームに勝ったらカニの出現が終わる
         switch (StateGame) {
 
-            case ObjectStateGame.Success:
+            case ObjectStateGame.AfterStart:
 
-                clearInterval(IntervalChooseCrab);
+                IntervalChooseCrab = setInterval(ChooseCrab, 1000);
 
                 break;
-
+    
+            case ObjectStateGame.Success:
+    
+                clearInterval(IntervalChooseCrab);
+    
+                break;
+    
         }
-
+    
     }
-
+    
     StateGamePrevious.CrabJS = StateGame;
 
-}
-
-setInterval(ApdateCrabJS, 10);
+}, 10);
