@@ -19,7 +19,7 @@ function MoveCrabHorizontal(TimeNow) {
     }
 
     // 前フレームからの経過時間
-    let TimeElapsed = TimeNow - this.TimeMoveHorizontalStart;
+    const TimeElapsed = TimeNow - this.TimeMoveHorizontalStart;
 
     // １フレーム目からの経過時間から移動距離を計算　カニに反映（紫カニのみ超高速）
     let DistanceMove;
@@ -61,8 +61,8 @@ function MoveCrabVertical(TimeNow) {
     }
 
     // １フレーム目からの経過時間　後の計算のために単位をmsからsに変換
-    let TimeElapsed = TimeNow - this.TimeStartY;
-    let TimeElapsedSecond = Math.min(TimeElapsed / 1000, 2 / (this.RateGravity / this.RateVelocityInitial));
+    const TimeElapsed = TimeNow - this.TimeStartY;
+    const TimeElapsedSecond = Math.min(TimeElapsed / 1000, 2 / (this.RateGravity / this.RateVelocityInitial));
 
     // １フレーム目からの経過時間からカニの垂直方向の位置を計算　カニに反映
     const DistanceJump = VelocityInitial * TimeElapsedSecond - Gravity * TimeElapsedSecond ** 2 / 2;
@@ -192,28 +192,32 @@ function ChooseCrab() {
 
 }
 
-// １秒ごとにカニを出現させる
-const IntervalChooseCrab = setInterval(ChooseCrab, 1000);
+let IntervalChooseCrab;
 
 // ゲームの状況を常に監視する　状況が変化したら１度だけcase内の処理を行う
-function ApdateCrabJS() {
-
+setInterval(() => {
+    
     if (StateGame !== StateGamePrevious.CrabJS) {
-
+    
+        // ゲーム開始後、１秒ごとにカニを出現させる　ゲームに勝ったらカニの出現が終わる
         switch (StateGame) {
 
+            case ObjectStateGame.AfterStart:
+
+                IntervalChooseCrab = setInterval(ChooseCrab, 1000);
+
+                break;
+    
             case ObjectStateGame.Success:
-
+    
                 clearInterval(IntervalChooseCrab);
-
+    
             break;
-
+    
         }
-
+    
     }
-
+    
     StateGamePrevious.CrabJS = StateGame;
 
-}
-
-setInterval(ApdateCrabJS, 10);
+}, 10);

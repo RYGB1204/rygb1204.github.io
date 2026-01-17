@@ -39,13 +39,8 @@ function Countdown() {
 
     AnimationCountText.cancel();
 
-    // ゲームに負けたらカウントダウンを止める　０秒になるまで逃げきったらカウントダウンを止め、１秒後「YOU WIN!」テキストを表示する
-    if (StateGame === ObjectStateGame.Failure) {
-
-        clearInterval(IntervalCountdown);
-        
-    }
-    else if (0 < CountInt) {
+    //０秒になるまで逃げきったらカウントダウンを止め、１秒後「YOU WIN!」テキストを表示する
+    if (0 < CountInt) {
 
         CountText.textContent = CountInt;
         AnimationCountText.play();
@@ -68,17 +63,10 @@ function Countdown() {
 }
 
 // 「YOU LOSE」「YOU WIN!」テキスト　リトライボタン　のアニメーション情報を定義
-const KeyframesLoseText = {
+const KeyframesLoseWinText = {
     scale: [1, 2]
 };
-const KeyframesWinText = {
-    scale: [1, 2]
-};
-const OptionsLoseText = {
-    duration: 200,
-    fill: "both"
-};
-const OptionsWinText = {
+const OptionsLoseWinText = {
     duration: 200,
     fill: "both"
 };
@@ -97,7 +85,7 @@ function DisplayLose() {
 
     ButtonRetry.style.visibility = "visible";
 
-    CountText.animate(KeyframesLoseText, OptionsLoseText);
+    CountText.animate(KeyframesLoseWinText, OptionsLoseWinText);
     ButtonRetry.animate(KeyframesButtonRetry, OptionsButtonRetry);
 
 }
@@ -107,7 +95,7 @@ function DisplayWin() {
 
     ButtonRetry.style.visibility = "visible";
 
-    CountText.animate(KeyframesWinText, OptionsWinText);
+    CountText.animate(KeyframesLoseWinText, OptionsLoseWinText);
     ButtonRetry.animate(KeyframesButtonRetry, OptionsButtonRetry);
 
 }
@@ -118,7 +106,10 @@ function ClickButtonRetry() {
     window.location.reload();
 
 }
-function KeydownButtonRetry(event) {
+
+ButtonRetry.addEventListener("click", ClickButtonRetry);
+
+document.addEventListener("keydown", (event) => {
 
     if (!event.repeat) {
         
@@ -130,41 +121,41 @@ function KeydownButtonRetry(event) {
 
     }
 
-}
+});
 
-ButtonRetry.addEventListener("click", ClickButtonRetry);
-document.addEventListener("keydown", KeydownButtonRetry);
-
-// カウントダウンを１秒間隔で実行する
+// ロード後、カウントダウンを１秒間隔で実行する
 let IntervalCountdown;
 
-setTimeout(() => {
-    StateGame = ObjectStateGame.AfterStart
-    IntervalCountdown = setInterval(Countdown, 1000);
-}, 1000);
+window.addEventListener("load", () => {
+
+    setTimeout(() => {
+        StateGame = ObjectStateGame.AfterStart
+        IntervalCountdown = setInterval(Countdown, 1000);
+    }, 1000);
+
+});
 
 // ゲームの状況を常に監視する　状況が変化したら１度だけcase内の処理を行う
-function ApdateCountdownJS() {
-
+setInterval(() => {
+    
     if (StateGame !== StateGamePrevious.CountdownJS) {
-
+    
+        // 負けたらカウントダウンを止め、１秒後「YOU LOSE」テキストを表示する
         switch (StateGame) {
-
-            // 負けたらカウントダウンを止め、１秒後「負け」テキストを表示
+    
             case ObjectStateGame.Failure:
-
+    
                 AnimationCountText.cancel();
-
+                clearInterval(IntervalCountdown);
+    
                 setTimeout(DisplayLose, 1000);
-
+    
             break;
-
+    
         }
-
+    
     }
-
+    
     StateGamePrevious.CountdownJS = StateGame;
 
-}
-
-setInterval(ApdateCountdownJS, 10);
+}, 10);

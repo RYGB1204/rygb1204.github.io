@@ -106,7 +106,6 @@ nav#HomeMenu.Display {
     transition: all 0.5s;
     z-index: 81;
 }
-
 #MenuCrab.MenuCrabR {
     right: 70%;
     background-image: url(../Image/MoveCrabR.gif);
@@ -131,18 +130,109 @@ nav#HomeMenu.Display {
 #MenuCrab.Display {
     top: calc(100% - var(--WidthMenuCrab) - 10svh);
 }
-
 #MenuCrab.MenuCrabR.Display {
     right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab));
+    animation: MenuCrabR 2000ms ease-in-out infinite;
 }
 #MenuCrab.MenuCrabB.Display {
     left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab));
+    animation: MenuCrabB 2000ms ease-in-out infinite;
 }
 #MenuCrab.MenuCrabY.Display {
     right: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2);
+    animation: MenuCrabY 2000ms ease-in-out infinite;
 }
 #MenuCrab.MenuCrabG.Display {
     left: calc(50% - var(--WidthMenuCrab) / 2 + var(--WidthMenuCrab) * 2);
+    animation: MenuCrabG 2000ms ease-in-out infinite;
+}
+#MenuCrab.MenuCrabP.Display {
+    animation: MenuCrabP 2000ms ease-in-out infinite;
+}
+@keyframes MenuCrabY {
+    0% {
+        translate: 0;
+    }
+    30% {
+        translate: 0;
+    }
+    40% {
+        translate: 0 calc(-1 * var(--WidthMenuCrab));
+    }
+    50% {
+        translate: 0;
+    }
+    100% {
+        translate: 0;
+    }
+}
+@keyframes MenuCrabR {
+    0% {
+        translate: 0;
+    }
+    40% {
+        translate: 0;
+    }
+    50% {
+        translate: 0 calc(-1 * var(--WidthMenuCrab));
+    }
+    60% {
+        translate: 0;
+    }
+    100% {
+        translate: 0;
+    }
+}
+@keyframes MenuCrabP {
+    0% {
+        translate: 0;
+    }
+    50% {
+        translate: 0;
+    }
+    60% {
+        translate: 0 calc(-1 * var(--WidthMenuCrab));
+    }
+    70% {
+        translate: 0;
+    }
+    100% {
+        translate: 0;
+    }
+}
+@keyframes MenuCrabB {
+    0% {
+        translate: 0;
+    }
+    60% {
+        translate: 0;
+    }
+    70% {
+        translate: 0 calc(-1 * var(--WidthMenuCrab));
+    }
+    80% {
+        translate: 0;
+    }
+    100% {
+        translate: 0;
+    }
+}
+@keyframes MenuCrabG {
+    0% {
+        translate: 0;
+    }
+    70% {
+        translate: 0;
+    }
+    80% {
+        translate: 0 calc(-1 * var(--WidthMenuCrab));
+    }
+    90% {
+        translate: 0;
+    }
+    100% {
+        translate: 0;
+    }
 }
 
 #HomeMenu #Palette {
@@ -164,15 +254,26 @@ nav#HomeMenu.Display {
 #HomeMenu #Palette figure #Icon {
     display: block;
     width: 100%;
-    border-radius: 20%;
     box-shadow: 0 calc(var(--GapPalette) / 2) calc(var(--GapPalette) / 2);
     transition: all 200ms;
+    animation: Icon 2500ms linear infinite;
 }
 #HomeMenu #Palette figure #Icon:hover {
     scale: 1.1;
 }
 #HomeMenu #Palette figure #Icon:active {
     opacity: 0.5;
+}
+@keyframes Icon {
+    0% {
+        border-radius: 20%;
+    }
+    50% {
+        border-radius: 50%;
+    }
+    100% {
+        border-radius: 20%;
+    }
 }
 
 #HomeMenu #Palette figure figcaption {

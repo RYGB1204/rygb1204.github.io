@@ -41,6 +41,8 @@
     background-size: contain;
     background-position: bottom;
     z-index: 1;
+    transition-property: scale;
+    transition-duration: 150ms;
 }
 
 #Crab {
