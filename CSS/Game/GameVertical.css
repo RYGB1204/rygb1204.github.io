@@ -3,10 +3,11 @@
 @charset "utf-8";
 
 :root {
-    --WidthChicken: 10dvh;
-    --WidthCrab: 10dvh;
     --SizeFontCountText: 10dvw;
     --WidthButton: 160px;
+    --WidthChicken: 10dvh;
+    --WidthCrab: 10dvh;
+    --WidthEffectFlickChicken: 15dvh;
 }
 
 #CountText {

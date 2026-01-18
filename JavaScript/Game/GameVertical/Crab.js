@@ -1,10 +1,10 @@
 // 縦画面ゲームのカニに関する処理をまとめたファイル
 
 // カニを弾き飛ばすときのアニメーション情報を定義（カニをタッチしたとき）
-const KeyframesFlickCrab = {
-    rotate: ["0deg", "360deg"]
+const KeyframesFlickCrabRotate = {
+    rotate: [undefined]
 };
-const OptionsFlickCrab = {
+const OptionsFlickCrabRotate = {
     duration: 200,
     iterations: "Infinity"
 };
@@ -43,11 +43,27 @@ function FlickCrab() {
     // 始点から終点までにかかる時間を定義する
     let Duration;
 
-    if (this.Crab.classList.contains("CrabP")) {
-        Duration = DistanceFlickCrab / HeightContents * 500;
-    }
-    else {
+    if (this.Crab.classList.contains("CrabR") || this.Crab.classList.contains("CrabY")) {
         Duration = DistanceFlickCrab / HeightContents * 1500;
+        KeyframesFlickCrabRotate.rotate = ["0deg", "-360deg"];
+    }
+    if (this.Crab.classList.contains("CrabB") || this.Crab.classList.contains("CrabG")) {
+        Duration = DistanceFlickCrab / HeightContents * 1500;
+        KeyframesFlickCrabRotate.rotate = ["0deg", "+360deg"];
+    }
+    if (this.Crab.classList.contains("CrabP")) {
+
+        Duration = DistanceFlickCrab / HeightContents * 500;
+
+        const NumberRandom = Math.random();
+
+        if (NumberRandom < 0.5) {
+            KeyframesFlickCrabRotate.rotate = ["0deg", "-360deg"];
+        }
+        else {
+            KeyframesFlickCrabRotate.rotate = ["0deg", "+360deg"];
+        }
+        
     }
 
     // css「left」「bottom」の値を用いて始点から終点までの動きをアニメーションする
@@ -56,7 +72,7 @@ function FlickCrab() {
     this.OptionsCrab.duration = Duration;
 
     this.Crab.animate(this.KeyframesCrab, this.OptionsCrab);
-    this.Crab.animate(KeyframesFlickCrab, OptionsFlickCrab);
+    this.Crab.animate(KeyframesFlickCrabRotate, OptionsFlickCrabRotate);
 
     PlaySoundFlickCrab(SoundSourceFlickCrab);
 
