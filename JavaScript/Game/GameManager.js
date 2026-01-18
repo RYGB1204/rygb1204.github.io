@@ -19,6 +19,21 @@ const StateGamePrevious = {
 // ゲームに存在しているカニのデータを配列にいれて管理する
 const ArrayObjectCrab = [];
 
+// エフェクトの準備
+let StyleEffectFlickChicken;
+let WidthEffectFlickChicken, HeightEffectFlickChicken;
+
+async function SetUpEffectFlickChicken() {
+
+    const EffectFlickChicken = document.createElement("div");
+    const IdEffectFlickChicken = document.createAttribute("id");
+    IdEffectFlickChicken.value = "EffectFlickChicken";
+    EffectFlickChicken.setAttributeNode(IdEffectFlickChicken);
+
+    await Contents.append(EffectFlickChicken);
+
+}
+
 // 効果音の準備
 const ManagerAudio = new AudioContext();
 
@@ -62,9 +77,22 @@ async function SetUpSoundSourceFlickCrab() {
 }
 
 async function StartGameManagerJS() {
+
+    await SetUpEffectFlickChicken();
+
+    StyleEffectFlickChicken = getComputedStyle(EffectFlickChicken);
+    WidthEffectFlickChicken = Number.parseFloat(StyleEffectFlickChicken.getPropertyValue("width"));
+    HeightEffectFlickChicken = Number.parseFloat(StyleEffectFlickChicken.getPropertyValue("height"));
+
     SoundSourceFlickChicken = await SetUpSoundSourceFlickChicken();
     SoundSourceJumpChicken = await SetUpSoundSourceJumpChicken();
     SoundSourceFlickCrab = await SetUpSoundSourceFlickCrab();
+
 }
 
 StartGameManagerJS();
+
+window.addEventListener("resize", () => {
+    WidthEffectFlickChicken = Number.parseFloat(StyleEffectFlickChicken.getPropertyValue("width"));
+    HeightEffectFlickChicken = Number.parseFloat(StyleEffectFlickChicken.getPropertyValue("height"));
+});

@@ -70,3 +70,16 @@
     width: calc(var(--WidthCrab) * 2);
     background-image: url(../../Image/MoveCrabP.gif);
 }
+
+#EffectFlickChicken {
+    position: absolute;
+    width: var(--WidthEffectFlickChicken); aspect-ratio: 1 / 1.2;
+    background-image: url(../../Image/FlickChicken.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+}
