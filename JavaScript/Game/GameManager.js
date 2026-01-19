@@ -81,8 +81,6 @@ async function StartGameManagerJS() {
     await SetUpEffectFlickChicken();
 
     StyleEffectFlickChicken = getComputedStyle(EffectFlickChicken);
-    WidthEffectFlickChicken = Number.parseFloat(StyleEffectFlickChicken.getPropertyValue("width"));
-    HeightEffectFlickChicken = Number.parseFloat(StyleEffectFlickChicken.getPropertyValue("height"));
 
     SoundSourceFlickChicken = await SetUpSoundSourceFlickChicken();
     SoundSourceJumpChicken = await SetUpSoundSourceJumpChicken();
@@ -91,8 +89,3 @@ async function StartGameManagerJS() {
 }
 
 StartGameManagerJS();
-
-window.addEventListener("resize", () => {
-    WidthEffectFlickChicken = Number.parseFloat(StyleEffectFlickChicken.getPropertyValue("width"));
-    HeightEffectFlickChicken = Number.parseFloat(StyleEffectFlickChicken.getPropertyValue("height"));
-});
