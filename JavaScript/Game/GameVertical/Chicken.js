@@ -60,6 +60,9 @@ const OptionsEffectFlickChicken = {
 // ニワトリがふっ飛ばされるエフェクトを表示する
 function DisplayEffectFlickChicken(Difference_xChickenCrab, xHit, yHit) {
 
+    WidthEffectFlickChicken = Number.parseFloat(StyleEffectFlickChicken.getPropertyValue("width"));
+    HeightEffectFlickChicken = Number.parseFloat(StyleEffectFlickChicken.getPropertyValue("height"));
+
     EffectFlickChicken.style.left = `${xHit - WidthEffectFlickChicken / 2}px`;
     EffectFlickChicken.style.bottom = `${yHit - HeightEffectFlickChicken / 2}px`;
 
