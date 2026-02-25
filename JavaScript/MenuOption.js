@@ -30,7 +30,7 @@ for (const Icon of ArrayIcon) {
         switch (event.currentTarget.classList[0]) {
 
             case "Fishing":
-                open("https://rygb1204.github.io/game1");
+                open("https://rygb1204.github.io/game01");
                 break;
 
             case "Gallery":
