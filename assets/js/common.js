@@ -13,28 +13,28 @@ function LoadModeHorizontal() {
 
     const CSS_Game = document.createElement("link");
     CSS_Game.rel = "stylesheet";
-    CSS_Game.href = "CSS/Game/Game.css";
+    CSS_Game.href = "/assets/css/game/game.css";
     document.head.append(CSS_Game);
 
     const CSS_GameHorizontal = document.createElement("link");
     CSS_GameHorizontal.rel = "stylesheet";
-    CSS_GameHorizontal.href = "CSS/Game/GameHorizontal.css";
+    CSS_GameHorizontal.href = "/assets/css/game/game-horizontal.css";
     document.head.append(CSS_GameHorizontal);
 
     const JS_GameManager = document.createElement("script");
-    JS_GameManager.src = "JavaScript/Game/GameManager.js";
+    JS_GameManager.src = "/assets/js/game/manager-game.js";
     document.head.append(JS_GameManager);
 
     const JS_Countdown = document.createElement("script");
-    JS_Countdown.src = "JavaScript/Game/Countdown.js";
+    JS_Countdown.src = "/assets/js/game/countdown.js";
     document.head.append(JS_Countdown);
 
     const JS_Chicken = document.createElement("script");
-    JS_Chicken.src = "JavaScript/Game/GameHorizontal/Chicken.js";
+    JS_Chicken.src = "/assets/js/game/game-horizontal/chicken.js";
     document.head.append(JS_Chicken);
 
     const JS_Crab = document.createElement("script");
-    JS_Crab.src = "JavaScript/Game/GameHorizontal/Crab.js";
+    JS_Crab.src = "/assets/js/game/game-horizontal/crab.js";
     document.head.append(JS_Crab);
 
 }
@@ -44,28 +44,28 @@ function LoadModeVertical() {
 
     const CSS_Game = document.createElement("link");
     CSS_Game.rel = "stylesheet";
-    CSS_Game.href = "CSS/Game/Game.css";
+    CSS_Game.href = "/assets/css/game/game.css";
     document.head.append(CSS_Game);
     
     const CSS_GameVertical = document.createElement("link");
     CSS_GameVertical.rel = "stylesheet";
-    CSS_GameVertical.href = "CSS/Game/GameVertical.css";
+    CSS_GameVertical.href = "/assets/css/game/game-vertical.css";
     document.head.append(CSS_GameVertical);
 
     const JS_GameManager = document.createElement("script");
-    JS_GameManager.src = "JavaScript/Game/GameManager.js";
+    JS_GameManager.src = "/assets/js/game/manager-game.js";
     document.head.append(JS_GameManager);
 
     const JS_Countdown = document.createElement("script");
-    JS_Countdown.src = "JavaScript/Game/Countdown.js";
+    JS_Countdown.src = "/assets/js/game/countdown.js";
     document.head.append(JS_Countdown);
 
     const JS_Chicken = document.createElement("script");
-    JS_Chicken.src = "JavaScript/Game/GameVertical/Chicken.js";
+    JS_Chicken.src = "/assets/js/game/game-vertical/chicken.js";
     document.head.append(JS_Chicken);
 
     const JS_Crab = document.createElement("script");
-    JS_Crab.src = "JavaScript/Game/GameVertical/Crab.js";
+    JS_Crab.src = "/assets/js/game/game-vertical/crab.js";
     document.head.append(JS_Crab);
 
 }
